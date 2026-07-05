@@ -16,7 +16,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: scrape all regions
         run: python scraper.py
-        env: { MAX_PAGES: '60' }
+        env: { MAX_PAGES: '300' }  # Αττικής alone naturally ends at page 155 (verified 2026-07-05); keep headroom
       - name: link re-auction rounds, flag price cuts
         run: python drop_tracker.py
       - name: email new listings

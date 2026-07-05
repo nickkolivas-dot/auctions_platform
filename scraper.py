@@ -45,7 +45,7 @@ def get(url, tries=3):
 
 def ids_in_region(region, max_pages=40):
     slug = urllib.parse.quote(region)
-    ids, page, empty = set(), 1, 0
+    ids, page = set(), 1
     while page <= max_pages:
         html = get(f"{BASE}/auctions/{slug}?page={page}")
         if not html:
@@ -53,12 +53,12 @@ def ids_in_region(region, max_pages=40):
         found = set(re.findall(r"/auction/(\d+)", html))
         new = found - ids
         if not new:
-            empty += 1
-            if empty >= 1:  # no new ids on this page => end
-                break
+            return ids  # empty page -> reached the natural end
         ids |= found
         page += 1
         time.sleep(0.6)
+    print(f"  WARNING [{region}] hit MAX_PAGES={max_pages} without an empty page — "
+          f"results are truncated, raise MAX_PAGES", file=sys.stderr)
     return ids
 
 def parse_detail(aid):
