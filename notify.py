@@ -2,7 +2,9 @@
 """
 Emails a digest of NEW listings after a scan.
 Credentials come from env (GitHub Secrets) — never hard-coded.
-Required env: SMTP_HOST SMTP_PORT SMTP_USER SMTP_PASS MAIL_TO
+Env: SMTP_HOST SMTP_PORT SMTP_USER SMTP_PASS MAIL_TO — skips quietly (no send,
+exit 0) if any of these aren't set yet, so a scan before Secrets are
+configured still commits data instead of failing the workflow.
 Optional filter env (narrows the email, not the scan):
   ALERT_TYPES=Land,Residential   ALERT_REGION=Πελοποννήσου   ALERT_MAX_PRICE=50000
   ALERT_LOC=Κατάκολο                (substring match on municipality/address/title)
@@ -17,6 +19,11 @@ meta = json.loads((DATA / "meta.json").read_text()) if (DATA / "meta.json").exis
 new_ids = set(meta.get("new_ids", []))
 if not new_ids:
     print("no new listings; skip email"); sys.exit(0)
+
+required = ["SMTP_HOST", "SMTP_USER", "SMTP_PASS", "MAIL_TO"]
+missing = [v for v in required if not os.environ.get(v)]
+if missing:
+    print(f"missing {', '.join(missing)}; skip email (add repo Secrets to enable)"); sys.exit(0)
 
 rows = [r for r in json.loads((DATA / "auctions.json").read_text()) if r["id"] in new_ids]
 
@@ -54,14 +61,14 @@ cards = "".join(f"""
   {esc(r.get('municipality') or '')} , {esc(r.get('region') or '')}&nbsp;·&nbsp;⚖ {esc(r.get('auction_date') or '—')}</span>
 </td></tr>""" for r in rows)
 
-html = f"""<div style="max-width:640px;margin:auto;font-family:sans-serif">
+body = f"""<div style="max-width:640px;margin:auto;font-family:sans-serif">
 <h2 style="font-family:Georgia,serif;color:#12232e">{len(rows)} new auction listing{'s' if len(rows)!=1 else ''}</h2>
 <p style="color:#6c7a82;font-size:13px">Scan {meta.get('last_run','')} · source eauction24.gr</p>
 <table style="width:100%;border-collapse:collapse">{cards}</table>
 <p style="color:#a4402f;font-size:12px;margin-top:18px">Verify on eauction.gr + legal/engineer title check before bidding.</p>
 </div>"""
 
-msg = MIMEText(html, "html", "utf-8")
+msg = MIMEText(body, "html", "utf-8")
 msg["Subject"] = f"[Auctions] {len(rows)} new listing{'s' if len(rows)!=1 else ''}"
 msg["From"] = os.environ["SMTP_USER"]
 msg["To"] = os.environ["MAIL_TO"]
