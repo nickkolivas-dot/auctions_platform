@@ -16,7 +16,12 @@ jobs:
       - run: pip install -r requirements.txt
       - name: scrape all regions
         run: python scraper.py
-        env: { MAX_PAGES: '300' }  # Αττικής alone naturally ends at page 155 (verified 2026-07-05); keep headroom
+        env:
+          MAX_PAGES: '300'  # Αττικής alone naturally ends at page 155 (verified 2026-07-05); keep headroom
+          # hard budget cap: never fetch or store listings priced above this.
+          # empty/unset = no cap (full nationwide archive). Change anytime in
+          # repo Settings -> Secrets and variables -> Actions -> Variables.
+          MAX_PRICE_EUR: ${{ vars.MAX_PRICE_EUR }}
       - name: link re-auction rounds, flag price cuts
         run: python drop_tracker.py
       - name: email new listings
@@ -37,5 +42,14 @@ jobs:
           git config user.name  "auction-bot"
           git config user.email "bot@users.noreply.github.com"
           git add data/
-          git diff --cached --quiet || git commit -m "scan $(date -u +%F_%H:%M)"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m "scan $(date -u +%F_%H:%M)"
+          for i in 1 2 3 4 5; do
+            git push && exit 0
+            echo "push rejected (remote moved on), rebasing onto latest main (attempt $i)"
+            git fetch origin main
+            git rebase origin/main -X ours || { git rebase --abort; exit 1; }
+            sleep $((i * 5))
+          done
+          echo "failed to push after retries" >&2
+          exit 1

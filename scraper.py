@@ -43,23 +43,27 @@ def get(url, tries=3):
         time.sleep(2 * (i + 1))
     return None
 
-def ids_in_region(region, max_pages=40):
+def ids_in_region(region, max_pages=40, sort=None):
+    """Returns ids in page-traversal order (not just a set) so callers can
+    rely on site ordering, e.g. sort='price_asc' for budget-capped scans."""
     slug = urllib.parse.quote(region)
-    ids, page = set(), 1
+    qs = f"&sort={sort}" if sort else ""
+    seen, order, page = set(), [], 1
     while page <= max_pages:
-        html = get(f"{BASE}/auctions/{slug}?page={page}")
+        html = get(f"{BASE}/auctions/{slug}?page={page}{qs}")
         if not html:
             break
-        found = set(re.findall(r"/auction/(\d+)", html))
-        new = found - ids
-        if not new:
-            return ids  # empty page -> reached the natural end
-        ids |= found
+        page_ids = dict.fromkeys(re.findall(r"/auction/(\d+)", html))  # dedupe, keep first-seen order
+        found = [aid for aid in page_ids if aid not in seen]
+        if not found:
+            return order  # empty page -> reached the natural end
+        seen.update(found)
+        order.extend(found)
         page += 1
         time.sleep(0.6)
     print(f"  WARNING [{region}] hit MAX_PAGES={max_pages} without an empty page — "
           f"results are truncated, raise MAX_PAGES", file=sys.stderr)
-    return ids
+    return order
 
 def parse_detail(aid):
     html = get(f"{BASE}/auction/{aid}")
@@ -99,39 +103,56 @@ def main():
     regions = sys.argv[1:] or REGIONS
     scanned = set(regions)
     max_pages = int(os.environ.get("MAX_PAGES", "40"))
+    max_price_env = os.environ.get("MAX_PRICE_EUR")
+    max_price = float(max_price_env) if max_price_env else None
     prev = {}
     if STORE.exists():
         prev = {r["id"]: r for r in json.loads(STORE.read_text())}
     today = datetime.date.today().isoformat()
 
-    all_ids = set()
-    for reg in regions:
-        got = ids_in_region(reg, max_pages)
-        print(f"[{reg}] {len(got)} listings", file=sys.stderr)
-        all_ids |= got
+    # hard budget cap: never store listings above it, so a cap turned on
+    # (or lowered) also purges anything already-known that no longer qualifies
+    if max_price is not None:
+        prev = {aid: r for aid, r in prev.items() if not (r.get("price_eur") or 0) > max_price}
 
     # start from full history so delisted lots aren't lost (drop_tracker.py
     # needs past rounds to link re-auctions, which get a new id each round)
     records = dict(prev)
     new_ids = []
-    for i, aid in enumerate(sorted(all_ids, key=int), 1):
-        aid_i = int(aid)
-        if aid_i in prev:                       # already known: reuse, keep first_seen
-            rec = dict(prev[aid_i])
-            rec["status"] = "active"
-            rec["last_seen"] = today
-        else:
-            rec = parse_detail(aid)
-            if not rec:
-                continue
-            rec["first_seen"] = today
-            rec["last_seen"] = today
-            rec["status"] = "active"
-            new_ids.append(aid_i)
-            time.sleep(0.5)
-        records[aid_i] = rec
-        if i % 25 == 0:
-            print(f"  ...{i}/{len(all_ids)}", file=sys.stderr)
+    all_ids = set()
+    for reg in regions:
+        # price_asc + stopping at the first over-cap listing skips fetching
+        # (and paying for) every pricier listing after it, region-wide
+        order = ids_in_region(reg, max_pages, sort="price_asc" if max_price else None)
+        kept = 0
+        for i, aid in enumerate(order, 1):
+            aid_i = int(aid)
+            if aid_i in prev:                       # already known: reuse, keep first_seen
+                rec = dict(prev[aid_i])
+                rec["status"] = "active"
+                rec["last_seen"] = today
+                price = rec.get("price_eur")
+            else:
+                rec = parse_detail(aid)
+                if not rec:
+                    continue
+                rec["first_seen"] = today
+                rec["last_seen"] = today
+                rec["status"] = "active"
+                price = rec.get("price_eur")
+                time.sleep(0.5)
+            if max_price is not None and price is not None and price > max_price:
+                print(f"  [{reg}] stopping at id {aid_i} (€{price:,.0f} > cap) "
+                      f"— remaining listings only get pricier", file=sys.stderr)
+                break
+            if aid_i not in prev:
+                new_ids.append(aid_i)
+            records[aid_i] = rec
+            all_ids.add(aid_i)
+            kept += 1
+            if i % 25 == 0:
+                print(f"  ...{i}/{len(order)}", file=sys.stderr)
+        print(f"[{reg}] {kept} within budget", file=sys.stderr)
 
     # anything previously active in a region we actually scanned this run,
     # but no longer listed -> delisted (sold, cancelled, or pending re-auction).
