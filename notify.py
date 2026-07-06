@@ -8,7 +8,11 @@ configured still commits data instead of failing the workflow.
 Optional filter env (narrows the email, not the scan):
   ALERT_TYPES=Land,Residential   ALERT_REGION=Πελοποννήσου   ALERT_MAX_PRICE=50000
   ALERT_LOC=Κατάκολο                (substring match on municipality/address/title)
-Exits quietly (no send) when nothing new matches.
+FORCE_EMAIL=1 sends the current price-drop list instead of skipping when a
+run finds nothing new — useful for testing or an on-demand check-in, since
+the routine scan is new-only by design (it'd otherwise re-email the whole
+archive every run).
+Exits quietly (no send) when nothing new/forced matches.
 """
 import html, json, os, smtplib, sys
 from email.mime.text import MIMEText
@@ -17,8 +21,21 @@ from pathlib import Path
 DATA = Path("data")
 meta = json.loads((DATA / "meta.json").read_text()) if (DATA / "meta.json").exists() else {}
 new_ids = set(meta.get("new_ids", []))
+
+drops_by_id = {}
+if (DATA / "drops.json").exists():
+    for d in json.loads((DATA / "drops.json").read_text()):
+        if d.get("has_drop"):
+            drops_by_id[d["latest_id"]] = d
+
+is_drop_digest = False
 if not new_ids:
-    print("no new listings; skip email"); sys.exit(0)
+    if os.environ.get("FORCE_EMAIL", "").lower() not in ("1", "true"):
+        print("no new listings; skip email"); sys.exit(0)
+    if not drops_by_id:
+        print("forced send requested, but no price drops to report either; skip email"); sys.exit(0)
+    is_drop_digest = True
+    new_ids = set(drops_by_id)
 
 required = ["SMTP_HOST", "SMTP_USER", "SMTP_PASS", "MAIL_TO"]
 missing = [v for v in required if not os.environ.get(v)]
@@ -26,12 +43,6 @@ if missing:
     print(f"missing {', '.join(missing)}; skip email (add repo Secrets to enable)"); sys.exit(0)
 
 rows = [r for r in json.loads((DATA / "auctions.json").read_text()) if r["id"] in new_ids]
-
-drops_by_id = {}
-if (DATA / "drops.json").exists():
-    for d in json.loads((DATA / "drops.json").read_text()):
-        if d.get("has_drop"):
-            drops_by_id[d["latest_id"]] = d
 
 # optional filter
 types = [t.strip() for t in os.environ.get("ALERT_TYPES", "").split(",") if t.strip()]
@@ -46,7 +57,7 @@ def keep(r):
     return True
 rows = [r for r in rows if keep(r)]
 if not rows:
-    print("new listings exist but none match ALERT_* filter; skip email"); sys.exit(0)
+    print(f"{'price drops' if is_drop_digest else 'new listings'} exist but none match ALERT_* filter; skip email"); sys.exit(0)
 
 rows.sort(key=lambda r: (r.get("price_eur") or 1e15))
 eur = lambda n: "€{:,.0f}".format(n) if n else "—"
@@ -61,15 +72,17 @@ cards = "".join(f"""
   {esc(r.get('municipality') or '')} , {esc(r.get('region') or '')}&nbsp;·&nbsp;⚖ {esc(r.get('auction_date') or '—')}</span>
 </td></tr>""" for r in rows)
 
+label = "propert" + ("y" if len(rows) == 1 else "ies") + " with a price cut" if is_drop_digest else \
+        "new auction listing" + ("" if len(rows) == 1 else "s")
 body = f"""<div style="max-width:640px;margin:auto;font-family:sans-serif">
-<h2 style="font-family:Georgia,serif;color:#12232e">{len(rows)} new auction listing{'s' if len(rows)!=1 else ''}</h2>
+<h2 style="font-family:Georgia,serif;color:#12232e">{len(rows)} {label}</h2>
 <p style="color:#6c7a82;font-size:13px">Scan {meta.get('last_run','')} · source eauction24.gr</p>
 <table style="width:100%;border-collapse:collapse">{cards}</table>
 <p style="color:#a4402f;font-size:12px;margin-top:18px">Verify on eauction.gr + legal/engineer title check before bidding.</p>
 </div>"""
 
 msg = MIMEText(body, "html", "utf-8")
-msg["Subject"] = f"[Auctions] {len(rows)} new listing{'s' if len(rows)!=1 else ''}"
+msg["Subject"] = f"[Auctions] {len(rows)} {label}"
 msg["From"] = os.environ["SMTP_USER"]
 msg["To"] = os.environ["MAIL_TO"]
 with smtplib.SMTP(os.environ["SMTP_HOST"], int(os.environ.get("SMTP_PORT", "587"))) as s:

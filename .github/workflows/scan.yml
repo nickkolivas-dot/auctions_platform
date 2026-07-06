@@ -3,7 +3,12 @@ on:
   schedule:
     - cron: '0 6 * * *'    # 09:00 Athens (summer) — morning scan
     - cron: '0 14 * * *'   # 17:00 Athens (summer) — afternoon scan
-  workflow_dispatch: {}     # manual "Run workflow" button
+  workflow_dispatch:
+    inputs:
+      force_email:
+        description: "Send an email even if nothing new was found this run (uses the current price-drop list instead)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 jobs:
@@ -36,6 +41,7 @@ jobs:
           ALERT_REGION:    ${{ vars.ALERT_REGION }}
           ALERT_MAX_PRICE: ${{ vars.ALERT_MAX_PRICE }}
           ALERT_LOC:       ${{ vars.ALERT_LOC }}
+          FORCE_EMAIL:     ${{ inputs.force_email }}
         run: python notify.py
       - name: commit data
         run: |
