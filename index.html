@@ -73,6 +73,18 @@ main{padding:18px 22px 60px}
 .date{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red)}
 .empty{padding:70px 20px;text-align:center;color:var(--muted)}
 .empty b{display:block;font-family:'Fraunces',serif;font-size:20px;color:var(--ink);margin-bottom:6px}
+.glossary{background:var(--card);border-bottom:1px solid var(--line)}
+.glossary summary{cursor:pointer;padding:10px 22px;font-size:13px;color:var(--sea-d);font-weight:600;
+  list-style:none;display:flex;align-items:center;gap:7px;user-select:none}
+.glossary summary::-webkit-details-marker{display:none}
+.glossary summary .chev{margin-left:2px;font-size:9px;color:var(--muted);transition:.15s}
+.glossary[open] summary .chev{transform:rotate(180deg)}
+.gloss-body{padding:6px 22px 22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px 30px;font-size:13px;color:var(--ink2);line-height:1.5;border-top:1px solid var(--line)}
+.gloss-body h3{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  margin:14px 0 8px;font-weight:600}
+.gloss-body dt{font-weight:600;color:var(--ink);margin-top:6px}
+.gloss-body dd{margin:1px 0 0;color:var(--muted)}
 @media(max-width:760px){.wrap{grid-template-columns:1fr}aside{position:static;height:auto;
   border-right:none;border-bottom:1px solid var(--line)}}
 </style>
@@ -87,6 +99,47 @@ main{padding:18px 22px 60px}
   <div class="stat">Updated <b id="s-run" style="font-size:12.5px">—</b></div>
   <div class="stat" style="margin-left:auto;color:#6f8188">source: eauction24.gr</div>
 </header>
+
+<details class="glossary">
+  <summary>ⓘ Glossary &amp; things to know before deciding <span class="chev">▼</span></summary>
+  <div class="gloss-body">
+    <div>
+      <h3>Badges &amp; signals</h3>
+      <dl>
+        <dt>NEW</dt><dd>First appeared in the most recent scan.</dd>
+        <dt>DELISTED</dt><dd>No longer listed (sold, cancelled, postponed, or pulled ahead of a re-auction). Kept for price-history tracking only — not currently biddable.</dd>
+        <dt>🔻 Price cut / re-auction</dt><dd>Same physical property re-listed under a new ID at a lower starting price than a previous round — unsold properties get re-auctioned.</dd>
+        <dt>🔥 Multi-cut</dt><dd>Starting price cut 2+ times within 30 days. Often a strongly motivated sale — but can also mean repeated failed auctions, worth checking why.</dd>
+        <dt>€/m²</dt><dd>Price ÷ floor area. The standard comparison metric across listings, but ignores location/condition — sanity-check against nearby recent sales.</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>Property types</h3>
+      <dl>
+        <dt>Warehouse</dt><dd>Storage rooms — small apartment-attached ones and larger standalone units alike.</dd>
+        <dt>Parking</dt><dd>Parking spaces / garages.</dd>
+        <dt>Land</dt><dd>Plots, fields, undeveloped land.</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>Pitfalls before you decide</h3>
+      <dl>
+        <dt>Starting price ≠ market value</dt><dd>The price shown is the auction's opening bid, usually well below market value. The final sale price after competitive bidding can end up much higher.</dd>
+        <dt>You can't bid here</dt><dd>This dashboard is for discovery/monitoring only. Bidding happens on the official eauction.gr, which requires TaxisNet registration.</dd>
+        <dt>Dates can shift</dt><dd>Greek judicial auctions can be postponed or cancelled with little notice — always confirm the live status on eauction.gr close to the date.</dd>
+        <dt>Do the legal/engineer check</dt><dd>Verify title, liens, and occupancy status before bidding — none of that is reflected here.</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>About this data</h3>
+      <dl>
+        <dt>€500k cap</dt><dd>Listings priced above €500,000 are intentionally never fetched or stored — this is not a complete national archive.</dd>
+        <dt>Scan cadence</dt><dd>Runs twice daily. "Updated" in the header shows the last scan time.</dd>
+        <dt>Source</dt><dd>eauction24.gr, a public mirror of official judicial auction listings.</dd>
+      </dl>
+    </div>
+  </div>
+</details>
 
 <div class="wrap">
 <aside>
@@ -193,7 +246,11 @@ async function boot(){
       document.getElementById('s-run').textContent=(m.last_run||'').replace('T',' ').slice(0,16);}catch(e){}
     try{
       const drops=await(await fetch('./data/drops.json',{cache:'no-store'})).json();
-      drops.filter(x=>x.has_drop).forEach(x=>DROPS.set(x.latest_id,{pct:x.drop_pct,recent:x.recent_drop,multi:x.multi_cut,cuts30d:x.recent_cuts_30d}));
+      drops.filter(x=>x.has_drop).forEach(x=>{
+        const prevRound=x.rounds[x.rounds.length-2];
+        const prevDate=prevRound&&(prevRound.auction_date||prevRound.first_seen);
+        DROPS.set(x.latest_id,{pct:x.drop_pct,recent:x.recent_drop,multi:x.multi_cut,cuts30d:x.recent_cuts_30d,prevDate});
+      });
     }catch(e){}
   }catch(e){
     DATA=window.__SEED__||[];
@@ -288,7 +345,7 @@ function render(){
       <div class="cbody">
         <div class="title">${esc(d.title)||'—'}</div>
         <div class="price">${fmt(d.price_eur)}</div>
-        ${drop?`<div class="drop">${drop.multi?'🔥':'🔻'} −${drop.pct}% vs prior round${drop.multi?` (${drop.cuts30d} cuts/30d)`:''}</div>`:''}
+        ${drop?`<div class="drop">${drop.multi?'🔥':'🔻'} −${drop.pct}% vs prior round${drop.prevDate?` (was ⚖ ${esc(drop.prevDate)})`:''}${drop.multi?` · ${drop.cuts30d} cuts/30d`:''}</div>`:''}
         <div class="loc">${esc([d.municipality,d.region].filter(Boolean).join(' · '))}</div>
         <div class="facts">
           ${d.area_m2?`<span><b>${d.area_m2}</b> m²</span>`:''}

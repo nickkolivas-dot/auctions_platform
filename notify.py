@@ -90,8 +90,12 @@ def card(r):
     ]))
     img = esc(r.get("image") or PLACEHOLDER_IMG)
     if drop:
+        prev_round = drop["rounds"][-2] if len(drop.get("rounds", [])) >= 2 else None
+        prev_date = prev_round and (prev_round.get("auction_date") or prev_round.get("first_seen"))
         drop_emoji = "🔥" if drop.get("multi_cut") else "🔻"
-        drop_label = f'{drop["drop_pct"]}% vs prior round' + (f' ({drop["recent_cuts_30d"]} cuts in 30d)' if drop.get("multi_cut") else '')
+        drop_label = f'{drop["drop_pct"]}% vs prior round' + \
+            (f' (was ⚖ {prev_date})' if prev_date else '') + \
+            (f' · {drop["recent_cuts_30d"]} cuts in 30d' if drop.get("multi_cut") else '')
     return f"""
 <table role="presentation" width="100%" style="margin-bottom:12px;border:1px solid #e5e1d8;border-radius:8px;border-collapse:separate">
 <tr>
