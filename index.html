@@ -99,7 +99,10 @@ main{padding:18px 22px 60px}
   <h2>Region</h2>
   <select id="f-region"><option value="">All regions</option></select>
 
-  <h2>Area / municipality</h2>
+  <h2>Municipality</h2>
+  <select id="f-muni"><option value="">All municipalities</option></select>
+
+  <h2>Address / locality search</h2>
   <input type="text" id="f-loc" placeholder="e.g. Γλυφάδας, Πάτρα…">
 
   <h2>Price (€)</h2>
@@ -133,7 +136,35 @@ main{padding:18px 22px 60px}
 const TCOLOR={Residential:'var(--resi)',Land:'var(--land)',Commercial:'var(--comm)',Other:'#9aa5ab'};
 const fmt=n=>n==null?'—':'€'+Number(n).toLocaleString('el-GR');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let DATA=[], LATEST=null, DROPS=new Map();
+let DATA=[], LATEST=null, DROPS=new Map(), MUNIS_BY_REGION=new Map();
+
+function populateMuni(region){
+  const sel=document.getElementById('f-muni');
+  const keep=sel.value;
+  sel.innerHTML='<option value="">All municipalities</option>';
+  const list=region?(MUNIS_BY_REGION.get(region)||[]):[...new Set(DATA.map(d=>d.municipality).filter(Boolean))].sort();
+  list.forEach(m=>sel.insertAdjacentHTML('beforeend',`<option>${esc(m)}</option>`));
+  sel.value=list.includes(keep)?keep:'';
+}
+
+function applyParamsFromURL(){
+  const p=new URLSearchParams(location.search);
+  if(p.has('region'))document.getElementById('f-region').value=p.get('region');
+  populateMuni(document.getElementById('f-region').value);
+  if(p.has('muni'))document.getElementById('f-muni').value=p.get('muni');
+  if(p.has('loc'))document.getElementById('f-loc').value=p.get('loc');
+  if(p.has('pmin'))document.getElementById('f-pmin').value=p.get('pmin');
+  if(p.has('pmax'))document.getElementById('f-pmax').value=p.get('pmax');
+  if(p.has('amin'))document.getElementById('f-amin').value=p.get('amin');
+  if(p.has('amax'))document.getElementById('f-amax').value=p.get('amax');
+  if(p.has('type')){
+    const types=new Set(p.get('type').split(','));
+    document.querySelectorAll('.f-type').forEach(c=>c.checked=types.has(c.value));
+  }
+  if(p.get('new')==='1')document.getElementById('f-new').checked=true;
+  if(p.get('drop')==='1')document.getElementById('f-drop').checked=true;
+  if(p.has('sort'))document.getElementById('sort').value=p.get('sort');
+}
 
 async function boot(){
   try{
@@ -159,12 +190,21 @@ async function boot(){
   const rsel=document.getElementById('f-region');
   [...new Set(DATA.map(d=>d.region).filter(Boolean))].sort()
     .forEach(r=>rsel.insertAdjacentHTML('beforeend',`<option>${esc(r)}</option>`));
+  DATA.forEach(d=>{
+    if(!d.region||!d.municipality)return;
+    if(!MUNIS_BY_REGION.has(d.region))MUNIS_BY_REGION.set(d.region,new Set());
+    MUNIS_BY_REGION.get(d.region).add(d.municipality);
+  });
+  MUNIS_BY_REGION.forEach((set,region)=>MUNIS_BY_REGION.set(region,[...set].sort()));
+  populateMuni('');
+  applyParamsFromURL();
   render();
 }
 
 function current(){
   const types=[...document.querySelectorAll('.f-type:checked')].map(c=>c.value);
   const reg=document.getElementById('f-region').value;
+  const muni=document.getElementById('f-muni').value;
   const loc=document.getElementById('f-loc').value.trim().toLowerCase();
   const pmin=+document.getElementById('f-pmin').value||0;
   const pmax=+document.getElementById('f-pmax').value||Infinity;
@@ -175,6 +215,7 @@ function current(){
   let out=DATA.filter(d=>{
     if(!types.includes(d.type))return false;
     if(reg&&d.region!==reg)return false;
+    if(muni&&d.municipality!==muni)return false;
     if(onlyNew&&d.first_seen!==LATEST)return false;
     if(onlyDrop&&!DROPS.has(d.id))return false;
     if(loc){const h=((d.municipality||'')+' '+(d.address||'')+' '+(d.title||'')).toLowerCase();
@@ -224,12 +265,15 @@ function render(){
   }).join('');
 }
 
+document.getElementById('f-region').addEventListener('change',e=>{populateMuni(e.target.value);render();});
 document.addEventListener('input',e=>{if(e.target.closest('aside')||e.target.id==='sort')render();});
 document.getElementById('reset').onclick=()=>{
   document.querySelectorAll('.f-type').forEach(c=>c.checked=true);
   document.getElementById('f-new').checked=false;
   document.getElementById('f-drop').checked=false;
   ['f-region','f-loc','f-pmin','f-pmax','f-amin','f-amax'].forEach(id=>document.getElementById(id).value='');
+  populateMuni('');
+  document.getElementById('f-muni').value='';
   render();
 };
 boot();
