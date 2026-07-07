@@ -79,14 +79,19 @@ PLACEHOLDER_IMG = "https://placehold.co/110x80/e9e5db/6c7a82?text=%C2%B7"
 
 def card(r):
     drop = drops_by_id.get(r["id"])
+    ppsqm = round(r["price_eur"] / r["area_m2"]) if r.get("price_eur") and r.get("area_m2") else None
     facts = " · ".join(filter(None, [
         f"{r['area_m2']:g} m²" if r.get("area_m2") else None,
+        f"{eur(ppsqm)}/m²" if ppsqm else None,
         r.get("type"),
         f"{r['bedrooms']} bd" if r.get("bedrooms") else None,
         ", ".join(filter(None, [r.get("municipality"), r.get("region")])) or None,
         f"⚖ {r['auction_date']}" if r.get("auction_date") else None,
     ]))
     img = esc(r.get("image") or PLACEHOLDER_IMG)
+    if drop:
+        drop_emoji = "🔥" if drop.get("multi_cut") else "🔻"
+        drop_label = f'{drop["drop_pct"]}% vs prior round' + (f' ({drop["recent_cuts_30d"]} cuts in 30d)' if drop.get("multi_cut") else '')
     return f"""
 <table role="presentation" width="100%" style="margin-bottom:12px;border:1px solid #e5e1d8;border-radius:8px;border-collapse:separate">
 <tr>
@@ -96,7 +101,7 @@ def card(r):
 <td style="padding:10px 12px;vertical-align:top">
 <a href="{esc(r['url'])}" style="font:600 14px sans-serif;color:#0a5960;text-decoration:none">{esc(r['title'])}</a><br>
 <span style="font:600 17px Georgia,serif;color:#12232e">{eur(r.get('price_eur'))}</span>
-{f'<span style="font:700 11px monospace;color:#a4402f">&nbsp;🔻 −{drop["drop_pct"]}% vs prior round</span>' if drop else ''}
+{f'<span style="font:700 11px monospace;color:#a4402f">&nbsp;{drop_emoji} −{drop_label}</span>' if drop else ''}
 <br><span style="font:11.5px monospace;color:#6c7a82">{esc(facts)}</span>
 </td>
 </tr>

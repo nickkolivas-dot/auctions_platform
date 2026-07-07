@@ -24,9 +24,15 @@ REGIONS = [
 
 def classify(type_str, name):
     t = (type_str or "").lower(); n = (name or "").lower()
+    # checked before Commercial/Other: storage rooms and parking spaces are
+    # their own category regardless of size (apartment-attached or standalone)
+    if any(k in n for k in ["αποθήκη", "αποθηκευτικός χώρος", "αποθηκευτικό χώρο"]):
+        return "Warehouse"
+    if any(k in n for k in ["θέση στάθμευσης", "στάθμευσης", "πάρκιν", "γκαράζ"]):
+        return "Parking"
     if any(k in t for k in ["land", "parcel"]) or any(k in n for k in ["οικόπεδο", "αγρόκτημα", "αγροτεμάχιο", "γήπεδο", "κληροτεμάχιο"]):
         return "Land"
-    if any(k in t for k in ["store", "office", "commercial"]) or any(k in n for k in ["κατάστημα", "επαγγελματ", "γραφείο", "βιοτεχν", "αποθήκη", "ξενοδοχ"]):
+    if any(k in t for k in ["store", "office", "commercial"]) or any(k in n for k in ["κατάστημα", "επαγγελματ", "γραφείο", "βιοτεχν", "ξενοδοχ"]):
         return "Commercial"
     if any(k in t for k in ["residence", "house", "apartment"]) or any(k in n for k in ["κατοικία", "διαμέρισμα", "μονοκατοικία", "μεζονέτα"]):
         return "Residential"
@@ -131,6 +137,7 @@ def main():
                 rec = dict(prev[aid_i])
                 rec["status"] = "active"
                 rec["last_seen"] = today
+                rec["type"] = classify(rec.get("raw_type"), rec.get("title"))  # pick up classify() changes retroactively
                 price = rec.get("price_eur")
             else:
                 rec = parse_detail(aid)
@@ -163,6 +170,7 @@ def main():
         rec = dict(rec)
         rec["status"] = "removed"
         rec["removed_seen"] = today
+        rec["type"] = classify(rec.get("raw_type"), rec.get("title"))
         records[aid_i] = rec
 
     out = sorted(records.values(), key=lambda r: (r.get("first_seen") or "", r["id"]), reverse=True)
