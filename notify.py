@@ -29,6 +29,10 @@ if (DATA / "drops.json").exists():
         if d.get("has_drop"):
             drops_by_id[d["latest_id"]] = d
 
+comps_by_id = {}
+if (DATA / "comps.json").exists():
+    comps_by_id = {int(k): v for k, v in json.loads((DATA / "comps.json").read_text()).items()}
+
 is_drop_digest = False
 if not new_ids:
     if os.environ.get("FORCE_EMAIL", "").lower() not in ("1", "true"):
@@ -77,6 +81,23 @@ dashboard_link = DASHBOARD_URL + "?" + urllib.parse.urlencode(dash_params)
 
 PLACEHOLDER_IMG = "https://placehold.co/110x80/e9e5db/6c7a82?text=%C2%B7"
 
+def comp_line(r):
+    c = comps_by_id.get(r["id"])
+    if not c:
+        return ""
+    if c.get("shared_listing"):
+        return '<br><span style="font:700 11px monospace;color:#a4402f">⚠ shares address/size with another listing — may be a partial ownership share, verify</span>'
+    if c.get("low_price_outlier"):
+        return '<br><span style="font:700 11px monospace;color:#a4402f">⚠ unusually low price for the area — verify it isn\'t a partial-ownership sale</span>'
+    if c.get("high_price_outlier"):
+        return f'<br><span style="font:700 11px monospace;color:#a4402f">⚠ unusually high price vs {c["sample_size"]} comparable listings</span>'
+    pct = c["vs_median_pct"]
+    if pct <= -10:
+        arrow = "↓"
+        return f'<br><span style="font:700 11px monospace;color:#0a5960">{arrow}{abs(pct)}% vs {c["basis"]} median (n={c["sample_size"]})</span>'
+    return ""
+
+
 def card(r):
     drop = drops_by_id.get(r["id"])
     ppsqm = round(r["price_eur"] / r["area_m2"]) if r.get("price_eur") and r.get("area_m2") else None
@@ -106,6 +127,7 @@ def card(r):
 <a href="{esc(r['url'])}" style="font:600 14px sans-serif;color:#0a5960;text-decoration:none">{esc(r['title'])}</a><br>
 <span style="font:600 17px Georgia,serif;color:#12232e">{eur(r.get('price_eur'))}</span>
 {f'<span style="font:700 11px monospace;color:#a4402f">&nbsp;{drop_emoji} −{drop_label}</span>' if drop else ''}
+{comp_line(r)}
 <br><span style="font:11.5px monospace;color:#6c7a82">{esc(facts)}</span>
 </td>
 </tr>

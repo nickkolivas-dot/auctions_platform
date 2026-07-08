@@ -29,6 +29,8 @@ jobs:
           MAX_PRICE_EUR: ${{ vars.MAX_PRICE_EUR }}
       - name: link re-auction rounds, flag price cuts
         run: python drop_tracker.py
+      - name: score price-per-sqm vs local median
+        run: python comps.py
       - name: email new listings
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}

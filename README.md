@@ -1,14 +1,18 @@
 # Greek Auction Monitor
 
+**Live:** https://nickkolivas-dot.github.io/auctions_platform/
+
 Scrapes public judicial-auction listings (eauction24.gr) twice daily, diffs
 against the last run, **emails new listings**, and serves a filterable dashboard.
+Budget-capped to listings ≤ €500k (`MAX_PRICE_EUR` repo variable).
 
 ## Files
 - `scraper.py`  – pulls all 13 regions, parses schema.org JSON-LD, tags NEW listings, keeps full history (delisted lots marked `removed`, not deleted)
-- `drop_tracker.py` – links a lot across re-auction rounds by address/locality, flags floor-price cuts → `data/drops.json`
-- `notify.py`   – emails a digest of new listings, flags price cuts (optional filter)
-- `index.html`  – dashboard (type / region / price / m² / new-only / price-reduced)
-- `.github/workflows/scan.yml` – cron 09:00 + 17:00 Athens, scrape → link rounds → email → commit
+- `drop_tracker.py` – links a lot across re-auction rounds by address/locality, flags floor-price cuts (+ recent/multi-cut within 30 days) → `data/drops.json`
+- `comps.py` – scores €/m² vs the municipality's (or region's) median, flags nominal-price/fractional-ownership listings that would otherwise corrupt the baseline → `data/comps.json`
+- `notify.py`   – emails a digest of new listings, flags price cuts + comps (optional filter)
+- `index.html`  – dashboard (type / region / municipality — multi-select / price / m² / auction date / new / price-reduced / vs-median / glossary panel)
+- `.github/workflows/scan.yml` – cron 09:00 + 17:00 Athens, scrape → link rounds → score comps → email → commit
 
 ## Deploy (~20 min, free)
 ### 1. Repo + dashboard
@@ -37,6 +41,7 @@ You create the credentials — they never live in code.
     python scraper.py "Αττικής" "Πελοποννήσου"   # subset
     python scraper.py                              # all regions
     python drop_tracker.py                         # link re-auction rounds, flag price cuts
+    python comps.py                                 # score €/m² vs local median
     open index.html
 
 ## Automation — which engine

@@ -1,26 +1,16 @@
 # tasks/todo.md
 
-## Setup (run in Claude Code CLI)
-- [ ] `git init` + create GitHub repo via `gh repo create` (see note on public/private)
-- [ ] commit all files, push to main
-- [ ] verify `.github/workflows/scan.yml` present on GitHub
-
-## Setup (manual — browser, YOU only)
-- [ ] Repo → Settings → Pages → Source: `main` / root  (dashboard goes live)
-- [ ] Repo → Actions → enable workflows → "Run workflow" once to test
-- [ ] Repo → Settings → Secrets and variables → Actions → add Secrets:
-      SMTP_HOST=smtp.gmail.com  SMTP_PORT=587  SMTP_USER=<gmail>
-      SMTP_PASS=<gmail app password>  MAIL_TO=<inbox>
-      (never paste these into a prompt or a file)
-
-## Verify (done = proof)
-- [ ] first Actions run is green
-- [ ] dashboard loads at https://<you>.github.io/<repo>/
-- [ ] test email received (trigger "Run workflow" with data change)
+## Setup — done
+- [x] repo created: github.com/nickkolivas-dot/auctions_platform (public)
+- [x] `.github/workflows/scan.yml` live, cron 2×/day + manual dispatch
+- [x] Pages enabled — dashboard at https://nickkolivas-dot.github.io/auctions_platform/
+- [x] Secrets configured (SMTP_HOST/PORT/USER/PASS, MAIL_TO) — email confirmed working
+- [x] first Actions runs green, cron ticking on its own without intervention
 
 ## Build — Phase 1 remainder
-- [x] drop-tracker: link lots across rounds, flag floor cuts
-- [ ] discount score: €/m² vs municipality comps + walk-away price per lot
+- [x] drop-tracker: link lots across rounds, flag floor cuts (+ recent/multi-cut in last 30d)
+- [x] discount score: €/m² vs municipality comps (region fallback, outlier/shared-listing detection)
+- [ ] walk-away price per lot — still open
 
 ## Decide (write the answer here, don't leave blank)
 - [ ] greenlight target for commercialising: __________

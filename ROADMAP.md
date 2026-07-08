@@ -26,7 +26,8 @@ It runs itself, for free, on GitHub. A "platform" only happens later — and onl
 - [x] Email digest of new listings
 - [x] Cron 2×/day
 - [x] **Drop-tracker**: link a lot across re-auction rounds, flag floor cuts
-- [ ] **Discount score**: €/m² vs municipality comps + a walk-away price per lot  ← NEXT
+- [x] **Discount score**: €/m² vs municipality comps (region fallback when too few comps; outlier/shared-listing detection for partial-ownership sales)
+- [ ] **Walk-away price per lot**: still open — a computed "don't bid above this" ceiling, separate from the comps score  ← NEXT
 
 ## Phase 2 — Prove it (dogfood, over months)
 - [ ] Deal log: lot / comps estimate / discount / decision / outcome

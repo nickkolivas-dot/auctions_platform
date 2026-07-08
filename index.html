@@ -66,6 +66,9 @@ main{padding:18px 22px 60px}
 .title{font-size:14px;font-weight:500;line-height:1.32;min-height:37px}
 .price{font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink)}
 .drop{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:700;color:var(--red)}
+.comp{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--muted)}
+.comp.good{color:var(--sea-d)}
+.comp.warn{color:#a4402f;font-weight:500}
 .facts{display:flex;flex-wrap:wrap;gap:5px 12px;font-family:'IBM Plex Mono',monospace;
   font-size:11.5px;color:var(--muted);margin-top:auto}
 .facts b{color:var(--ink2);font-weight:500}
@@ -110,7 +113,8 @@ main{padding:18px 22px 60px}
         <dt>DELISTED</dt><dd>No longer listed (sold, cancelled, postponed, or pulled ahead of a re-auction). Kept for price-history tracking only — not currently biddable.</dd>
         <dt>🔻 Price cut / re-auction</dt><dd>Same physical property re-listed under a new ID at a lower starting price than a previous round — unsold properties get re-auctioned.</dd>
         <dt>🔥 Multi-cut</dt><dd>Starting price cut 2+ times within 30 days. Often a strongly motivated sale — but can also mean repeated failed auctions, worth checking why.</dd>
-        <dt>€/m²</dt><dd>Price ÷ floor area. The standard comparison metric across listings, but ignores location/condition — sanity-check against nearby recent sales.</dd>
+        <dt>€/m²</dt><dd>Price ÷ floor area. The raw metric, ignoring location/condition entirely.</dd>
+        <dt>↓/↑ X% vs median</dt><dd>This listing's €/m² compared to the typical €/m² for its municipality (or region, if the municipality has too few listings) — "n=" is how many listings that comparison is based on. A much more useful signal than raw €/m², but still just a statistical baseline, not an appraisal.</dd>
       </dl>
     </div>
     <div>
@@ -128,6 +132,7 @@ main{padding:18px 22px 60px}
         <dt>You can't bid here</dt><dd>This dashboard is for discovery/monitoring only. Bidding happens on the official eauction.gr, which requires TaxisNet registration.</dd>
         <dt>Dates can shift</dt><dd>Greek judicial auctions can be postponed or cancelled with little notice — always confirm the live status on eauction.gr close to the date.</dd>
         <dt>Do the legal/engineer check</dt><dd>Verify title, liens, and occupancy status before bidding — none of that is reflected here.</dd>
+        <dt>⚠ "verify" comp warnings</dt><dd>Some listings show a warning instead of a percentage — either the price is unusually low/high for the area, or it shares an address+size with another active listing. Both are common signs of a <b>partial/undivided ownership share</b> being auctioned (e.g. a fraction of an inherited property) rather than the whole thing at a real discount. Confirmed in the actual data: a 65.71 m² house listed at €1. Always check the listing itself before assuming a steal.</dd>
       </dl>
     </div>
     <div>
@@ -148,6 +153,7 @@ main{padding:18px 22px 60px}
   <label class="toggle" style="margin-top:8px"><input type="checkbox" id="f-drop"> Only price-reduced (re-auctions)</label>
   <label class="toggle" style="margin-top:8px"><input type="checkbox" id="f-recent-drop"> Reduced in the last 30 days</label>
   <label class="toggle" style="margin-top:8px;background:#fbe4d5;border-color:#e0a67a"><input type="checkbox" id="f-multi-cut"> 🔥 Cut 2+ times in 30 days</label>
+  <label class="toggle" style="margin-top:8px;background:#e3efe1;border-color:#a9c8a2"><input type="checkbox" id="f-below-median"> 10%+ below local €/m² median</label>
   <label class="toggle" style="margin-top:8px;background:#fff;border-color:var(--line)"><input type="checkbox" id="f-history"> Include delisted / sold</label>
 
   <h2>Property type</h2>
@@ -190,6 +196,7 @@ main{padding:18px 22px 60px}
         <option value="price-desc">Price ↓</option>
         <option value="area-desc">Size ↓</option>
         <option value="ppsqm-asc">€/m² ↑ (best value)</option>
+        <option value="value-asc">Most below local median</option>
       </select>
     </div>
   </div>
@@ -202,7 +209,7 @@ main{padding:18px 22px 60px}
 const TCOLOR={Residential:'var(--resi)',Land:'var(--land)',Commercial:'var(--comm)',Warehouse:'var(--wh)',Parking:'var(--park)',Other:'#9aa5ab'};
 const fmt=n=>n==null?'—':'€'+Number(n).toLocaleString('el-GR');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let DATA=[], LATEST=null, DROPS=new Map(), MUNIS_BY_REGION=new Map();
+let DATA=[], LATEST=null, DROPS=new Map(), COMPS=new Map(), MUNIS_BY_REGION=new Map();
 
 function selectedValues(sel){
   return [...sel.selectedOptions].map(o=>o.value);
@@ -241,6 +248,7 @@ function applyParamsFromURL(){
   if(p.get('drop')==='1')document.getElementById('f-drop').checked=true;
   if(p.get('recentdrop')==='1')document.getElementById('f-recent-drop').checked=true;
   if(p.get('multicut')==='1')document.getElementById('f-multi-cut').checked=true;
+  if(p.get('belowmedian')==='1')document.getElementById('f-below-median').checked=true;
   if(p.get('history')==='1')document.getElementById('f-history').checked=true;
   if(p.has('datefrom'))document.getElementById('f-datefrom').value=p.get('datefrom');
   if(p.has('dateto'))document.getElementById('f-dateto').value=p.get('dateto');
@@ -261,6 +269,10 @@ async function boot(){
         const prevDate=prevRound&&(prevRound.auction_date||prevRound.first_seen);
         DROPS.set(x.latest_id,{pct:x.drop_pct,recent:x.recent_drop,multi:x.multi_cut,cuts30d:x.recent_cuts_30d,prevDate});
       });
+    }catch(e){}
+    try{
+      const comps=await(await fetch('./data/comps.json',{cache:'no-store'})).json();
+      Object.entries(comps).forEach(([id,c])=>COMPS.set(Number(id),c));
     }catch(e){}
   }catch(e){
     DATA=window.__SEED__||[];
@@ -302,8 +314,10 @@ function current(){
   const onlyDrop=document.getElementById('f-drop').checked;
   const onlyRecentDrop=document.getElementById('f-recent-drop').checked;
   const onlyMultiCut=document.getElementById('f-multi-cut').checked;
+  const onlyBelowMedian=document.getElementById('f-below-median').checked;
   const showHistory=document.getElementById('f-history').checked;
   const ppsqm=d=>(d.price_eur&&d.area_m2)?d.price_eur/d.area_m2:Infinity;
+  const isReliableDeal=d=>{const c=COMPS.get(d.id);return c&&!c.shared_listing&&!c.low_price_outlier&&c.vs_median_pct<=-10;};
   let out=DATA.filter(d=>{
     if(!showHistory&&d.status==='removed')return false;
     if(!types.includes(d.type))return false;
@@ -313,6 +327,7 @@ function current(){
     if(onlyDrop&&!DROPS.has(d.id))return false;
     if(onlyRecentDrop&&!DROPS.get(d.id)?.recent)return false;
     if(onlyMultiCut&&!DROPS.get(d.id)?.multi)return false;
+    if(onlyBelowMedian&&!isReliableDeal(d))return false;
     if(loc){const h=((d.municipality||'')+' '+(d.address||'')+' '+(d.title||'')).toLowerCase();
       if(!h.includes(loc))return false;}
     if(datefrom&&(!d.auction_date||d.auction_date<datefrom))return false;
@@ -330,6 +345,12 @@ function current(){
     'price-desc':(a,b)=>(b.price_eur??-1)-(a.price_eur??-1),
     'area-desc':(a,b)=>(b.area_m2??-1)-(a.area_m2??-1),
     'ppsqm-asc':(a,b)=>ppsqm(a)-ppsqm(b),
+    'value-asc':(a,b)=>{
+      const va=COMPS.get(a.id),vb=COMPS.get(b.id);
+      const ra=va&&!va.shared_listing&&!va.low_price_outlier?va.vs_median_pct:Infinity;
+      const rb=vb&&!vb.shared_listing&&!vb.low_price_outlier?vb.vs_median_pct:Infinity;
+      return ra-rb;
+    },
   }[s];
   return out.sort(by);
 }
@@ -344,8 +365,23 @@ function render(){
     const isNew=d.first_seen===LATEST;
     const isRemoved=d.status==='removed';
     const drop=DROPS.get(d.id);
+    const comp=COMPS.get(d.id);
     const ppsqm=(d.price_eur&&d.area_m2)?Math.round(d.price_eur/d.area_m2):null;
     const img=d.image?`background-image:url('${esc(d.image)}')`:'';
+    let compLine='';
+    if(comp){
+      const basisLabel=comp.basis==='municipality'?'municipality':'region';
+      if(comp.shared_listing){
+        compLine=`<div class="comp warn">⚠ shares address/size with another listing — may be a partial/fractional share, verify before treating as a deal</div>`;
+      }else if(comp.low_price_outlier){
+        compLine=`<div class="comp warn">⚠ unusually low price for the area — verify it isn't a partial-ownership sale</div>`;
+      }else if(comp.high_price_outlier){
+        compLine=`<div class="comp warn">⚠ unusually high price for the area vs ${comp.sample_size} comparable listings</div>`;
+      }else{
+        const dir=comp.vs_median_pct<0?'↓':'↑';
+        compLine=`<div class="comp${comp.vs_median_pct<=-10?' good':''}">${dir}${Math.abs(comp.vs_median_pct)}% vs ${basisLabel} median (n=${comp.sample_size})</div>`;
+      }
+    }
     return `<a class="card${isRemoved?' removed':''}" href="${esc(d.url)}" target="_blank" rel="noopener">
       <div class="thumb" style="${img}">
         ${isNew?'<span class="badge">NEW</span>':''}
@@ -356,6 +392,7 @@ function render(){
         <div class="title">${esc(d.title)||'—'}</div>
         <div class="price">${fmt(d.price_eur)}</div>
         ${drop?`<div class="drop">${drop.multi?'🔥':'🔻'} −${drop.pct}% vs prior round${drop.prevDate?` (was ⚖ ${esc(drop.prevDate)})`:''}${drop.multi?` · ${drop.cuts30d} cuts/30d`:''}</div>`:''}
+        ${compLine}
         <div class="loc">${esc([d.municipality,d.region].filter(Boolean).join(' · '))}</div>
         <div class="facts">
           ${d.area_m2?`<span><b>${d.area_m2}</b> m²</span>`:''}
@@ -376,6 +413,7 @@ document.getElementById('reset').onclick=()=>{
   document.getElementById('f-drop').checked=false;
   document.getElementById('f-recent-drop').checked=false;
   document.getElementById('f-multi-cut').checked=false;
+  document.getElementById('f-below-median').checked=false;
   document.getElementById('f-history').checked=false;
   ['f-loc','f-pmin','f-pmax','f-amin','f-amax','f-datefrom','f-dateto'].forEach(id=>document.getElementById(id).value='');
   setSelected(document.getElementById('f-region'),[]);
