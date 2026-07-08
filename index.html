@@ -158,11 +158,11 @@ main{padding:18px 22px 60px}
   <label class="chk"><input type="checkbox" class="f-type" value="Parking" checked><span class="dot" style="background:var(--park)"></span>Parking space</label>
   <label class="chk"><input type="checkbox" class="f-type" value="Other" checked><span class="dot" style="background:#9aa5ab"></span>Other</label>
 
-  <h2>Region</h2>
-  <select id="f-region"><option value="">All regions</option></select>
+  <h2>Region <small style="text-transform:none;letter-spacing:0;font-weight:400">(click, or ⌘/Ctrl+click for multiple)</small></h2>
+  <select id="f-region" multiple size="6"></select>
 
-  <h2>Municipality</h2>
-  <select id="f-muni"><option value="">All municipalities</option></select>
+  <h2>Municipality <small style="text-transform:none;letter-spacing:0;font-weight:400">(click, or ⌘/Ctrl+click for multiple)</small></h2>
+  <select id="f-muni" multiple size="6"></select>
 
   <h2>Address / locality search</h2>
   <input type="text" id="f-loc" placeholder="e.g. Γλυφάδας, Πάτρα…">
@@ -204,20 +204,30 @@ const fmt=n=>n==null?'—':'€'+Number(n).toLocaleString('el-GR');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let DATA=[], LATEST=null, DROPS=new Map(), MUNIS_BY_REGION=new Map();
 
-function populateMuni(region){
+function selectedValues(sel){
+  return [...sel.selectedOptions].map(o=>o.value);
+}
+function setSelected(sel,values){
+  const want=new Set(values);
+  [...sel.options].forEach(o=>o.selected=want.has(o.value));
+}
+
+function populateMuni(regions){
   const sel=document.getElementById('f-muni');
-  const keep=sel.value;
-  sel.innerHTML='<option value="">All municipalities</option>';
-  const list=region?(MUNIS_BY_REGION.get(region)||[]):[...new Set(DATA.map(d=>d.municipality).filter(Boolean))].sort();
+  const keep=selectedValues(sel);
+  sel.innerHTML='';
+  const list=regions.length
+    ?[...new Set(regions.flatMap(r=>MUNIS_BY_REGION.get(r)||[]))].sort()
+    :[...new Set(DATA.map(d=>d.municipality).filter(Boolean))].sort();
   list.forEach(m=>sel.insertAdjacentHTML('beforeend',`<option>${esc(m)}</option>`));
-  sel.value=list.includes(keep)?keep:'';
+  setSelected(sel,keep.filter(v=>list.includes(v)));
 }
 
 function applyParamsFromURL(){
   const p=new URLSearchParams(location.search);
-  if(p.has('region'))document.getElementById('f-region').value=p.get('region');
-  populateMuni(document.getElementById('f-region').value);
-  if(p.has('muni'))document.getElementById('f-muni').value=p.get('muni');
+  if(p.has('region'))setSelected(document.getElementById('f-region'),p.get('region').split(','));
+  populateMuni(selectedValues(document.getElementById('f-region')));
+  if(p.has('muni'))setSelected(document.getElementById('f-muni'),p.get('muni').split(','));
   if(p.has('loc'))document.getElementById('f-loc').value=p.get('loc');
   if(p.has('pmin'))document.getElementById('f-pmin').value=p.get('pmin');
   if(p.has('pmax'))document.getElementById('f-pmax').value=p.get('pmax');
@@ -272,15 +282,15 @@ async function boot(){
     MUNIS_BY_REGION.get(d.region).add(d.municipality);
   });
   MUNIS_BY_REGION.forEach((set,region)=>MUNIS_BY_REGION.set(region,[...set].sort()));
-  populateMuni('');
+  populateMuni([]);
   applyParamsFromURL();
   render();
 }
 
 function current(){
   const types=[...document.querySelectorAll('.f-type:checked')].map(c=>c.value);
-  const reg=document.getElementById('f-region').value;
-  const muni=document.getElementById('f-muni').value;
+  const regs=selectedValues(document.getElementById('f-region'));
+  const munis=selectedValues(document.getElementById('f-muni'));
   const loc=document.getElementById('f-loc').value.trim().toLowerCase();
   const pmin=+document.getElementById('f-pmin').value||0;
   const pmax=+document.getElementById('f-pmax').value||Infinity;
@@ -297,8 +307,8 @@ function current(){
   let out=DATA.filter(d=>{
     if(!showHistory&&d.status==='removed')return false;
     if(!types.includes(d.type))return false;
-    if(reg&&d.region!==reg)return false;
-    if(muni&&d.municipality!==muni)return false;
+    if(regs.length&&!regs.includes(d.region))return false;
+    if(munis.length&&!munis.includes(d.municipality))return false;
     if(onlyNew&&d.first_seen!==LATEST)return false;
     if(onlyDrop&&!DROPS.has(d.id))return false;
     if(onlyRecentDrop&&!DROPS.get(d.id)?.recent)return false;
@@ -357,8 +367,9 @@ function render(){
   }).join('');
 }
 
-document.getElementById('f-region').addEventListener('change',e=>{populateMuni(e.target.value);render();});
+document.getElementById('f-region').addEventListener('change',e=>{populateMuni(selectedValues(e.target));render();});
 document.addEventListener('input',e=>{if(e.target.closest('aside')||e.target.id==='sort')render();});
+document.addEventListener('change',e=>{if(e.target.closest('aside')||e.target.id==='sort')render();});
 document.getElementById('reset').onclick=()=>{
   document.querySelectorAll('.f-type').forEach(c=>c.checked=true);
   document.getElementById('f-new').checked=false;
@@ -366,9 +377,10 @@ document.getElementById('reset').onclick=()=>{
   document.getElementById('f-recent-drop').checked=false;
   document.getElementById('f-multi-cut').checked=false;
   document.getElementById('f-history').checked=false;
-  ['f-region','f-loc','f-pmin','f-pmax','f-amin','f-amax','f-datefrom','f-dateto'].forEach(id=>document.getElementById(id).value='');
-  populateMuni('');
-  document.getElementById('f-muni').value='';
+  ['f-loc','f-pmin','f-pmax','f-amin','f-amax','f-datefrom','f-dateto'].forEach(id=>document.getElementById(id).value='');
+  setSelected(document.getElementById('f-region'),[]);
+  populateMuni([]);
+  setSelected(document.getElementById('f-muni'),[]);
   render();
 };
 boot();
