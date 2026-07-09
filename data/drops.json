@@ -1017,7 +1017,7 @@
     "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 91500,
     "area_m2": 91.5
    },
@@ -1027,7 +1027,7 @@
     "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 34500,
     "area_m2": 91.5
    }
@@ -1151,7 +1151,7 @@
     "title": "Κατοικία 114.45 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 100000,
     "area_m2": 114.45
    },
@@ -1161,7 +1161,7 @@
     "title": "Κατοικία 114.45 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 118000,
     "area_m2": 114.45
    },
@@ -1171,7 +1171,7 @@
     "title": "Αποθήκη 115.63 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 50000,
     "area_m2": 115.63
    }
@@ -1675,7 +1675,7 @@
     "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 11500,
     "area_m2": 33.5
    },
@@ -1685,7 +1685,7 @@
     "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 8800,
     "area_m2": 33.5
    }
@@ -3531,7 +3531,7 @@
     "title": "Οικόπεδο με κτίσμα 140 τ.μ. Δήμος Λευκάδος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 99000,
     "area_m2": 140
    },
@@ -3541,7 +3541,7 @@
     "title": "Οικόπεδο με κτίσμα 140 τ.μ. Δήμος Λευκάδος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 99000,
     "area_m2": 140
    }
@@ -4313,7 +4313,7 @@
     "title": "Οικόπεδο 750 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 13000,
     "area_m2": 750
    },
@@ -4323,7 +4323,7 @@
     "title": "Οικόπεδο με κτίσμα 750 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 59000,
     "area_m2": 750
    }
@@ -5977,7 +5977,7 @@
     "title": "Αποθήκη 14 τ.μ. Δήμος Φιλαδέλφειας - Χαλκηδόνος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 3000,
     "area_m2": 14
    },
@@ -5987,7 +5987,7 @@
     "title": "Κατάστημα 14 τ.μ. Δήμος Φιλαδέλφειας - Χαλκηδόνος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 14000,
     "area_m2": 14
    }
@@ -6015,7 +6015,7 @@
     "title": "Θέση Στάθμευσης (parking) 10.12 τ.μ. Δήμος Αγίων Αναργύρων - Καματερού σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 8736.09,
     "area_m2": 10.12
    },
@@ -6025,7 +6025,7 @@
     "title": "Κατοικία 75.28 τ.μ. Δήμος Αγίων Αναργύρων - Καματερού σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 195019.36,
     "area_m2": 75.28
    }
@@ -6053,7 +6053,7 @@
     "title": "Αγροτεμάχιο 8250 τ.μ. Δήμος Πύδνας - Κολινδρού σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 2954,
     "area_m2": 8250
    },
@@ -6063,7 +6063,7 @@
     "title": "Αγροτεμάχιο 8250 τ.μ. Δήμος Πύδνας - Κολινδρού σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 10000,
     "area_m2": 8250
    },
@@ -6073,7 +6073,7 @@
     "title": "Αγροτεμάχιο 8250 τ.μ. Δήμος Πύδνας - Κολινδρού σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 11700,
     "area_m2": 8250
    }
@@ -6101,7 +6101,7 @@
     "title": "Θέση Στάθμευσης (parking) 15.60 τ.μ. Δήμος Χαλανδρίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 9360,
     "area_m2": 15.6
    },
@@ -6111,7 +6111,7 @@
     "title": "Κατοικία 93.76 τ.μ. Δήμος Χαλανδρίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 253996,
     "area_m2": 93.76
    }
@@ -6139,7 +6139,7 @@
     "title": "Κατοικία 45.20 τ.μ. Δήμος Κατερίνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 43000,
     "area_m2": 45.2
    },
@@ -6149,7 +6149,7 @@
     "title": "Αποθήκη 32 τ.μ. Δήμος Κατερίνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 12000,
     "area_m2": 32
    }
@@ -6177,7 +6177,7 @@
     "title": "Κατάστημα 74 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 79000,
     "area_m2": 74
    },
@@ -6187,7 +6187,7 @@
     "title": "Κατάστημα 74 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 82000,
     "area_m2": 74
    }
@@ -6215,7 +6215,7 @@
     "title": "Αποθήκη 12 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 2000,
     "area_m2": 12
    },
@@ -6225,7 +6225,7 @@
     "title": "Κατοικία 100 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 270000,
     "area_m2": 100
    }
@@ -6253,7 +6253,7 @@
     "title": "Οικόπεδο με κτίσμα 150 τ.μ. Δήμος Κύμης - Αλιβερίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 87000,
     "area_m2": 150
    },
@@ -6263,7 +6263,7 @@
     "title": "Οικόπεδο 706.54 τ.μ. Δήμος Κύμης - Αλιβερίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 12500,
     "area_m2": 706.54
    }
@@ -6291,7 +6291,7 @@
     "title": "Αγροτεμάχιο 10 τ.μ. Δήμος Κύμης - Αλιβερίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 1800,
     "area_m2": 10
    },
@@ -6301,7 +6301,7 @@
     "title": "Αγροτεμάχιο 10 τ.μ. Δήμος Κύμης - Αλιβερίου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 9300,
     "area_m2": 10
    }
@@ -6329,7 +6329,7 @@
     "title": "Κατοικία 62.65 τ.μ. Δήμος Σπάτων - Αρτέμιδος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 35323,
     "area_m2": 62.65
    },
@@ -6339,7 +6339,7 @@
     "title": "Κατοικία 62.65 τ.μ. Δήμος Σπάτων - Αρτέμιδος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 23000,
     "area_m2": 62.65
    },
@@ -6349,7 +6349,7 @@
     "title": "Αποθήκη 10.06 τ.μ. Δήμος Σπάτων - Αρτέμιδος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 3000,
     "area_m2": 10.06
    }
@@ -6377,7 +6377,7 @@
     "title": "Κατοικία 62.65 τ.μ. Δήμος Σπάτων - Αρτέμιδος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 11590,
     "area_m2": 62.65
    },
@@ -6387,7 +6387,7 @@
     "title": "Κατοικία 62.65 τ.μ. Δήμος Σπάτων - Αρτέμιδος σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 68000,
     "area_m2": 62.65
    }
@@ -6415,7 +6415,7 @@
     "title": "Γραφείο 26.65 τ.μ. Δήμος Δράμας σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 38000,
     "area_m2": 26.65
    },
@@ -6425,7 +6425,7 @@
     "title": "Γραφείο 26.65 τ.μ. Δήμος Δράμας σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 39000,
     "area_m2": 26.65
    },
@@ -6435,7 +6435,7 @@
     "title": "Γραφείο 26.65 τ.μ. Δήμος Δράμας σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 29000,
     "area_m2": 26.65
    },
@@ -6445,7 +6445,7 @@
     "title": "Γραφείο 27.70 τ.μ. Δήμος Δράμας σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 31000,
     "area_m2": 27.7
    },
@@ -6455,7 +6455,7 @@
     "title": "Γραφείο 27.70 τ.μ. Δήμος Δράμας σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 30000,
     "area_m2": 27.7
    },
@@ -6465,7 +6465,7 @@
     "title": "Κατάστημα 82.80 τ.μ. Δήμος Δράμας σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 78000,
     "area_m2": 82.8
    }
@@ -6493,7 +6493,7 @@
     "title": "Κατοικία 41.77 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 42000,
     "area_m2": 41.77
    },
@@ -6503,7 +6503,7 @@
     "title": "Κατοικία 41.77 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 44000,
     "area_m2": 41.77
    },
@@ -6513,7 +6513,7 @@
     "title": "Κατοικία 41.77 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 47000,
     "area_m2": 41.77
    }
@@ -6541,7 +6541,7 @@
     "title": "Οικόπεδο 483.32 τ.μ. Δήμος Ανδρίτσαινας - Κρεστένων σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 9000,
     "area_m2": 483.32
    },
@@ -6551,7 +6551,7 @@
     "title": "Οικόπεδο με κτίσμα 60 τ.μ. Δήμος Ανδρίτσαινας - Κρεστένων σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 1125,
     "area_m2": 60
    }
@@ -6579,7 +6579,7 @@
     "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 10100,
     "area_m2": 33.5
    },
@@ -6589,7 +6589,7 @@
     "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 11500,
     "area_m2": 33.5
    }
@@ -6617,7 +6617,7 @@
     "title": "Οικόπεδο με κτίσμα 883.84 τ.μ. Δήμος Ασπροπύργου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 115000,
     "area_m2": 883.84
    },
@@ -6627,7 +6627,7 @@
     "title": "Οικόπεδο με κτίσμα 883.84 τ.μ. Δήμος Ασπροπύργου σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 342000,
     "area_m2": 883.84
    }
@@ -6655,7 +6655,7 @@
     "title": "Γραφείο 45.39 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 39000,
     "area_m2": 45.39
    },
@@ -6665,7 +6665,7 @@
     "title": "Γραφείο 45.39 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 64500,
     "area_m2": 45.39
    }
@@ -6693,7 +6693,7 @@
     "title": "Κατοικία 68.55 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 53500,
     "area_m2": 68.55
    },
@@ -6703,7 +6703,7 @@
     "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 45500,
     "area_m2": 91.5
    },
@@ -6713,7 +6713,7 @@
     "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 33000,
     "area_m2": 91.5
    }
@@ -6741,7 +6741,7 @@
     "title": "Κατοικία 55.72 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 53500,
     "area_m2": 55.72
    },
@@ -6751,7 +6751,7 @@
     "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
     "auction_date": "2026-07-08",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 61000,
     "area_m2": 91.5
    }
