@@ -44,6 +44,12 @@ jobs:
           ALERT_MAX_PRICE: ${{ vars.ALERT_MAX_PRICE }}
           ALERT_LOC:       ${{ vars.ALERT_LOC }}
           FORCE_EMAIL:     ${{ inputs.force_email }}
+          # optional AI curation of the digest -- leave both unset to skip it
+          # entirely (falls back to the plain list). OpenAI wins if both are set.
+          OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL:      ${{ vars.OPENAI_MODEL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL }}
         run: python notify.py
       - name: commit data
         run: |

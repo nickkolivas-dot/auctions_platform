@@ -13,12 +13,27 @@ run finds nothing new — useful for testing or an on-demand check-in, since
 the routine scan is new-only by design (it'd otherwise re-email the whole
 archive every run).
 Exits quietly (no send) when nothing new/forced matches.
+
+Optional curation (OPENAI_API_KEY or ANTHROPIC_API_KEY -- OpenAI wins if both
+are set): reads each listing's free-text description for what the structured
+fields miss (occupancy, liens/mortgages mentioned, access issues, missing
+permits), and moves anything with a real signal (comps discount, a genuine
+price cut) and no red flag into a "Worth a look" section up top; everything
+else collapses to one line instead of a full card. This is pattern-matching
+on scraped text, not legal or financial advice -- it does not replace the
+title/engineer check. No key set, or the API call fails for any reason ->
+silently falls back to the plain full-list email exactly as before. Never
+blocks the send. Model overridable via OPENAI_MODEL / ANTHROPIC_MODEL.
 """
 import html, json, os, smtplib, sys, urllib.parse
+import requests
 from email.mime.text import MIMEText
 from pathlib import Path
 
 DASHBOARD_URL = "https://nickkolivas-dot.github.io/auctions_platform/"
+ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL") or "claude-haiku-4-5-20251001"
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-4o-mini"
+MAX_CURATE = 30  # bounds cost/latency per run; rows beyond this just show uncurated
 DATA = Path("data")
 meta = json.loads((DATA / "meta.json").read_text()) if (DATA / "meta.json").exists() else {}
 new_ids = set(meta.get("new_ids", []))
@@ -68,6 +83,124 @@ rows.sort(key=lambda r: (r.get("price_eur") or 1e15))
 eur = lambda n: "€{:,.0f}".format(n) if n else "—"
 esc = lambda s: html.escape(str(s)) if s else ""
 
+
+CURATION_SYSTEM_PROMPT = (
+    "You help two people screen Greek judicial property auction listings. "
+    "You are not a financial or legal advisor and must never present a listing as guaranteed, "
+    "safe, or a certain return -- these are foreclosure auctions with real legal and physical-"
+    "condition risk that only a lawyer/engineer visit can confirm. For each listing: "
+    "(1) read the free-text description for anything a buyer should know that isn't in the "
+    "structured fields -- occupancy, liens/mortgages mentioned, access issues, structural "
+    "condition, missing permits, partial/undivided ownership share; "
+    "(2) write a one-sentence, plain, factual note grounded only in what's actually stated -- "
+    "no hype words (avoid 'great deal', 'bulletproof', 'guaranteed', 'must buy'); "
+    "(3) set spotlight=true only when there is a real structural reason to look closer "
+    "(meaningfully below local median, a genuine price cut, or repeat cuts) AND no red flag was "
+    "found and comp_warning is null -- if either a text red flag or a comp_warning is present, "
+    "spotlight must be false and the flag must be named in risk_flags, even if the price looks good."
+)
+CURATION_RESULT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "results": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {"type": "integer"},
+                    "note": {"type": "string"},
+                    "risk_flags": {"type": "array", "items": {"type": "string"}},
+                    "spotlight": {"type": "boolean"},
+                },
+                "required": ["id", "note", "risk_flags", "spotlight"],
+            },
+        },
+    },
+    "required": ["results"],
+}
+
+
+def _call_anthropic(api_key, payload):
+    resp = requests.post(
+        "https://api.anthropic.com/v1/messages",
+        headers={"x-api-key": api_key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+        json={
+            "model": ANTHROPIC_MODEL,
+            "max_tokens": 8192,
+            "system": CURATION_SYSTEM_PROMPT,
+            "messages": [{"role": "user", "content": json.dumps(payload, ensure_ascii=False)}],
+            "tools": [{"name": "curate_listings", "description": "Return a screening note for each listing",
+                       "input_schema": CURATION_RESULT_SCHEMA}],
+            "tool_choice": {"type": "tool", "name": "curate_listings"},
+        },
+        timeout=60,
+    )
+    resp.raise_for_status()
+    for block in resp.json().get("content", []):
+        if block.get("type") == "tool_use" and block.get("name") == "curate_listings":
+            return block["input"]["results"]
+    raise ValueError("no tool_use block in Anthropic response")
+
+
+def _call_openai(api_key, payload):
+    resp = requests.post(
+        "https://api.openai.com/v1/chat/completions",
+        headers={"Authorization": f"Bearer {api_key}", "content-type": "application/json"},
+        json={
+            "model": OPENAI_MODEL,
+            "messages": [
+                {"role": "system", "content": CURATION_SYSTEM_PROMPT},
+                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+            ],
+            "tools": [{"type": "function", "function": {"name": "curate_listings",
+                       "description": "Return a screening note for each listing",
+                       "parameters": CURATION_RESULT_SCHEMA}}],
+            "tool_choice": {"type": "function", "function": {"name": "curate_listings"}},
+        },
+        timeout=60,
+    )
+    resp.raise_for_status()
+    call = resp.json()["choices"][0]["message"]["tool_calls"][0]
+    return json.loads(call["function"]["arguments"])["results"]
+
+
+def curate(rows):
+    """None = didn't run or failed (caller falls back to the plain list).
+    Dict (possibly empty) = ran; keyed by listing id -> {note, risk_flags, spotlight}.
+    Prefers OpenAI if OPENAI_API_KEY is set, else Anthropic if ANTHROPIC_API_KEY is set."""
+    openai_key = os.environ.get("OPENAI_API_KEY")
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not openai_key and not anthropic_key:
+        return None
+    batch = rows[:MAX_CURATE]
+    payload = [{
+        "id": r["id"],
+        "title": r.get("title"),
+        "type": r.get("type"),
+        "price_eur": r.get("price_eur"),
+        "area_m2": r.get("area_m2"),
+        "municipality": r.get("municipality"),
+        "region": r.get("region"),
+        "description": (r.get("description") or "")[:400],
+        "vs_median_pct": (comps_by_id.get(r["id"]) or {}).get("vs_median_pct"),
+        "comp_basis": (comps_by_id.get(r["id"]) or {}).get("basis"),
+        "comp_warning": "shared_listing" if (comps_by_id.get(r["id"]) or {}).get("shared_listing")
+            else "low_price_outlier" if (comps_by_id.get(r["id"]) or {}).get("low_price_outlier")
+            else "high_price_outlier" if (comps_by_id.get(r["id"]) or {}).get("high_price_outlier") else None,
+        "price_drop_pct": (drops_by_id.get(r["id"]) or {}).get("drop_pct"),
+        "multi_cut": (drops_by_id.get(r["id"]) or {}).get("multi_cut", False),
+    } for r in batch]
+
+    try:
+        results = _call_openai(openai_key, payload) if openai_key else _call_anthropic(anthropic_key, payload)
+        return {item["id"]: item for item in results if "id" in item}
+    except Exception as e:
+        print(f"curation skipped: {e}", file=sys.stderr)
+        return None
+
+
+curation = curate(rows)
+
 if is_drop_digest:
     dash_params = {"drop": "1"}
 else:
@@ -98,7 +231,22 @@ def comp_line(r):
     return ""
 
 
-def card(r):
+def curated_line(curated):
+    if not curated:
+        return ""
+    note = curated.get("note")
+    flags = curated.get("risk_flags") or []
+    flags_html = "".join(
+        f'<span style="display:inline-block;background:#fbe4d5;color:#a4402f;font:600 10px monospace;'
+        f'padding:2px 6px;border-radius:10px;margin:4px 4px 0 0">⚠ {esc(f)}</span>' for f in flags
+    )
+    out = f'<br><span style="font:italic 12px sans-serif;color:#1b3341">{esc(note)}</span>' if note else ""
+    if flags_html:
+        out += f'<div style="margin-top:2px">{flags_html}</div>'
+    return out
+
+
+def card(r, curated=None):
     drop = drops_by_id.get(r["id"])
     ppsqm = round(r["price_eur"] / r["area_m2"]) if r.get("price_eur") and r.get("area_m2") else None
     facts = " · ".join(filter(None, [
@@ -129,24 +277,58 @@ def card(r):
 {f'<span style="font:700 11px monospace;color:#a4402f">&nbsp;{drop_emoji} −{drop_label}</span>' if drop else ''}
 {comp_line(r)}
 <br><span style="font:11.5px monospace;color:#6c7a82">{esc(facts)}</span>
+{curated_line(curated)}
 </td>
 </tr>
 </table>"""
 
-cards = "".join(card(r) for r in rows)
+
+def compact_row(r, curated):
+    flags = (curated or {}).get("risk_flags") or []
+    flag_txt = "  ⚠ " + "; ".join(flags) if flags else ""
+    return (f'<tr><td style="padding:5px 0;border-bottom:1px solid #eee;font:13px sans-serif;color:#1b3341">'
+            f'<a href="{esc(r["url"])}" style="color:#0a5960;text-decoration:none">{esc(r["title"])}</a> '
+            f'— {eur(r.get("price_eur"))}'
+            f'<span style="font:600 12px monospace;color:#a4402f">{esc(flag_txt)}</span></td></tr>')
+
+
+def compact_list(rows, heading):
+    if not rows:
+        return ""
+    body_rows = "".join(compact_row(r, curation.get(r["id"])) for r in rows)
+    return (f'<p style="font:600 12px sans-serif;color:#6c7a82;margin:18px 0 6px">{esc(heading)} ({len(rows)})</p>'
+            f'<table role="presentation" width="100%">{body_rows}</table>')
+
+
+if curation is None:
+    main_html = "".join(card(r) for r in rows)
+    spotlight_count = 0
+else:
+    spotlighted = [r for r in rows if curation.get(r["id"], {}).get("spotlight")]
+    rest = [r for r in rows if r["id"] not in {s["id"] for s in spotlighted}]
+    spotlight_count = len(spotlighted)
+    if spotlighted:
+        spot_html = "".join(card(r, curation.get(r["id"])) for r in spotlighted)
+        main_html = (f'<p style="font:600 13px sans-serif;color:#12232e;margin:0 0 8px">🎯 Worth a look ({len(spotlighted)})</p>'
+                     f'{spot_html}{compact_list(rest, "Also new — no strong signal, or a flag noted")}')
+    else:
+        main_html = compact_list(rows, "New — no strong signal, or a flag noted")
 
 label = "propert" + ("y" if len(rows) == 1 else "ies") + " with a price cut" if is_drop_digest else \
         "new auction listing" + ("" if len(rows) == 1 else "s")
+subject = f"[Auctions] {len(rows)} {label}" + (f" · {spotlight_count} worth a look" if spotlight_count else "")
+disclaimer = ("Notes above are drafted from each listing's own text and are not legal or financial advice. "
+              if curation is not None else "")
 body = f"""<div style="max-width:640px;margin:auto;font-family:sans-serif">
 <h2 style="font-family:Georgia,serif;color:#12232e">{len(rows)} {label}</h2>
 <p style="color:#6c7a82;font-size:13px">Scan {meta.get('last_run','')} · source eauction24.gr ·
 <a href="{esc(dashboard_link)}" style="color:#0a5960">view &amp; filter on the dashboard →</a></p>
-{cards}
-<p style="color:#a4402f;font-size:12px;margin-top:18px">Verify on eauction.gr + legal/engineer title check before bidding.</p>
+{main_html}
+<p style="color:#a4402f;font-size:12px;margin-top:18px">{disclaimer}Verify on eauction.gr + legal/engineer title check before bidding.</p>
 </div>"""
 
 msg = MIMEText(body, "html", "utf-8")
-msg["Subject"] = f"[Auctions] {len(rows)} {label}"
+msg["Subject"] = subject
 msg["From"] = os.environ["SMTP_USER"]
 msg["To"] = os.environ["MAIL_TO"]
 with smtplib.SMTP(os.environ["SMTP_HOST"], int(os.environ.get("SMTP_PORT", "587"))) as s:
