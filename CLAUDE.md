@@ -18,6 +18,10 @@ diffs for new lots, emails a digest, serves a static dashboard. Personal tool
   parcel re-listed as multiple fractional shares — both would otherwise
   corrupt the median. Writes `data/comps.json`.
 - `notify.py`   — emails new listings (SMTP via env), flags price cuts + comps. Optional ALERT_* filter.
+  Optional AI curation (OPENAI_API_KEY or ANTHROPIC_API_KEY) reads listing
+  descriptions for risk flags and separates a "Worth a look" section from
+  everything else. Falls back to the plain list with no key or on any
+  API failure — never blocks the send.
 - `index.html`  — dashboard; fetches `data/auctions.json` + `data/drops.json` + `data/comps.json`, falls back to seed.
 - `.github/workflows/scan.yml` — cron 09:00 + 17:00 Athens: scrape → link rounds → score comps → email → commit.
 - Runs on GitHub Actions. No server, no agent runner, no database.
