@@ -52,6 +52,10 @@ comps_by_id = {}
 if (DATA / "comps.json").exists():
     comps_by_id = {int(k): v for k, v in json.loads((DATA / "comps.json").read_text()).items()}
 
+walkaway_by_id = {}
+if (DATA / "walkaway.json").exists():
+    walkaway_by_id = {int(k): v for k, v in json.loads((DATA / "walkaway.json").read_text()).get("lots", {}).items()}
+
 is_drop_digest = False
 if not new_ids:
     if os.environ.get("FORCE_EMAIL", "").lower() not in ("1", "true"):
@@ -270,6 +274,40 @@ def comp_line(r):
     return ""
 
 
+BUILDING_TYPES = {"Residential", "Commercial", "Warehouse"}
+
+def occupancy_line(r):
+    """Only speak when the text actually said something -- occupancy is almost never
+    stated on the public aggregator (verified), so a per-card 'unknown' on every
+    building would be noise. Known statuses are decision-relevant and rare, so they
+    earn a line."""
+    occ = r.get("occupancy")
+    if r.get("type") not in BUILDING_TYPES or occ in (None, "unknown"):
+        return ""
+    if occ == "occupied":
+        txt, col = "occupied — likely an eviction to budget, verify in the appraisal", "#a4402f"
+    elif occ == "leased":
+        txt, col = "leased — tenant in place (income, but tenancy rights survive the sale)", "#0a5960"
+    elif occ == "vacant":
+        txt, col = "vacant per the listing — still confirm in the appraisal", "#0a5960"
+    else:
+        return ""
+    return f'<br><span style="font:700 11px monospace;color:{col}">🏠 {txt}</span>'
+
+
+def walkaway_line(r):
+    w = walkaway_by_id.get(r["id"])
+    if not w or not w.get("viable"):
+        return ""
+    hp = w.get("headroom_pct")
+    # only worth showing when the starting price leaves real room under the ceiling;
+    # if it's already at/over the ceiling, the discount lines say enough
+    room = (f' — {hp:g}% room to bid' if hp is not None and hp >= 5
+            else ' — at/over ceiling' if hp is not None and hp < 0 else '')
+    return (f'<br><span style="font:700 11px monospace;color:#12232e">'
+            f'🎯 max bid ≈ {eur(w["ceiling_eur"])}{room}</span>')
+
+
 def curated_line(curated):
     if not curated:
         return ""
@@ -322,6 +360,8 @@ def card(r, curated=None):
 <span style="font:600 17px Georgia,serif;color:#12232e">{eur(r.get('price_eur'))}</span>
 {f'<span style="font:700 11px monospace;color:#a4402f">&nbsp;{drop_emoji} −{drop_label}</span>' if drop else ''}
 {comp_line(r)}
+{occupancy_line(r)}
+{walkaway_line(r)}
 <br><span style="font:11.5px monospace;color:#6c7a82">{esc(facts)}</span>
 {curated_line(curated)}
 </td>

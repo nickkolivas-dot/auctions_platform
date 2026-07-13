@@ -57,6 +57,34 @@ def detect_ownership(title, description):
         return "shared"
     return "full"
 
+def detect_occupancy(title, description):
+    """Best-effort occupancy from the listing text -- HIGH PRECISION, LOW RECALL by
+    design. Verified against 7,543 live records: the public aggregator almost never
+    states occupancy (0 "leased", 2 "occupied", ~15 "vacant" -- and most of the
+    "vacant" hits are land, where it's irrelevant). The reliable source is the
+    certified appraiser's report on the logged-in eauction.gr, which we do not
+    scrape. So we only assert a status when the text is unambiguous and return
+    "unknown" otherwise -- a building whose occupancy we can't read must be treated
+    as "verify before bidding", never silently assumed empty. Occupancy by a paying
+    tenant (leased) is distinct from occupancy by the debtor: the first can be an
+    income asset, the second is an eviction cost."""
+    t = ((title or "") + " " + (description or "")).lower()
+    # leased first: an income tenancy is a specific, higher-value fact than bare occupancy
+    if any(k in t for k in ["μισθωμέν", "εκμισθωμέν", "εκμισθων", "υπό μίσθωση",
+                             "υπο μισθωση", "μισθωτή", "μισθωτης", "ενοικιασμέν"]):
+        return "leased"
+    if any(k in t for k in ["κατοικείται", "κατοικειται", "κατέχεται από", "κατεχεται απο",
+                             "ιδιοκατοίκ", "ιδιοκατοικ", "κατοικία του οφειλέτη", "κατοικια του οφειλετη"]):
+        return "occupied"
+    # vacant: the appraiser's standard phrasing is "κενό/κενή χρήσης" / "κενό κτισμάτων" /
+    # "ακατοίκητο". "κενό οικόπεδο" alone is about the plot, not occupancy, so require a
+    # use/dwelling qualifier rather than the bare word.
+    if any(k in t for k in ["κενό χρήσης", "κενης χρησης", "κενή χρήσης", "κενο χρησης",
+                             "κενό κτισμ", "κενων κτισμ", "κενό κτίσμ", "ακατοίκητ", "ακατοικητ",
+                             "μη μισθωμέν", "μη κατοικ"]):
+        return "vacant"
+    return "unknown"
+
 def get(url, tries=3):
     for i in range(tries):
         try:
@@ -114,6 +142,7 @@ def parse_detail(aid):
             "type": classify(me.get("@type"), d.get("name")),
             "raw_type": me.get("@type"),
             "ownership_type": detect_ownership(d.get("name"), full_description),
+            "occupancy": detect_occupancy(d.get("name"), full_description),
             "area_m2": fs.get("value"),
             "price_eur": off.get("price"),
             "auction_date": off.get("availabilityStarts") or d.get("datePosted"),
@@ -162,7 +191,11 @@ def main():
                 rec["type"] = classify(rec.get("raw_type"), rec.get("title"))  # pick up classify() changes retroactively
                 # best-effort: only the truncated stored description is available here (not
                 # a live re-fetch), but the ownership clause usually appears early in the text
-                rec["ownership_type"] = detect_ownership(rec.get("title"), rec.get("description"))
+                # preserve, don't recompute: ownership/occupancy were derived from the FULL
+                # description at first scrape; re-deriving here from the stored (sometimes
+                # truncated) copy could only degrade them. Compute only if never set.
+                rec["ownership_type"] = rec.get("ownership_type") or detect_ownership(rec.get("title"), rec.get("description"))
+                rec["occupancy"] = rec.get("occupancy") or detect_occupancy(rec.get("title"), rec.get("description"))
                 price = rec.get("price_eur")
             else:
                 rec = parse_detail(aid)
@@ -196,7 +229,8 @@ def main():
         rec["status"] = "removed"
         rec["removed_seen"] = today
         rec["type"] = classify(rec.get("raw_type"), rec.get("title"))
-        rec["ownership_type"] = detect_ownership(rec.get("title"), rec.get("description"))
+        rec["ownership_type"] = rec.get("ownership_type") or detect_ownership(rec.get("title"), rec.get("description"))
+        rec["occupancy"] = rec.get("occupancy") or detect_occupancy(rec.get("title"), rec.get("description"))
         records[aid_i] = rec
 
     out = sorted(records.values(), key=lambda r: (r.get("first_seen") or "", r["id"]), reverse=True)

@@ -12,6 +12,12 @@ diffs for new lots, emails a digest, serves a static dashboard. Personal tool
   Also runs `detect_ownership()`: Greek auctions sell distinct legal rights
   (full/πλήρης, bare/ψιλή κυριότητα, usufruct/επικαρπία, shared/συγκυριότητα)
   stated in the listing text — tagged as `ownership_type` on every record.
+  And `detect_occupancy()` → `occupancy` (vacant/leased/occupied/unknown):
+  HIGH-PRECISION, LOW-RECALL by design — verified that the public aggregator
+  almost never states occupancy (the real answer is in the appraiser's report
+  on the logged-in site, which we don't scrape), so it only asserts a status
+  when the text is unambiguous and defaults to `unknown`. Never assume a
+  building is empty from silence.
 - `drop_tracker.py` — links the same property across re-auction rounds (new id
   each round) by region + municipality + normalized address, flags floor-price
   cuts (plus recent/multi-cut within 30 days), writes `data/drops.json`.
@@ -22,18 +28,30 @@ diffs for new lots, emails a digest, serves a static dashboard. Personal tool
   shares, and bare-ownership/usufruct sales (excluded from the baseline
   entirely, not just flagged — comparing their price to a full-ownership
   median isn't meaningful at all). Writes `data/comps.json`.
+- `walkaway.py` — per-lot "don't bid above this" ceiling, deliberately SEPARATE
+  from the comps discount. `ceiling = (resale*(1-margin) - reno - legal) / (1+txn)`,
+  resale anchored to the comps median €/m². BUILDINGS ONLY — the €/m²×area value
+  model breaks for raw land (value swings with buildability, not area; verified a
+  9,375 m² non-buildable farm came out "worth" €5M). All assumptions are env vars
+  (`WALKAWAY_*`), so the model re-tunes in one place. Writes `data/walkaway.json`.
 - `notify.py`   — emails new listings (SMTP via env), flags price cuts + comps. Optional ALERT_* filter.
   Bare-ownership/usufruct listings are hard-excluded from the email
   unconditionally (`INCLUDE_BARE_OWNERSHIP=1` to override), independent of
-  whether AI curation is configured. Optional AI curation (OPENAI_API_KEY or
+  whether AI curation is configured. Cards show the walk-away max-bid ceiling
+  and, for buildings, a known occupancy status (occupied=eviction-risk,
+  leased=income, vacant). Optional AI curation (OPENAI_API_KEY or
   ANTHROPIC_API_KEY) reads listing descriptions for risk_flags and
   potential_tags (buildable, view, leased-with-income, etc) — the LLM never
   scores or ranks; a deterministic `rank_score()` in Python (comps discount +
   price cuts + a fixed point value per potential_tag) picks the "Top N of the
   day" (TOP_N, default 5) from listings with zero risk flags. Falls back to
   the plain list with no key or on any API failure — never blocks the send.
-- `index.html`  — dashboard; fetches `data/auctions.json` + `data/drops.json` + `data/comps.json`, falls back to seed.
-- `.github/workflows/scan.yml` — cron 09:00 + 17:00 Athens: scrape → link rounds → score comps → email → commit.
+- `index.html`  — dashboard; fetches `auctions.json` + `drops.json` + `comps.json`
+  + `walkaway.json`, falls back to seed. Shows per-card max-bid ceiling +
+  occupancy caveat; "🎯 First-deal mode" preset = full ownership + 10%+ below
+  median + not debtor-occupied (`?firstdeal=1`).
+- `.github/workflows/scan.yml` — cron 09:00 + 17:00 Athens: scrape → link rounds
+  → score comps → walk-away ceilings → email → commit.
 - Runs on GitHub Actions. No server, no agent runner, no database.
 
 ## Hard rules
@@ -52,8 +70,19 @@ diffs for new lots, emails a digest, serves a static dashboard. Personal tool
 
 ## Next task
 Drop-tracker, discount score (comps.py), ownership-type detection/exclusion,
-and AI-curated "Top N of the day" ranking are all shipped. Next up per
-ROADMAP.md Phase 1: walk-away price per lot (a "don't bid above this"
-ceiling, separate from the comps score). See tasks/todo.md. Also open:
-research whether Landea (second aggregator, already used manually per
-ROADMAP.md Phase 0) is safely scrapable before building anything against it.
+AI-curated "Top N of the day" ranking, the walk-away price ceiling
+(walkaway.py), occupancy detection, and dashboard first-deal mode are all
+shipped. Open items:
+- Research whether Landea (second aggregator, already used manually per
+  ROADMAP.md Phase 0) is safely scrapable before building anything against it.
+- BOTH occupancy AND ownership-type are essentially absent from eauction24's
+  public pages (verified 2026-07-14 by fetching real detail pages: 0 hits for
+  ψιλ/επικαρπ/πλήρης-κυριότητ anywhere on the page, not just the JSON-LD desc;
+  occupancy ~0.2%). detect_ownership/detect_occupancy correctly handle the rare
+  explicitly-stated cases and default safely, but their recall on this source is
+  near zero. The reliable source for both is the appraiser's report + κατασχετήρια
+  έκθεση in the eauction.gr case file — a MANUAL due-diligence step by design, not
+  scrapable (logged-in = ToS). The reliable public signals are price/area/discount/
+  drops; the tool screens on those, the human does the legal/condition check.
+- The WALKAWAY_* assumptions ship with defaults (25% margin, €350/m² reno,
+  0.90 resale, 6% txn); tune them from real closed deals as they accumulate.

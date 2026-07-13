@@ -31,6 +31,16 @@ jobs:
         run: python drop_tracker.py
       - name: score price-per-sqm vs local median
         run: python comps.py
+      - name: compute walk-away ceilings (max bid per lot)
+        run: python walkaway.py
+        env:
+          # the "don't bid above this" model -- all tunable here without code.
+          # leave any unset to use the built-in default.
+          WALKAWAY_RESALE_HAIRCUT:   ${{ vars.WALKAWAY_RESALE_HAIRCUT }}   # default 0.90
+          WALKAWAY_MARGIN:           ${{ vars.WALKAWAY_MARGIN }}           # default 0.25
+          WALKAWAY_RENO_PER_M2:      ${{ vars.WALKAWAY_RENO_PER_M2 }}      # default 350
+          WALKAWAY_TXN_COST_PCT:     ${{ vars.WALKAWAY_TXN_COST_PCT }}     # default 0.06
+          WALKAWAY_LEGAL_CONTINGENCY: ${{ vars.WALKAWAY_LEGAL_CONTINGENCY }} # default 3000
       - name: email new listings
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}

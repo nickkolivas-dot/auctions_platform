@@ -115,6 +115,8 @@ main{padding:18px 22px 60px}
         <dt>🔥 Multi-cut</dt><dd>Starting price cut 2+ times within 30 days. Often a strongly motivated sale — but can also mean repeated failed auctions, worth checking why.</dd>
         <dt>€/m²</dt><dd>Price ÷ floor area. The raw metric, ignoring location/condition entirely.</dd>
         <dt>↓/↑ X% vs median</dt><dd>This listing's €/m² compared to the typical €/m² for its municipality (or region, if the municipality has too few listings) — "n=" is how many listings that comparison is based on. A much more useful signal than raw €/m², but still just a statistical baseline, not an appraisal.</dd>
+        <dt>🎯 max bid ≈ €X</dt><dd>A "don't bid above this" ceiling: the most you could pay at the hammer and still hit a target margin after renovation, taxes/fees, and resale — worked back from the area's median €/m². <b>Buildings only</b> (land value doesn't scale with area). It's a discipline tool built on tunable assumptions (≈25% margin, ≈€350/m² renovation, ≈90% resale realisation, ≈6% purchase costs), not a valuation. "room to bid" = how far the current starting price sits below it.</dd>
+        <dt>🏠 Occupancy</dt><dd>Whether anyone's living in it. Rarely stated on public listings, so most buildings show "not stated — check the appraisal". When the text is explicit: <b>occupied</b> (a debtor in place = a likely eviction to budget), <b>leased</b> (a paying tenant — income, but the tenancy survives the sale), or <b>vacant</b>. The real answer is in the appraiser's report on eauction.gr.</dd>
       </dl>
     </div>
     <div>
@@ -128,7 +130,7 @@ main{padding:18px 22px 60px}
     <div>
       <h3>Ownership</h3>
       <dl>
-        <dt>Full ownership</dt><dd>Πλήρης κυριότητα — the default and by far the most common. You get everything: title, use, and the right to rent or sell.</dd>
+        <dt>Full ownership</dt><dd>Πλήρης κυριότητα — title, use, and the right to rent or sell. This is the shown default because it's by far the most common, <b>but the public listings don't actually state the ownership right</b> (verified) — bare-ownership/usufruct/co-ownership only get flagged on the rare occasions the description mentions them. Always confirm the right in the eauction.gr case file before bidding.</dd>
         <dt>Bare ownership / usufruct</dt><dd>Ψιλή κυριότητα (bare) or επικαρπία (usufruct) — the two halves of a split title. Buying <b>bare ownership</b> gets you the title but not the right to use, occupy, or rent the property until the usufruct ends (often tied to someone's death). Hidden by default — enable the "Bare ownership / usufruct only" checkbox to see them.</dd>
         <dt>Shared / co-ownership</dt><dd>Συγκυριότητα / εξ αδιαιρέτου — only a fractional share of the property (e.g. an inheritance split) is being auctioned, not the whole thing.</dd>
       </dl>
@@ -139,6 +141,8 @@ main{padding:18px 22px 60px}
         <dt>Starting price ≠ market value</dt><dd>The price shown is the auction's opening bid, usually well below market value. The final sale price after competitive bidding can end up much higher.</dd>
         <dt>You can't bid here</dt><dd>This dashboard is for discovery/monitoring only. Bidding happens on the official eauction.gr, which requires TaxisNet registration.</dd>
         <dt>Dates can shift</dt><dd>Greek judicial auctions can be postponed or cancelled with little notice — always confirm the live status on eauction.gr close to the date.</dd>
+        <dt>🎯 First-deal mode</dt><dd>A one-click preset for building a first track record: full ownership only, priced 10%+ below the local €/m² median, and not flagged debtor-occupied. It leans on what's verifiable from public data — it can't screen for interior condition or (usually) occupancy, so treat its output as a shortlist to investigate, not deals to bid on blind.</dd>
+        <dt>You can't see inside</dt><dd>Auctioned homes are often locked or occupied — you can't tour the interior. The appraiser's report in the eauction.gr case file has interior photos and a condition note (they were inside); read it. For your first deals, land and empty units carry the least "what's behind the door" risk.</dd>
         <dt>Do the legal/engineer check</dt><dd>Verify title, liens, and occupancy status before bidding — none of that is reflected here.</dd>
         <dt>⚠ "verify" comp warnings</dt><dd>Some listings show a warning instead of a percentage — either the price is unusually low/high for the area, or it shares an address+size with another active listing. Both are common signs of a <b>partial/undivided ownership share</b> being auctioned (e.g. a fraction of an inherited property) rather than the whole thing at a real discount. Confirmed in the actual data: a 65.71 m² house listed at €1. Always check the listing itself before assuming a steal.</dd>
       </dl>
@@ -156,6 +160,9 @@ main{padding:18px 22px 60px}
 
 <div class="wrap">
 <aside>
+  <label class="toggle" style="background:#12232e;border-color:#12232e;color:#fff;font-weight:600"><input type="checkbox" id="f-firstdeal"> 🎯 First-deal mode — cleanest opportunities only</label>
+  <p style="margin:4px 2px 14px;font:11px/1.4 sans-serif;color:#6c7a82">Full ownership, priced 10%+ below the local €/m² median, and not flagged as debtor-occupied. Occupancy is rarely stated publicly — always confirm it (and the interior) in the appraisal on eauction.gr before bidding.</p>
+
   <h2>Only new</h2>
   <label class="toggle"><input type="checkbox" id="f-new"> Show only newly-listed</label>
   <label class="toggle" style="margin-top:8px"><input type="checkbox" id="f-drop"> Only price-reduced (re-auctions)</label>
@@ -223,7 +230,8 @@ const TCOLOR={Residential:'var(--resi)',Land:'var(--land)',Commercial:'var(--com
 const fmt=n=>n==null?'—':'€'+Number(n).toLocaleString('el-GR');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ownBucket=d=>{const o=d.ownership_type||'full'; return (o==='bare'||o==='usufruct')?'bare':o;};
-let DATA=[], LATEST=null, DROPS=new Map(), COMPS=new Map(), MUNIS_BY_REGION=new Map();
+let DATA=[], LATEST=null, DROPS=new Map(), COMPS=new Map(), WALK=new Map(), MUNIS_BY_REGION=new Map();
+const BUILDING_TYPES=new Set(['Residential','Commercial','Warehouse']);
 
 function selectedValues(sel){
   return [...sel.selectedOptions].map(o=>o.value);
@@ -267,6 +275,7 @@ function applyParamsFromURL(){
   if(p.get('recentdrop')==='1')document.getElementById('f-recent-drop').checked=true;
   if(p.get('multicut')==='1')document.getElementById('f-multi-cut').checked=true;
   if(p.get('belowmedian')==='1')document.getElementById('f-below-median').checked=true;
+  if(p.get('firstdeal')==='1')document.getElementById('f-firstdeal').checked=true;
   if(p.get('history')==='1')document.getElementById('f-history').checked=true;
   if(p.has('datefrom'))document.getElementById('f-datefrom').value=p.get('datefrom');
   if(p.has('dateto'))document.getElementById('f-dateto').value=p.get('dateto');
@@ -291,6 +300,10 @@ async function boot(){
     try{
       const comps=await(await fetch('./data/comps.json',{cache:'no-store'})).json();
       Object.entries(comps).forEach(([id,c])=>COMPS.set(Number(id),c));
+    }catch(e){}
+    try{
+      const wa=await(await fetch('./data/walkaway.json',{cache:'no-store'})).json();
+      Object.entries(wa.lots||{}).forEach(([id,w])=>WALK.set(Number(id),w));
     }catch(e){}
   }catch(e){
     DATA=window.__SEED__||[];
@@ -334,11 +347,14 @@ function current(){
   const onlyRecentDrop=document.getElementById('f-recent-drop').checked;
   const onlyMultiCut=document.getElementById('f-multi-cut').checked;
   const onlyBelowMedian=document.getElementById('f-below-median').checked;
+  const firstDeal=document.getElementById('f-firstdeal').checked;
   const showHistory=document.getElementById('f-history').checked;
   const ppsqm=d=>(d.price_eur&&d.area_m2)?d.price_eur/d.area_m2:Infinity;
   const isReliableDeal=d=>{const c=COMPS.get(d.id);return c&&!c.shared_listing&&!c.low_price_outlier&&c.vs_median_pct<=-10;};
   let out=DATA.filter(d=>{
     if(!showHistory&&d.status==='removed')return false;
+    // first-deal mode layers the cleanest-only constraints on top of every other filter
+    if(firstDeal&&(ownBucket(d)!=='full'||d.occupancy==='occupied'||!isReliableDeal(d)))return false;
     if(!types.includes(d.type))return false;
     if(!owns.includes(ownBucket(d)))return false;
     if(regs.length&&!regs.includes(d.region))return false;
@@ -409,6 +425,23 @@ function render(){
         compLine=`<div class="comp${comp.vs_median_pct<=-10?' good':''}">${dir}${Math.abs(comp.vs_median_pct)}% vs ${basisLabel} median (n=${comp.sample_size})</div>`;
       }
     }
+    // occupancy: only buildings; a known status is decision-relevant, unknown is the honest default
+    let occLine='';
+    if(BUILDING_TYPES.has(d.type)){
+      const occ=d.occupancy;
+      if(occ==='occupied')      occLine=`<div class="comp warn">🏠 occupied — likely an eviction to budget; verify in the appraisal</div>`;
+      else if(occ==='leased')   occLine=`<div class="comp">🏠 leased — tenant in place (income, but tenancy rights survive the sale)</div>`;
+      else if(occ==='vacant')   occLine=`<div class="comp good">🏠 vacant per the listing — still confirm in the appraisal</div>`;
+      else                      occLine=`<div class="comp" style="color:#8a939a">🏠 occupancy not stated — check the appraisal before bidding</div>`;
+    }
+    // walk-away ceiling: the "don't bid above this". Buildings only (land isn't priced this way).
+    const wa=WALK.get(d.id);
+    let walkLine='';
+    if(wa&&wa.viable){
+      const hp=wa.headroom_pct;
+      const room=(hp!=null&&hp>=5)?` — ${hp}% room to bid`:(hp!=null&&hp<0)?' — at/over ceiling':'';
+      walkLine=`<div class="comp" style="font-weight:700;color:#12232e">🎯 max bid ≈ ${fmt(wa.ceiling_eur)}${room}</div>`;
+    }
     return `<a class="card${isRemoved?' removed':''}" href="${esc(d.url)}" target="_blank" rel="noopener">
       <div class="thumb" style="${img}">
         ${isNew?'<span class="badge">NEW</span>':''}
@@ -421,6 +454,8 @@ function render(){
         ${drop?`<div class="drop">${drop.multi?'🔥':'🔻'} −${drop.pct}% vs prior round${drop.prevDate?` (was ⚖ ${esc(drop.prevDate)})`:''}${drop.multi?` · ${drop.cuts30d} cuts/30d`:''}</div>`:''}
         ${ownBadge}
         ${compLine}
+        ${occLine}
+        ${walkLine}
         <div class="loc">${esc([d.municipality,d.region].filter(Boolean).join(' · '))}</div>
         <div class="facts">
           ${d.area_m2?`<span><b>${d.area_m2}</b> m²</span>`:''}
@@ -443,6 +478,7 @@ document.getElementById('reset').onclick=()=>{
   document.getElementById('f-recent-drop').checked=false;
   document.getElementById('f-multi-cut').checked=false;
   document.getElementById('f-below-median').checked=false;
+  document.getElementById('f-firstdeal').checked=false;
   document.getElementById('f-history').checked=false;
   ['f-loc','f-pmin','f-pmax','f-amin','f-amax','f-datefrom','f-dateto'].forEach(id=>document.getElementById(id).value='');
   setSelected(document.getElementById('f-region'),[]);
