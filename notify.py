@@ -28,7 +28,7 @@ not replace the title/engineer check. No key set, or the API call fails for
 any reason -> silently falls back to the plain full-list email exactly as
 before. Never blocks the send. Model overridable via OPENAI_MODEL / ANTHROPIC_MODEL.
 """
-import html, json, os, smtplib, sys, urllib.parse
+import datetime, html, json, os, smtplib, sys, urllib.parse
 import requests
 from email.mime.text import MIMEText
 from pathlib import Path
@@ -131,6 +131,41 @@ POTENTIAL_WEIGHTS = {"buildable": 15, "sea_or_scenic_view": 8, "leased_with_inco
 POTENTIAL_LABELS = {"buildable": "buildable", "sea_or_scenic_view": "view",
                      "leased_with_income": "leased/income", "renovated_or_good_condition": "renovated",
                      "prime_frontage_or_corner": "prime frontage", "near_amenities": "near amenities"}
+
+# --- Buy-to-sell signal model (all deterministic; the LLM only adds potential_tags) ---
+# The morning report's "Top of the day" ranks on these. Every signal is a plain,
+# auditable rule so you can see WHY a lot made the top, and tune the weights here.
+#
+# Market-knowledge heuristic (NOT derived from data): Attica municipalities where a
+# resale clears fast. PARKING is especially scarce and liquid in the dense central
+# belt -- a cheap parking spot there is one of the easiest things to flip. Exact
+# municipality strings as they appear in the data; edit freely.
+PARKING_SCARCE = {
+    "Αθηναίων", "Πειραιώς", "Καλλιθέας", "Νέας Σμύρνης", "Παλαιού Φαλήρου", "Ζωγράφου",
+    "Βύρωνος", "Δάφνης - Υμηττού", "Νέας Ιωνίας", "Γαλατσίου", "Ηλιουπόλεως", "Αγίου Δημητρίου",
+    "Μοσχάτου - Ταύρου", "Καισαριανής", "Νικαίας - Αγίου Ιωάννου Ρέντη", "Κορυδαλλού",
+}
+HIGH_DEMAND = {
+    "Γλυφάδας", "Βάρης - Βούλας - Βουλιαγμένης", "Κηφισιάς", "Φιλοθέης - Ψυχικού", "Αμαρουσίου",
+    "Χαλανδρίου", "Αγίας Παρασκευής", "Παλαιού Φαλήρου", "Ελληνικού - Αργυρούπολης",
+    "Παπάγου - Χολαργού", "Πεντέλης", "Βριλησσίων", "Αλίμου", "Νέας Σμύρνης",
+}
+LOW_TICKET_EUR = 40000   # below this: low capital at risk + a much wider resale buyer pool
+IMMINENT_DAYS = 21       # auction within this many days = "act now"
+
+
+def _days_until(auction_date):
+    if not auction_date:
+        return None
+    try:
+        d = datetime.date.fromisoformat(str(auction_date)[:10])
+    except ValueError:
+        return None
+    return (d - datetime.date.today()).days
+
+
+def _ordinal(n):
+    return {1: "1st", 2: "2nd", 3: "3rd"}.get(n, f"{n}th")
 
 CURATION_SYSTEM_PROMPT = (
     "You help two people screen Greek judicial property auction listings. You are not a "
@@ -350,7 +385,18 @@ def curated_line(curated):
     return out
 
 
-def card(r, curated=None):
+def why_line(why):
+    """The 'why it's a top pick' banner -- the buy-to-sell signals, strongest first."""
+    if not why:
+        return ""
+    pills = "".join(
+        f'<span style="display:inline-block;background:#12232e;color:#fff;font:600 10px sans-serif;'
+        f'padding:2px 7px;border-radius:10px;margin:0 4px 3px 0">{esc(w)}</span>' for w in why[:4]
+    )
+    return f'<div style="margin:2px 0 6px">{pills}</div>'
+
+
+def card(r, curated=None, why=None):
     drop = drops_by_id.get(r["id"])
     ppsqm = round(r["price_eur"] / r["area_m2"]) if r.get("price_eur") and r.get("area_m2") else None
     facts = " · ".join(filter(None, [
@@ -377,6 +423,7 @@ def card(r, curated=None):
 </td>
 <td style="padding:10px 12px;vertical-align:top">
 <a href="{esc(r['url'])}" style="font:600 14px sans-serif;color:#0a5960;text-decoration:none">{esc(r['title'])}</a><br>
+{why_line(why)}
 <span style="font:600 17px Georgia,serif;color:#12232e">{eur(r.get('price_eur'))}</span>
 {f'<span style="font:700 11px monospace;color:#a4402f">&nbsp;{drop_emoji} −{drop_label}</span>' if drop else ''}
 {comp_line(r)}
@@ -401,52 +448,91 @@ def compact_row(r, curated):
 def compact_list(rows, heading):
     if not rows:
         return ""
-    body_rows = "".join(compact_row(r, curation.get(r["id"])) for r in rows)
+    body_rows = "".join(compact_row(r, curation.get(r["id"]) if curation else None) for r in rows)
     return (f'<p style="font:600 12px sans-serif;color:#6c7a82;margin:18px 0 6px">{esc(heading)} ({len(rows)})</p>'
             f'<table role="presentation" width="100%">{body_rows}</table>')
 
 
-def rank_score(r):
-    """Deterministic -- not from the LLM. Higher = more discount + potential signal.
-    Zero for anything with no comps/drop/tag data, so it never outranks a real signal."""
-    score = 0.0
+def signals(r):
+    """The single source of truth for BOTH the score and the 'why'. Returns a list of
+    (points, label) tuples -- one per buy-to-sell signal that fired. Fully deterministic;
+    the LLM only contributes potential_tags at the end. No LLM key needed for any of the
+    core signals (discount, motivated seller, urgency, liquidity), so the Top of the day
+    works with or without curation."""
+    out = []
+    # 1. DISCOUNT vs local €/m² median (only clean comps; capped so an extreme outlier
+    #    that slipped the guards can't dominate the whole ranking)
     comp = comps_by_id.get(r["id"])
     if comp and not comp.get("bare_or_usufruct") and not comp.get("shared_listing") \
             and not comp.get("low_price_outlier") and not comp.get("high_price_outlier"):
-        score += max(0.0, -comp["vs_median_pct"])
+        d = -(comp.get("vs_median_pct") or 0)
+        if d >= 10:
+            out.append((min(d, 60), f"{round(d)}% below the local €/m² median"))
+    # 2. MOTIVATED SELLER: repeatedly unsold / repeatedly cut
     drop = drops_by_id.get(r["id"])
     if drop:
-        score += drop.get("drop_pct") or 0
+        rounds = len(drop.get("rounds") or [])
+        if rounds >= 2:
+            out.append((10 * (rounds - 1), f"{_ordinal(rounds)} auction round — repeatedly unsold"))
+        dp = drop.get("drop_pct") or 0
+        if dp:
+            out.append((min(dp, 40), f"cut {dp}% since the prior round"))
         if drop.get("multi_cut"):
-            score += 15
+            out.append((20, f"cut {drop.get('recent_cuts_30d')}× in 30 days — pushing to clear"))
+    # 3. URGENCY: auction is imminent (sooner = stronger)
+    days = _days_until(r.get("auction_date"))
+    if days is not None and 0 <= days <= IMMINENT_DAYS:
+        out.append((5 + (IMMINENT_DAYS - days) // 2,
+                    "auction is today/tomorrow" if days <= 1 else f"auction in {days} days"))
+    # 4. LIQUIDITY / location demand (market-knowledge heuristic)
+    mun, typ = r.get("municipality"), r.get("type")
+    if typ == "Parking" and mun in PARKING_SCARCE:
+        out.append((25, f"parking in {mun} — scarce, easy to resell"))
+    elif mun in HIGH_DEMAND and typ in ("Residential", "Parking", "Commercial"):
+        out.append((12, f"{mun} — high-demand area, resells fast"))
+    price = r.get("price_eur") or 0
+    if 0 < price <= LOW_TICKET_EUR:
+        out.append((8, f"low ticket (≤€{LOW_TICKET_EUR // 1000}k) — wide buyer pool, low capital at risk"))
+    # 5. LLM-extracted potential (only when curation ran and the description had detail)
     curated = curation.get(r["id"]) if curation else None
     if curated:
         for tag in curated.get("potential_tags") or []:
-            score += POTENTIAL_WEIGHTS.get(tag, 0)
-    return score
+            w = POTENTIAL_WEIGHTS.get(tag, 0)
+            if w:
+                out.append((w, POTENTIAL_LABELS.get(tag, tag)))
+    return out
 
 
-def is_clean(rid):
-    c = curation.get(rid)
-    return bool(c) and not c.get("risk_flags")
+def rank_score(r):
+    return sum(p for p, _ in signals(r))
 
 
-if curation is None:
-    main_html = "".join(card(r) for r in rows)
-    top_count = 0
+def reasons(r):
+    """Labels, strongest signal first -- what goes on the card as the 'why'."""
+    return [lbl for _, lbl in sorted(signals(r), key=lambda pl: -pl[0])]
+
+
+def eligible(r):
+    """In the Top only with a real signal AND no risk flag. Risk flags only exist when
+    curation ran; without a key, any positive-signal lot is eligible."""
+    if curation is not None:
+        c = curation.get(r["id"])
+        if c and c.get("risk_flags"):
+            return False
+    return rank_score(r) > 0
+
+
+qualifying = sorted([r for r in rows if eligible(r)], key=rank_score, reverse=True)
+top_picks = qualifying[:TOP_N]
+top_count = len(top_picks)
+if top_picks:
+    top_ids = {r["id"] for r in top_picks}
+    rest = [r for r in rows if r["id"] not in top_ids]
+    top_html = "".join(card(r, curation.get(r["id"]) if curation else None, why=reasons(r)) for r in top_picks)
+    main_html = (f'<p style="font:600 13px sans-serif;color:#12232e;margin:0 0 8px">🎯 Top {top_count} to act on today</p>'
+                 f'{top_html}{compact_list(rest, "Also listed — no strong buy-to-sell signal, or a flag noted")}')
 else:
-    qualifying = [r for r in rows if is_clean(r["id"]) and rank_score(r) > 0]
-    qualifying.sort(key=rank_score, reverse=True)
-    top_picks = qualifying[:TOP_N]
-    top_count = len(top_picks)
-    if top_picks:
-        top_ids = {r["id"] for r in top_picks}
-        rest = [r for r in rows if r["id"] not in top_ids]
-        top_html = "".join(card(r, curation.get(r["id"])) for r in top_picks)
-        main_html = (f'<p style="font:600 13px sans-serif;color:#12232e;margin:0 0 8px">🎯 Top {top_count} of the day</p>'
-                     f'{top_html}{compact_list(rest, "Also new — no strong signal, or a flag noted")}')
-    else:
-        main_html = compact_list(rows, "New — no strong signal, or a flag noted")
+    main_html = "".join(card(r) for r in rows)
 
 label = "propert" + ("y" if len(rows) == 1 else "ies") + " with a price cut" if is_drop_digest else \
         "new auction listing" + ("" if len(rows) == 1 else "s")

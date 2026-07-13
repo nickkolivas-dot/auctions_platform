@@ -34,18 +34,26 @@ diffs for new lots, emails a digest, serves a static dashboard. Personal tool
   model breaks for raw land (value swings with buildability, not area; verified a
   9,375 m² non-buildable farm came out "worth" €5M). All assumptions are env vars
   (`WALKAWAY_*`), so the model re-tunes in one place. Writes `data/walkaway.json`.
-- `notify.py`   — emails new listings (SMTP via env), flags price cuts + comps. Optional ALERT_* filter.
-  Bare-ownership/usufruct listings are hard-excluded from the email
-  unconditionally (`INCLUDE_BARE_OWNERSHIP=1` to override), independent of
-  whether AI curation is configured. Cards show the walk-away max-bid ceiling
-  and, for buildings, a known occupancy status (occupied=eviction-risk,
-  leased=income, vacant). Optional AI curation (OPENAI_API_KEY or
-  ANTHROPIC_API_KEY) reads listing descriptions for risk_flags and
-  potential_tags (buildable, view, leased-with-income, etc) — the LLM never
-  scores or ranks; a deterministic `rank_score()` in Python (comps discount +
-  price cuts + a fixed point value per potential_tag) picks the "Top N of the
-  day" (TOP_N, default 5) from listings with zero risk flags. Falls back to
-  the plain list with no key or on any API failure — never blocks the send.
+- `notify.py`   — emails new listings (SMTP via env), flags price cuts + comps.
+  Filters: ALERT_TYPES/REGION/MAX_PRICE, plus ALERT_AREAS — a ";"-separated
+  watchlist OR-list (bare token = exact region/municipality match; "~token" =
+  locality substring on address+title) for focusing on specific areas across
+  regions. Bare-ownership/usufruct listings are hard-excluded unconditionally
+  (`INCLUDE_BARE_OWNERSHIP=1` to override). Cards show the walk-away max-bid
+  ceiling and, for buildings, a known occupancy status.
+  RANKING — the "Top N to act on today" (TOP_N, default 5) is driven by a
+  deterministic buy-to-sell `signals()` model in `signals()`/`rank_score()`
+  (ONE source of truth for both the score and the per-card "why" pills):
+  discount vs local €/m² median, motivated-seller (re-auction round count,
+  drop %, multi-cut in 30d), urgency (imminent auction date), and liquidity
+  (parking in the scarce/dense central Attica belt `PARKING_SCARCE`,
+  `HIGH_DEMAND` municipalities, low-ticket ≤€40k). All deterministic —
+  NO LLM KEY NEEDED for the Top section. Optional AI curation (OPENAI_API_KEY
+  or ANTHROPIC_API_KEY) only ADDS potential_tags to the score and risk_flags
+  that disqualify a lot from the Top; the LLM never scores or ranks. Falls
+  back cleanly with no key or on any API failure — never blocks the send.
+  The PARKING_SCARCE/HIGH_DEMAND sets are an editable market-knowledge
+  heuristic, not derived from data.
 - `index.html`  — dashboard; fetches `auctions.json` + `drops.json` + `comps.json`
   + `walkaway.json`, falls back to seed. Shows per-card max-bid ceiling +
   occupancy caveat; "🎯 First-deal mode" preset = full ownership + 10%+ below
