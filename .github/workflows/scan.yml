@@ -53,6 +53,8 @@ jobs:
           ALERT_REGION:    ${{ vars.ALERT_REGION }}
           ALERT_MAX_PRICE: ${{ vars.ALERT_MAX_PRICE }}
           ALERT_LOC:       ${{ vars.ALERT_LOC }}
+          # watchlist: OR-list of area tokens, ";"-separated (region/muni/locality names)
+          ALERT_AREAS:     ${{ vars.ALERT_AREAS }}
           FORCE_EMAIL:     ${{ inputs.force_email }}
           # optional AI curation of the digest -- leave both unset to skip it
           # entirely (falls back to the plain list). OpenAI wins if both are set.

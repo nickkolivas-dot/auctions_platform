@@ -87,11 +87,31 @@ types = [t.strip() for t in os.environ.get("ALERT_TYPES", "").split(",") if t.st
 region = os.environ.get("ALERT_REGION", "").strip()
 maxp = float(os.environ.get("ALERT_MAX_PRICE", "0") or 0)
 loc = os.environ.get("ALERT_LOC", "").strip().lower()
+# watchlist: an OR-list of focus areas, ";"-separated. A bare token matches a
+# region OR municipality name EXACTLY (so "Πύργου" catches Πύργου/Ilia but not
+# the "Πατρών-Πύργου" road or Ασπροπύργου, and "Ικαρίας" doesn't catch an
+# "οδός Ικαρίας" street elsewhere). A token prefixed "~" is a locality substring
+# matched against address+title (for places that aren't their own municipality,
+# e.g. "~Κατάκολο", a village inside Δήμος Πύργου). Lets a focus list mix a whole
+# region with single municipalities in OTHER regions and sub-municipal localities.
+_raw_areas = [a.strip() for a in os.environ.get("ALERT_AREAS", "").split(";") if a.strip()]
+name_tokens = [a.lower() for a in _raw_areas if not a.startswith("~")]
+loc_tokens = [a[1:].strip().lower() for a in _raw_areas if a.startswith("~")]
+def in_watchlist(r):
+    if not _raw_areas: return True
+    if (r.get("region") or "").lower() in name_tokens or (r.get("municipality") or "").lower() in name_tokens:
+        return True
+    if loc_tokens:
+        addr = ((r.get("address") or "") + " " + (r.get("title") or "")).lower()
+        return any(t in addr for t in loc_tokens)
+    return False
 def keep(r):
     if types and r["type"] not in types: return False
     if region and r.get("region") != region: return False
     if maxp and (r.get("price_eur") or 0) > maxp: return False
-    if loc and loc not in ((r.get("municipality") or "") + (r.get("address") or "") + (r.get("title") or "")).lower(): return False
+    hay = ((r.get("municipality") or "") + " " + (r.get("address") or "") + " " + (r.get("title") or "")).lower()
+    if loc and loc not in hay: return False
+    if not in_watchlist(r): return False
     return True
 rows = [r for r in rows if keep(r)]
 if not rows:
