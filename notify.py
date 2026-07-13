@@ -15,15 +15,18 @@ archive every run).
 Exits quietly (no send) when nothing new/forced matches.
 
 Optional curation (OPENAI_API_KEY or ANTHROPIC_API_KEY -- OpenAI wins if both
-are set): reads each listing's free-text description for what the structured
-fields miss (occupancy, liens/mortgages mentioned, access issues, missing
-permits), and moves anything with a real signal (comps discount, a genuine
-price cut) and no red flag into a "Worth a look" section up top; everything
-else collapses to one line instead of a full card. This is pattern-matching
-on scraped text, not legal or financial advice -- it does not replace the
-title/engineer check. No key set, or the API call fails for any reason ->
-silently falls back to the plain full-list email exactly as before. Never
-blocks the send. Model overridable via OPENAI_MODEL / ANTHROPIC_MODEL.
+are set): the LLM only reads each listing's free-text description for what
+the structured fields miss (occupancy, liens/mortgages mentioned, access
+issues, missing permits) and returns risk_flags + a one-line note -- it does
+NOT decide which listings are good. Ranking into "Top N of the day" (TOP_N,
+default 5) is a separate, deterministic score in Python from comps.py's
+vs-median discount and drop_tracker.py's price-cut %; a listing only
+qualifies if it has zero risk flags AND a positive score. Everything else
+collapses to one line instead of a full card, flags shown inline. This is
+pattern-matching on scraped text, not legal or financial advice -- it does
+not replace the title/engineer check. No key set, or the API call fails for
+any reason -> silently falls back to the plain full-list email exactly as
+before. Never blocks the send. Model overridable via OPENAI_MODEL / ANTHROPIC_MODEL.
 """
 import html, json, os, smtplib, sys, urllib.parse
 import requests
@@ -32,8 +35,9 @@ from pathlib import Path
 
 DASHBOARD_URL = "https://nickkolivas-dot.github.io/auctions_platform/"
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL") or "claude-haiku-4-5-20251001"
-OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-4o-mini"
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-5.6-sol"
 MAX_CURATE = 30  # bounds cost/latency per run; rows beyond this just show uncurated
+TOP_N = int(os.environ.get("TOP_N") or 5)  # daily cap on the "Top picks" section
 DATA = Path("data")
 meta = json.loads((DATA / "meta.json").read_text()) if (DATA / "meta.json").exists() else {}
 new_ids = set(meta.get("new_ids", []))
@@ -85,19 +89,22 @@ esc = lambda s: html.escape(str(s)) if s else ""
 
 
 CURATION_SYSTEM_PROMPT = (
-    "You help two people screen Greek judicial property auction listings. "
-    "You are not a financial or legal advisor and must never present a listing as guaranteed, "
-    "safe, or a certain return -- these are foreclosure auctions with real legal and physical-"
-    "condition risk that only a lawyer/engineer visit can confirm. For each listing: "
-    "(1) read the free-text description for anything a buyer should know that isn't in the "
-    "structured fields -- occupancy, liens/mortgages mentioned, access issues, structural "
-    "condition, missing permits, partial/undivided ownership share; "
-    "(2) write a one-sentence, plain, factual note grounded only in what's actually stated -- "
-    "no hype words (avoid 'great deal', 'bulletproof', 'guaranteed', 'must buy'); "
-    "(3) set spotlight=true only when there is a real structural reason to look closer "
-    "(meaningfully below local median, a genuine price cut, or repeat cuts) AND no red flag was "
-    "found and comp_warning is null -- if either a text red flag or a comp_warning is present, "
-    "spotlight must be false and the flag must be named in risk_flags, even if the price looks good."
+    "You help two people screen Greek judicial property auction listings. You are not a "
+    "financial or legal advisor. Your only job is reading the free-text description each "
+    "listing already has -- you do not decide which listings are good investments; a separate, "
+    "deterministic calculation (price-per-sqm vs the local median, price cuts) ranks them, and "
+    "your output only feeds a red-flag check on top of that ranking. For each listing: "
+    "(1) read the description for anything a buyer should know that isn't in the structured "
+    "fields -- occupancy, liens/mortgages mentioned, access issues, structural condition, "
+    "missing permits, partial/undivided ownership share (a fraction of the property, not the "
+    "whole thing); (2) list every such issue in risk_flags as short phrases, in Greek or "
+    "English as it appears -- empty list if genuinely nothing stands out, but do not invent "
+    "reassurance where the description is merely silent; (3) write one factual sentence in "
+    "'note' grounded only in what's actually stated -- no hype words (avoid 'great deal', "
+    "'bulletproof', 'guaranteed', 'must buy'), and no restating the price/area/type numbers "
+    "already shown elsewhere. If comp_warning is not null, name it in risk_flags too (e.g. "
+    "'shares an address with another listing -- possible partial share') even though you can't "
+    "see the underlying data yourself."
 )
 CURATION_RESULT_SCHEMA = {
     "type": "object",
@@ -110,9 +117,8 @@ CURATION_RESULT_SCHEMA = {
                     "id": {"type": "integer"},
                     "note": {"type": "string"},
                     "risk_flags": {"type": "array", "items": {"type": "string"}},
-                    "spotlight": {"type": "boolean"},
                 },
-                "required": ["id", "note", "risk_flags", "spotlight"],
+                "required": ["id", "note", "risk_flags"],
             },
         },
     },
@@ -166,7 +172,8 @@ def _call_openai(api_key, payload):
 
 def curate(rows):
     """None = didn't run or failed (caller falls back to the plain list).
-    Dict (possibly empty) = ran; keyed by listing id -> {note, risk_flags, spotlight}.
+    Dict (possibly empty) = ran; keyed by listing id -> {note, risk_flags}. Ranking into
+    "Top picks" is done separately in Python from comps/drop data, not by the LLM.
     Prefers OpenAI if OPENAI_API_KEY is set, else Anthropic if ANTHROPIC_API_KEY is set."""
     openai_key = os.environ.get("OPENAI_API_KEY")
     anthropic_key = os.environ.get("ANTHROPIC_API_KEY")
@@ -300,23 +307,46 @@ def compact_list(rows, heading):
             f'<table role="presentation" width="100%">{body_rows}</table>')
 
 
+def rank_score(r):
+    """Deterministic -- not from the LLM. Higher = more discount signal.
+    Zero for anything with no comps/drop data, so it never outranks a real signal."""
+    score = 0.0
+    comp = comps_by_id.get(r["id"])
+    if comp and not comp.get("shared_listing") and not comp.get("low_price_outlier") and not comp.get("high_price_outlier"):
+        score += max(0.0, -comp["vs_median_pct"])
+    drop = drops_by_id.get(r["id"])
+    if drop:
+        score += drop.get("drop_pct") or 0
+        if drop.get("multi_cut"):
+            score += 15
+    return score
+
+
+def is_clean(rid):
+    c = curation.get(rid)
+    return bool(c) and not c.get("risk_flags")
+
+
 if curation is None:
     main_html = "".join(card(r) for r in rows)
-    spotlight_count = 0
+    top_count = 0
 else:
-    spotlighted = [r for r in rows if curation.get(r["id"], {}).get("spotlight")]
-    rest = [r for r in rows if r["id"] not in {s["id"] for s in spotlighted}]
-    spotlight_count = len(spotlighted)
-    if spotlighted:
-        spot_html = "".join(card(r, curation.get(r["id"])) for r in spotlighted)
-        main_html = (f'<p style="font:600 13px sans-serif;color:#12232e;margin:0 0 8px">🎯 Worth a look ({len(spotlighted)})</p>'
-                     f'{spot_html}{compact_list(rest, "Also new — no strong signal, or a flag noted")}')
+    qualifying = [r for r in rows if is_clean(r["id"]) and rank_score(r) > 0]
+    qualifying.sort(key=rank_score, reverse=True)
+    top_picks = qualifying[:TOP_N]
+    top_count = len(top_picks)
+    if top_picks:
+        top_ids = {r["id"] for r in top_picks}
+        rest = [r for r in rows if r["id"] not in top_ids]
+        top_html = "".join(card(r, curation.get(r["id"])) for r in top_picks)
+        main_html = (f'<p style="font:600 13px sans-serif;color:#12232e;margin:0 0 8px">🎯 Top {top_count} of the day</p>'
+                     f'{top_html}{compact_list(rest, "Also new — no strong signal, or a flag noted")}')
     else:
         main_html = compact_list(rows, "New — no strong signal, or a flag noted")
 
 label = "propert" + ("y" if len(rows) == 1 else "ies") + " with a price cut" if is_drop_digest else \
         "new auction listing" + ("" if len(rows) == 1 else "s")
-subject = f"[Auctions] {len(rows)} {label}" + (f" · {spotlight_count} worth a look" if spotlight_count else "")
+subject = f"[Auctions] {len(rows)} {label}" + (f" · top {top_count} of the day" if top_count else "")
 disclaimer = ("Notes above are drafted from each listing's own text and are not legal or financial advice. "
               if curation is not None else "")
 body = f"""<div style="max-width:640px;margin:auto;font-family:sans-serif">
