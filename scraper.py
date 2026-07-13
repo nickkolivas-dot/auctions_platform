@@ -38,6 +38,25 @@ def classify(type_str, name):
         return "Residential"
     return "Other"
 
+def detect_ownership(title, description):
+    """Greek judicial auctions sell distinct legal rights over a property, stated in the
+    listing text: full ownership (πλήρης κυριότητα, the default and by far the most common --
+    verified against real data), bare ownership (ψιλή κυριότητα -- you get the title but not
+    the right to use/occupy/rent until a usufruct ends, often tied to someone's death),
+    usufruct alone (επικαρπία -- the reverse: use rights without ever owning the title), or a
+    fractional co-ownership share (συγκυριότητα / εξ αδιαιρέτου / ιδανικό μερίδιο)."""
+    t = ((title or "") + " " + (description or "")).lower()
+    # check bare ownership first: a bare-ownership listing almost always also mentions
+    # "επικαρπία" (to say who holds it), which would misclassify as usufruct-only otherwise
+    if "ψιλ" in t:
+        return "bare"
+    if "επικαρπ" in t:
+        return "usufruct"
+    if any(k in t for k in ["συγκυριότητ", "συγκυριοτητ", "εξ αδιαιρέτου", "εξ αδιαιρετου",
+                             "ιδανικό μερίδιο", "ιδανικο μεριδιο", "ιδανικού μεριδίου", "ιδανικου μεριδιου"]):
+        return "shared"
+    return "full"
+
 def get(url, tries=3):
     for i in range(tries):
         try:
@@ -87,12 +106,14 @@ def parse_detail(aid):
         addr = me.get("address", {}) or {}
         off = d.get("offers", {}) or {}
         fs = me.get("floorSize", {}) or {}
+        full_description = d.get("description") or ""
         return {
             "id": int(d.get("identifier", aid)),
             "url": d.get("url", f"{BASE}/auction/{aid}"),
             "title": d.get("name"),
             "type": classify(me.get("@type"), d.get("name")),
             "raw_type": me.get("@type"),
+            "ownership_type": detect_ownership(d.get("name"), full_description),
             "area_m2": fs.get("value"),
             "price_eur": off.get("price"),
             "auction_date": off.get("availabilityStarts") or d.get("datePosted"),
@@ -101,7 +122,8 @@ def parse_detail(aid):
             "address": addr.get("streetAddress"),
             "bedrooms": me.get("numberOfBedrooms"),
             "image": (d.get("image") or [None])[0],
-            "description": (d.get("description") or "")[:400],
+            # detect_ownership() already ran on the full text -- only the stored copy is truncated
+            "description": full_description[:400],
         }
     return None
 
@@ -138,6 +160,9 @@ def main():
                 rec["status"] = "active"
                 rec["last_seen"] = today
                 rec["type"] = classify(rec.get("raw_type"), rec.get("title"))  # pick up classify() changes retroactively
+                # best-effort: only the truncated stored description is available here (not
+                # a live re-fetch), but the ownership clause usually appears early in the text
+                rec["ownership_type"] = detect_ownership(rec.get("title"), rec.get("description"))
                 price = rec.get("price_eur")
             else:
                 rec = parse_detail(aid)
@@ -171,6 +196,7 @@ def main():
         rec["status"] = "removed"
         rec["removed_seen"] = today
         rec["type"] = classify(rec.get("raw_type"), rec.get("title"))
+        rec["ownership_type"] = detect_ownership(rec.get("title"), rec.get("description"))
         records[aid_i] = rec
 
     out = sorted(records.values(), key=lambda r: (r.get("first_seen") or "", r["id"]), reverse=True)

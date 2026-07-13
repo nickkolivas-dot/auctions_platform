@@ -68,6 +68,16 @@ if missing:
 
 rows = [r for r in json.loads((DATA / "auctions.json").read_text()) if r["id"] in new_ids]
 
+# hard exclusion, always on unless explicitly overridden: bare ownership (ψιλή κυριότητα --
+# title without the right to use/occupy until a usufruct ends) and usufruct-only (επικαρπία)
+# sales aren't full-control real estate at all, regardless of how good the price looks.
+if os.environ.get("INCLUDE_BARE_OWNERSHIP", "").lower() not in ("1", "true"):
+    excluded_ownership = [r for r in rows if r.get("ownership_type") in ("bare", "usufruct")]
+    if excluded_ownership:
+        print(f"excluded {len(excluded_ownership)} bare-ownership/usufruct listing(s): "
+              f"{[r['id'] for r in excluded_ownership]}", file=sys.stderr)
+    rows = [r for r in rows if r.get("ownership_type") not in ("bare", "usufruct")]
+
 # optional filter
 types = [t.strip() for t in os.environ.get("ALERT_TYPES", "").split(",") if t.strip()]
 region = os.environ.get("ALERT_REGION", "").strip()
@@ -88,23 +98,43 @@ eur = lambda n: "€{:,.0f}".format(n) if n else "—"
 esc = lambda s: html.escape(str(s)) if s else ""
 
 
+POTENTIAL_TAGS = ["buildable", "sea_or_scenic_view", "leased_with_income",
+                   "renovated_or_good_condition", "prime_frontage_or_corner", "near_amenities"]
+# points added in rank_score() per tag found -- kept here, in code, not left to the LLM,
+# so the actual weighting stays auditable and tunable without touching the prompt
+POTENTIAL_WEIGHTS = {"buildable": 15, "sea_or_scenic_view": 8, "leased_with_income": 10,
+                      "renovated_or_good_condition": 6, "prime_frontage_or_corner": 5, "near_amenities": 4}
+POTENTIAL_LABELS = {"buildable": "buildable", "sea_or_scenic_view": "view",
+                     "leased_with_income": "leased/income", "renovated_or_good_condition": "renovated",
+                     "prime_frontage_or_corner": "prime frontage", "near_amenities": "near amenities"}
+
 CURATION_SYSTEM_PROMPT = (
     "You help two people screen Greek judicial property auction listings. You are not a "
     "financial or legal advisor. Your only job is reading the free-text description each "
     "listing already has -- you do not decide which listings are good investments; a separate, "
-    "deterministic calculation (price-per-sqm vs the local median, price cuts) ranks them, and "
-    "your output only feeds a red-flag check on top of that ranking. For each listing: "
+    "deterministic calculation (price-per-sqm vs the local median, price cuts, and a small fixed "
+    "bonus per potential_tag you report) ranks them, and your output only feeds that calculation "
+    "and a red-flag check on top of it. For each listing: "
     "(1) read the description for anything a buyer should know that isn't in the structured "
-    "fields -- occupancy, liens/mortgages mentioned, access issues, structural condition, "
-    "missing permits, partial/undivided ownership share (a fraction of the property, not the "
-    "whole thing); (2) list every such issue in risk_flags as short phrases, in Greek or "
-    "English as it appears -- empty list if genuinely nothing stands out, but do not invent "
-    "reassurance where the description is merely silent; (3) write one factual sentence in "
-    "'note' grounded only in what's actually stated -- no hype words (avoid 'great deal', "
-    "'bulletproof', 'guaranteed', 'must buy'), and no restating the price/area/type numbers "
-    "already shown elsewhere. If comp_warning is not null, name it in risk_flags too (e.g. "
-    "'shares an address with another listing -- possible partial share') even though you can't "
-    "see the underlying data yourself."
+    "fields -- occupancy BY THE DEBTOR (not a paying tenant), liens/mortgages mentioned, access "
+    "issues, structural condition, missing permits, partial/undivided ownership share (a "
+    "fraction of the property, not the whole thing); list every such issue in risk_flags as "
+    "short phrases, in Greek or English as it appears -- empty list if genuinely nothing stands "
+    "out, but do not invent reassurance where the description is merely silent; "
+    "(2) separately, from potential_tags, pick every tag that is EXPLICITLY supported by the "
+    "text -- do not guess or infer one that isn't actually stated: buildable (άρτιο και "
+    "οικοδομήσιμο / εντός σχεδίου -- explicitly buildable/zoned, not merely land), "
+    "sea_or_scenic_view (θέα θάλασσα or similar), leased_with_income (already rented to a "
+    "paying tenant under a lease -- the OPPOSITE of debtor occupancy, do not confuse the two), "
+    "renovated_or_good_condition (recently renovated / stated as excellent condition), "
+    "prime_frontage_or_corner (frontage on a main road, or a corner plot), near_amenities "
+    "(explicitly near transport/center/beach/school etc). Leave the list empty if none apply -- "
+    "most listings will have zero or one tag, do not pad it; "
+    "(3) write one factual sentence in 'note' grounded only in what's actually stated -- no "
+    "hype words (avoid 'great deal', 'bulletproof', 'guaranteed', 'must buy'), and no restating "
+    "the price/area/type numbers already shown elsewhere. If comp_warning is not null, name it "
+    "in risk_flags too (e.g. 'shares an address with another listing -- possible partial "
+    "share') even though you can't see the underlying data yourself."
 )
 CURATION_RESULT_SCHEMA = {
     "type": "object",
@@ -117,8 +147,9 @@ CURATION_RESULT_SCHEMA = {
                     "id": {"type": "integer"},
                     "note": {"type": "string"},
                     "risk_flags": {"type": "array", "items": {"type": "string"}},
+                    "potential_tags": {"type": "array", "items": {"type": "string", "enum": POTENTIAL_TAGS}},
                 },
-                "required": ["id", "note", "risk_flags"],
+                "required": ["id", "note", "risk_flags", "potential_tags"],
             },
         },
     },
@@ -189,6 +220,7 @@ def curate(rows):
         "municipality": r.get("municipality"),
         "region": r.get("region"),
         "description": (r.get("description") or "")[:400],
+        "ownership_type": r.get("ownership_type", "full"),
         "vs_median_pct": (comps_by_id.get(r["id"]) or {}).get("vs_median_pct"),
         "comp_basis": (comps_by_id.get(r["id"]) or {}).get("basis"),
         "comp_warning": "shared_listing" if (comps_by_id.get(r["id"]) or {}).get("shared_listing")
@@ -243,11 +275,18 @@ def curated_line(curated):
         return ""
     note = curated.get("note")
     flags = curated.get("risk_flags") or []
+    tags = curated.get("potential_tags") or []
     flags_html = "".join(
         f'<span style="display:inline-block;background:#fbe4d5;color:#a4402f;font:600 10px monospace;'
         f'padding:2px 6px;border-radius:10px;margin:4px 4px 0 0">⚠ {esc(f)}</span>' for f in flags
     )
+    tags_html = "".join(
+        f'<span style="display:inline-block;background:#e3efe1;color:#0a5960;font:600 10px monospace;'
+        f'padding:2px 6px;border-radius:10px;margin:4px 4px 0 0">+ {esc(POTENTIAL_LABELS.get(t, t))}</span>' for t in tags
+    )
     out = f'<br><span style="font:italic 12px sans-serif;color:#1b3341">{esc(note)}</span>' if note else ""
+    if tags_html:
+        out += f'<div style="margin-top:2px">{tags_html}</div>'
     if flags_html:
         out += f'<div style="margin-top:2px">{flags_html}</div>'
     return out
@@ -308,17 +347,22 @@ def compact_list(rows, heading):
 
 
 def rank_score(r):
-    """Deterministic -- not from the LLM. Higher = more discount signal.
-    Zero for anything with no comps/drop data, so it never outranks a real signal."""
+    """Deterministic -- not from the LLM. Higher = more discount + potential signal.
+    Zero for anything with no comps/drop/tag data, so it never outranks a real signal."""
     score = 0.0
     comp = comps_by_id.get(r["id"])
-    if comp and not comp.get("shared_listing") and not comp.get("low_price_outlier") and not comp.get("high_price_outlier"):
+    if comp and not comp.get("bare_or_usufruct") and not comp.get("shared_listing") \
+            and not comp.get("low_price_outlier") and not comp.get("high_price_outlier"):
         score += max(0.0, -comp["vs_median_pct"])
     drop = drops_by_id.get(r["id"])
     if drop:
         score += drop.get("drop_pct") or 0
         if drop.get("multi_cut"):
             score += 15
+    curated = curation.get(r["id"]) if curation else None
+    if curated:
+        for tag in curated.get("potential_tags") or []:
+            score += POTENTIAL_WEIGHTS.get(tag, 0)
     return score
 
 

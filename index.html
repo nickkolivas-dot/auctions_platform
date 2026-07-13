@@ -126,6 +126,14 @@ main{padding:18px 22px 60px}
       </dl>
     </div>
     <div>
+      <h3>Ownership</h3>
+      <dl>
+        <dt>Full ownership</dt><dd>Πλήρης κυριότητα — the default and by far the most common. You get everything: title, use, and the right to rent or sell.</dd>
+        <dt>Bare ownership / usufruct</dt><dd>Ψιλή κυριότητα (bare) or επικαρπία (usufruct) — the two halves of a split title. Buying <b>bare ownership</b> gets you the title but not the right to use, occupy, or rent the property until the usufruct ends (often tied to someone's death). Hidden by default — enable the "Bare ownership / usufruct only" checkbox to see them.</dd>
+        <dt>Shared / co-ownership</dt><dd>Συγκυριότητα / εξ αδιαιρέτου — only a fractional share of the property (e.g. an inheritance split) is being auctioned, not the whole thing.</dd>
+      </dl>
+    </div>
+    <div>
       <h3>Pitfalls before you decide</h3>
       <dl>
         <dt>Starting price ≠ market value</dt><dd>The price shown is the auction's opening bid, usually well below market value. The final sale price after competitive bidding can end up much higher.</dd>
@@ -163,6 +171,11 @@ main{padding:18px 22px 60px}
   <label class="chk"><input type="checkbox" class="f-type" value="Warehouse" checked><span class="dot" style="background:var(--wh)"></span>Warehouse / storage</label>
   <label class="chk"><input type="checkbox" class="f-type" value="Parking" checked><span class="dot" style="background:var(--park)"></span>Parking space</label>
   <label class="chk"><input type="checkbox" class="f-type" value="Other" checked><span class="dot" style="background:#9aa5ab"></span>Other</label>
+
+  <h2>Ownership</h2>
+  <label class="chk"><input type="checkbox" class="f-own" value="full" checked><span class="dot" style="background:var(--sea)"></span>Full ownership</label>
+  <label class="chk"><input type="checkbox" class="f-own" value="shared" checked><span class="dot" style="background:var(--gold)"></span>Shared / co-ownership</label>
+  <label class="chk"><input type="checkbox" class="f-own" value="bare"><span class="dot" style="background:var(--red)"></span>Bare ownership / usufruct only</label>
 
   <h2>Region <small style="text-transform:none;letter-spacing:0;font-weight:400">(click, or ⌘/Ctrl+click for multiple)</small></h2>
   <select id="f-region" multiple size="6"></select>
@@ -209,6 +222,7 @@ main{padding:18px 22px 60px}
 const TCOLOR={Residential:'var(--resi)',Land:'var(--land)',Commercial:'var(--comm)',Warehouse:'var(--wh)',Parking:'var(--park)',Other:'#9aa5ab'};
 const fmt=n=>n==null?'—':'€'+Number(n).toLocaleString('el-GR');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ownBucket=d=>{const o=d.ownership_type||'full'; return (o==='bare'||o==='usufruct')?'bare':o;};
 let DATA=[], LATEST=null, DROPS=new Map(), COMPS=new Map(), MUNIS_BY_REGION=new Map();
 
 function selectedValues(sel){
@@ -243,6 +257,10 @@ function applyParamsFromURL(){
   if(p.has('type')){
     const types=new Set(p.get('type').split(','));
     document.querySelectorAll('.f-type').forEach(c=>c.checked=types.has(c.value));
+  }
+  if(p.has('own')){
+    const owns=new Set(p.get('own').split(','));
+    document.querySelectorAll('.f-own').forEach(c=>c.checked=owns.has(c.value));
   }
   if(p.get('new')==='1')document.getElementById('f-new').checked=true;
   if(p.get('drop')==='1')document.getElementById('f-drop').checked=true;
@@ -301,6 +319,7 @@ async function boot(){
 
 function current(){
   const types=[...document.querySelectorAll('.f-type:checked')].map(c=>c.value);
+  const owns=[...document.querySelectorAll('.f-own:checked')].map(c=>c.value);
   const regs=selectedValues(document.getElementById('f-region'));
   const munis=selectedValues(document.getElementById('f-muni'));
   const loc=document.getElementById('f-loc').value.trim().toLowerCase();
@@ -321,6 +340,7 @@ function current(){
   let out=DATA.filter(d=>{
     if(!showHistory&&d.status==='removed')return false;
     if(!types.includes(d.type))return false;
+    if(!owns.includes(ownBucket(d)))return false;
     if(regs.length&&!regs.includes(d.region))return false;
     if(munis.length&&!munis.includes(d.municipality))return false;
     if(onlyNew&&d.first_seen!==LATEST)return false;
@@ -368,8 +388,15 @@ function render(){
     const comp=COMPS.get(d.id);
     const ppsqm=(d.price_eur&&d.area_m2)?Math.round(d.price_eur/d.area_m2):null;
     const img=d.image?`background-image:url('${esc(d.image)}')`:'';
+    const ownBucketVal=ownBucket(d);
+    const ownBadge=ownBucketVal==='bare'
+      ?'<div class="comp warn">⚠ bare ownership / usufruct only — no right to use, occupy, or rent until the usufruct ends</div>'
+      :ownBucketVal==='shared'
+      ?'<div class="comp warn">⚠ shared / co-ownership — only a fractional interest is being sold</div>':'';
     let compLine='';
-    if(comp){
+    if(comp&&comp.bare_or_usufruct){
+      compLine='';  // ownBadge above already covers it; a vs-median % here would be meaningless
+    }else if(comp){
       const basisLabel=comp.basis==='municipality'?'municipality':'region';
       if(comp.shared_listing){
         compLine=`<div class="comp warn">⚠ shares address/size with another listing — may be a partial/fractional share, verify before treating as a deal</div>`;
@@ -392,6 +419,7 @@ function render(){
         <div class="title">${esc(d.title)||'—'}</div>
         <div class="price">${fmt(d.price_eur)}</div>
         ${drop?`<div class="drop">${drop.multi?'🔥':'🔻'} −${drop.pct}% vs prior round${drop.prevDate?` (was ⚖ ${esc(drop.prevDate)})`:''}${drop.multi?` · ${drop.cuts30d} cuts/30d`:''}</div>`:''}
+        ${ownBadge}
         ${compLine}
         <div class="loc">${esc([d.municipality,d.region].filter(Boolean).join(' · '))}</div>
         <div class="facts">
@@ -409,6 +437,7 @@ document.addEventListener('input',e=>{if(e.target.closest('aside')||e.target.id=
 document.addEventListener('change',e=>{if(e.target.closest('aside')||e.target.id==='sort')render();});
 document.getElementById('reset').onclick=()=>{
   document.querySelectorAll('.f-type').forEach(c=>c.checked=true);
+  document.querySelectorAll('.f-own').forEach(c=>c.checked=(c.value!=='bare'));
   document.getElementById('f-new').checked=false;
   document.getElementById('f-drop').checked=false;
   document.getElementById('f-recent-drop').checked=false;

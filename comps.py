@@ -40,6 +40,15 @@ a naive per-area median if left in:
    Clusters of 2+ active listings get only their single highest
    price_per_m2 counted toward the baseline, and every member is marked
    "shared_listing" so the dashboard can flag it for extra scrutiny.
+
+Same statistical-integrity problem, different legal mechanism: scraper.py's
+detect_ownership() reads each listing's own text for bare ownership (ψιλή
+κυριότητα -- title without the right to use/occupy until a usufruct ends)
+and usufruct-only (επικαρπία) sales. Both price at a fraction of full
+ownership for reasons that have nothing to do with the underlying property
+being cheap, so both are excluded from the baseline pool entirely (not
+just IQR-trimmed) and marked "bare_or_usufruct" -- these should never be
+presented as a discount at all, not even a flagged one.
 """
 import json, statistics, sys
 from pathlib import Path
@@ -74,15 +83,19 @@ def main():
 
     records = [r for r in json.loads(STORE.read_text()) if r.get("status", "active") == "active"]
 
+    bare_or_usufruct_ids = {r["id"] for r in records if r.get("ownership_type") in ("bare", "usufruct")}
+
     # cluster active listings sharing region+municipality+type+area, to catch
     # the same parcel auctioned repeatedly as separate fractional shares
     clusters = {}
     for r in records:
-        if r.get("area_m2") is None:
+        if r.get("area_m2") is None or r["id"] in bare_or_usufruct_ids:
             continue
         clusters.setdefault((r.get("region"), r.get("municipality"), r.get("type"), r.get("area_m2")), []).append(r)
 
-    shared_ids = set()
+    # text-detected co-ownership fractions (scraper.py's detect_ownership) join the same
+    # shared_ids set as cluster-detected duplicates -- either mechanism is enough to exclude
+    shared_ids = {r["id"] for r in records if r.get("ownership_type") == "shared"}
     baseline_ppsqm = {}  # id -> ppsqm contributed to the baseline pool (deduped per cluster)
     for rows in clusters.values():
         if len(rows) < 2:
@@ -97,6 +110,8 @@ def main():
 
     by_muni, by_region = {}, {}
     for r in records:
+        if r["id"] in bare_or_usufruct_ids:
+            continue  # never contributes -- not comparable to a full-ownership price at all
         p = ppsqm(r)
         if p is None:
             continue
@@ -121,6 +136,16 @@ def main():
         p = ppsqm(r)
         if p is None:
             continue
+        if r["id"] in bare_or_usufruct_ids:
+            # flagged for visibility, but no median comparison at all -- comparing a
+            # bare-ownership/usufruct price to a full-ownership median isn't meaningful,
+            # not even as a flagged discount
+            comps[r["id"]] = {
+                "ppsqm": round(p), "bare_or_usufruct": True, "low_price_outlier": False,
+                "high_price_outlier": False, "shared_listing": False,
+                "median_ppsqm": None, "vs_median_pct": None, "basis": None, "sample_size": 0,
+            }
+            continue
         key = (r.get("region"), r.get("municipality"))
         stat, basis, sample = muni_stats.get(key), "municipality", len(by_muni.get(key, []))
         if stat is None:
@@ -131,6 +156,7 @@ def main():
         median, lower_bound, upper_bound = stat
         comps[r["id"]] = {
             "ppsqm": round(p),
+            "bare_or_usufruct": False,
             "low_price_outlier": lower_bound is not None and p < lower_bound,
             "high_price_outlier": upper_bound is not None and p > upper_bound,
             "shared_listing": r["id"] in shared_ids,
@@ -141,12 +167,14 @@ def main():
         }
 
     OUT.write_text(json.dumps(comps, ensure_ascii=False, indent=1))
-    below = sum(1 for c in comps.values() if c["vs_median_pct"] <= -10 and not c["low_price_outlier"] and not c["shared_listing"])
+    below = sum(1 for c in comps.values() if not c["bare_or_usufruct"] and c["vs_median_pct"] <= -10 and not c["low_price_outlier"] and not c["shared_listing"])
     lo_out = sum(1 for c in comps.values() if c["low_price_outlier"])
     hi_out = sum(1 for c in comps.values() if c["high_price_outlier"])
     shared = sum(1 for c in comps.values() if c["shared_listing"])
+    bare = sum(1 for c in comps.values() if c["bare_or_usufruct"])
     print(f"COMPS {len(comps)} listings scored | {below} priced 10%+ below local median | "
-          f"{lo_out} low-price outliers | {hi_out} high-price outliers | {shared} shared/fractional listings flagged",
+          f"{lo_out} low-price outliers | {hi_out} high-price outliers | {shared} shared/fractional listings | "
+          f"{bare} bare-ownership/usufruct listings flagged",
           file=sys.stderr)
 
 
