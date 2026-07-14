@@ -269,10 +269,16 @@ def _call_openai(api_key, payload):
         "tool_choice": {"type": "function", "function": {"name": "curate_listings"}},
     }
     # gpt-5.x are reasoning models; on chat/completions they reject function tools
-    # unless reasoning is disabled (verified against the API). Harmless to omit for
-    # the gpt-4.x/4o default, which rejects the parameter, so only send it when needed.
-    if OPENAI_MODEL.startswith("gpt-5"):
-        body["reasoning_effort"] = "none"
+    # unless reasoning_effort is set -- but the accepted VALUE differs by model
+    # (both verified against the API): gpt-5.6-* take 'none'; gpt-5 / gpt-5-mini /
+    # gpt-5-nano REJECT 'none' and need 'minimal'..'high'. gpt-4.x/4o reject the
+    # param entirely, so it must be omitted for them. Override with OPENAI_REASONING_EFFORT.
+    effort = os.environ.get("OPENAI_REASONING_EFFORT") or (
+        "none" if OPENAI_MODEL.startswith("gpt-5.6")
+        else "minimal" if OPENAI_MODEL.startswith("gpt-5")
+        else None)
+    if effort:
+        body["reasoning_effort"] = effort
     resp = requests.post(
         "https://api.openai.com/v1/chat/completions",
         headers={"Authorization": f"Bearer {api_key}", "content-type": "application/json"},
