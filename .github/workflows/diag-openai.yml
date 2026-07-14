@@ -26,23 +26,15 @@ jobs:
               print(f"\n===== {label} =====")
               print("status:", r.status_code)
               print("body:", r.text[:700])
-          # 1) does the account reach chat/completions at all, cheapest model, no tools?
-          show("luna minimal", {"model":"gpt-5.6-luna","messages":[{"role":"user","content":"say hi"}]})
-          # 2) same with the tools+tool_choice shape notify.py uses
-          show("luna + tools", {"model":"gpt-5.6-luna",
-              "messages":[{"role":"user","content":"call the tool"}],
-              "tools":[{"type":"function","function":{"name":"t","description":"d",
-                        "parameters":{"type":"object","properties":{"x":{"type":"string"}},"required":["x"]}}}],
-              "tool_choice":{"type":"function","function":{"name":"t"}}})
-          # 3) the originally-defaulted model, minimal -- is it an access thing?
-          show("sol minimal", {"model":"gpt-5.6-sol","messages":[{"role":"user","content":"say hi"}]})
-          # 4) list a few models the key CAN see
-          m = requests.get("https://api.openai.com/v1/models", headers=H, timeout=60)
-          print("\n===== /v1/models (status", m.status_code, ") =====")
-          if m.status_code == 200:
-              ids = sorted(d["id"] for d in m.json().get("data", []))
-              print("count:", len(ids))
-              print("gpt-5/chat-ish:", [i for i in ids if i.startswith(("gpt-5","gpt-4"))][:40])
-          else:
-              print(m.text[:500])
+          TOOLS = [{"type":"function","function":{"name":"t","description":"d",
+                    "parameters":{"type":"object","properties":{"x":{"type":"string"}},"required":["x"]}}}]
+          TC = {"type":"function","function":{"name":"t"}}
+          # FIX CANDIDATE A: a non-reasoning model handles function tools natively
+          show("gpt-4.1-mini + tools", {"model":"gpt-4.1-mini",
+              "messages":[{"role":"user","content":"call the tool with x='hi'"}],
+              "tools":TOOLS, "tool_choice":TC})
+          # FIX CANDIDATE B: keep gpt-5.6-luna but disable reasoning, as the error suggested
+          show("luna + tools + reasoning_effort=none", {"model":"gpt-5.6-luna",
+              "messages":[{"role":"user","content":"call the tool with x='hi'"}],
+              "tools":TOOLS, "tool_choice":TC, "reasoning_effort":"none"})
           PY
