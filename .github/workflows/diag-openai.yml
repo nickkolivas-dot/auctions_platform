@@ -1,0 +1,46 @@
+name: diag-openai
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install requests
+      - name: probe gpt-5-mini with notify's exact call
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os, json, requests
+          H = {"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}", "content-type": "application/json"}
+          TAGS = ["buildable","sea_or_scenic_view","leased_with_income",
+                  "renovated_or_good_condition","prime_frontage_or_corner","near_amenities"]
+          SCHEMA = {"type":"object","properties":{"results":{"type":"array","items":{"type":"object",
+              "properties":{"id":{"type":"integer"},"note":{"type":"string"},
+                  "risk_flags":{"type":"array","items":{"type":"string"}},
+                  "potential_tags":{"type":"array","items":{"type":"string","enum":TAGS}}},
+              "required":["id","note","risk_flags","potential_tags"]}}},"required":["results"]}
+          sample = [{"id":101,"title":"Διαμέρισμα 90 τ.μ.","type":"Residential","price_eur":40000,
+                     "description":"Διαμέρισμα με θέα θάλασσα, ανακαινισμένο."},
+                    {"id":102,"title":"Οικόπεδο 500 τ.μ.","type":"Land","price_eur":30000,
+                     "description":"Οικόπεδο εντός σχεδίου, οικοδομήσιμο, κατοικείται από τον οφειλέτη."}]
+          body = {"model":"gpt-5-mini",
+              "messages":[{"role":"system","content":"Extract risk_flags and potential_tags per listing."},
+                          {"role":"user","content":json.dumps(sample, ensure_ascii=False)}],
+              "tools":[{"type":"function","function":{"name":"curate_listings",
+                        "description":"Return a screening note for each listing","parameters":SCHEMA}}],
+              "tool_choice":{"type":"function","function":{"name":"curate_listings"}},
+              "reasoning_effort":"none"}
+          r = requests.post("https://api.openai.com/v1/chat/completions", headers=H, timeout=90, json=body)
+          print("===== gpt-5-mini + tools + reasoning_effort=none =====")
+          print("status:", r.status_code)
+          if r.status_code == 200:
+              args = r.json()["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]
+              print("parsed:", json.dumps(json.loads(args), ensure_ascii=False)[:600])
+          else:
+              print("body:", r.text[:600])
+          PY
