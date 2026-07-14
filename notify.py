@@ -37,7 +37,9 @@ DASHBOARD_URL = "https://nickkolivas-dot.github.io/auctions_platform/"
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL") or "claude-haiku-4-5-20251001"
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-5.6-sol"
 MAX_CURATE = 30  # bounds cost/latency per run; rows beyond this just show uncurated
-TOP_N = int(os.environ.get("TOP_N") or 5)  # daily cap on the "Top picks" section
+TOP_N = int(os.environ.get("TOP_N") or 10)  # daily cap on the "Top picks" section
+REPORT_LEDGER = Path("data") / "report_seen.json"  # what the daily digest has shown, for freshness
+MAX_STANDING_REPEATS = int(os.environ.get("MAX_STANDING_REPEATS") or 4)  # drop from email after N repeats
 DATA = Path("data")
 meta = json.loads((DATA / "meta.json").read_text()) if (DATA / "meta.json").exists() else {}
 new_ids = set(meta.get("new_ids", []))
@@ -56,21 +58,32 @@ walkaway_by_id = {}
 if (DATA / "walkaway.json").exists():
     walkaway_by_id = {int(k): v for k, v in json.loads((DATA / "walkaway.json").read_text()).get("lots", {}).items()}
 
+# DAILY DIGEST: the every-morning "Top 10 to act on" report. Unlike the new-listings
+# / drop-digest modes (which report only what changed in one scan), the daily digest
+# ranks the WHOLE active watchlist inventory, then a ledger (data/report_seen.json)
+# splits it into what's genuinely new/changed for you vs what you've already been shown
+# -- so the morning mail surfaces fresh opportunities instead of the same lots forever.
+is_daily_digest = os.environ.get("DAILY_DIGEST", "").lower() in ("1", "true")
 is_drop_digest = False
-if not new_ids:
-    if os.environ.get("FORCE_EMAIL", "").lower() not in ("1", "true"):
-        print("no new listings; skip email"); sys.exit(0)
-    if not drops_by_id:
-        print("forced send requested, but no price drops to report either; skip email"); sys.exit(0)
-    is_drop_digest = True
-    new_ids = set(drops_by_id)
+all_active = [r for r in json.loads((DATA / "auctions.json").read_text())
+              if r.get("status", "active") == "active"]
+
+if is_daily_digest:
+    rows = all_active
+else:
+    if not new_ids:
+        if os.environ.get("FORCE_EMAIL", "").lower() not in ("1", "true"):
+            print("no new listings; skip email"); sys.exit(0)
+        if not drops_by_id:
+            print("forced send requested, but no price drops to report either; skip email"); sys.exit(0)
+        is_drop_digest = True
+        new_ids = set(drops_by_id)
+    rows = [r for r in all_active if r["id"] in new_ids]
 
 required = ["SMTP_HOST", "SMTP_USER", "SMTP_PASS", "MAIL_TO"]
 missing = [v for v in required if not os.environ.get(v)]
 if missing:
     print(f"missing {', '.join(missing)}; skip email (add repo Secrets to enable)"); sys.exit(0)
-
-rows = [r for r in json.loads((DATA / "auctions.json").read_text()) if r["id"] in new_ids]
 
 # hard exclusion, always on unless explicitly overridden: bare ownership (ψιλή κυριότητα --
 # title without the right to use/occupy until a usufruct ends) and usufruct-only (επικαρπία)
@@ -522,25 +535,116 @@ def eligible(r):
     return rank_score(r) > 0
 
 
-qualifying = sorted([r for r in rows if eligible(r)], key=rank_score, reverse=True)
-top_picks = qualifying[:TOP_N]
-top_count = len(top_picks)
-if top_picks:
-    top_ids = {r["id"] for r in top_picks}
-    rest = [r for r in rows if r["id"] not in top_ids]
-    top_html = "".join(card(r, curation.get(r["id"]) if curation else None, why=reasons(r)) for r in top_picks)
-    main_html = (f'<p style="font:600 13px sans-serif;color:#12232e;margin:0 0 8px">🎯 Top {top_count} to act on today</p>'
-                 f'{top_html}{compact_list(rest, "Also listed — no strong buy-to-sell signal, or a flag noted")}')
-else:
-    main_html = "".join(card(r) for r in rows)
+def fingerprint(r):
+    """A compact signature of the things that make a lot worth a fresh look. When it
+    changes (new price, a new re-auction round, a bigger cut, or it becomes imminent),
+    the daily digest treats the lot as 'updated' and re-surfaces it."""
+    drop = drops_by_id.get(r["id"]) or {}
+    days = _days_until(r.get("auction_date"))
+    imm = "1" if (days is not None and 0 <= days <= IMMINENT_DAYS) else "0"
+    return f"p{r.get('price_eur')}|r{len(drop.get('rounds') or [])}|d{drop.get('drop_pct') or 0}|i{imm}"
 
-label = "propert" + ("y" if len(rows) == 1 else "ies") + " with a price cut" if is_drop_digest else \
-        "new auction listing" + ("" if len(rows) == 1 else "s")
-subject = f"[Auctions] {len(rows)} {label}" + (f" · top {top_count} of the day" if top_count else "")
+
+def load_ledger():
+    if REPORT_LEDGER.exists():
+        try:
+            return json.loads(REPORT_LEDGER.read_text())
+        except Exception:
+            pass
+    return {"last_digest_date": None, "lots": {}}
+
+
+def digest_row(r, tag):
+    """Compact row for the 'still standing' section: title, price, top reason, link."""
+    top_reason = (reasons(r) or [""])[0]
+    return (f'<tr><td style="padding:6px 0;border-bottom:1px solid #eee;font:13px sans-serif;color:#1b3341">'
+            f'<a href="{esc(r["url"])}" style="color:#0a5960;text-decoration:none;font-weight:600">{esc(r["title"])}</a> '
+            f'— {eur(r.get("price_eur"))}'
+            f'<br><span style="font:11px monospace;color:#6c7a82">{esc(tag)}{esc(top_reason)}</span></td></tr>')
+
+
+if is_daily_digest:
+    today = datetime.date.today().isoformat()
+    ledger = load_ledger()
+    seen = ledger.get("lots", {})
+    ranked = sorted([r for r in rows if eligible(r)], key=rank_score, reverse=True)
+
+    status_of = {}
+    for r in ranked:
+        prev = seen.get(str(r["id"]))
+        if prev is None:
+            status_of[r["id"]] = "new"
+        elif prev.get("fingerprint") != fingerprint(r):
+            status_of[r["id"]] = "changed"
+        else:
+            status_of[r["id"]] = "repeat"
+
+    fresh = [r for r in ranked if status_of[r["id"]] in ("new", "changed")]
+    standing = [r for r in ranked if status_of[r["id"]] == "repeat"
+                and seen.get(str(r["id"]), {}).get("times_shown", 0) < MAX_STANDING_REPEATS]
+    top_fresh = fresh[:TOP_N]
+    top_standing = standing[:max(0, TOP_N - len(top_fresh))]
+    shown = top_fresh + top_standing
+
+    parts = []
+    if top_fresh:
+        cards = "".join(
+            card(r, curation.get(r["id"]) if curation else None,
+                 why=[("🆕 new" if status_of[r["id"]] == "new" else "🔁 updated")] + reasons(r))
+            for r in top_fresh)
+        parts.append(f'<p style="font:600 14px sans-serif;color:#12232e;margin:0 0 8px">'
+                     f'🎯 New &amp; changed — act on these ({len(top_fresh)})</p>{cards}')
+    if top_standing:
+        body_rows = "".join(digest_row(r, "still available · ") for r in top_standing)
+        parts.append('<p style="font:600 12px sans-serif;color:#6c7a82;margin:18px 0 6px">'
+                     f'⭐ Still standing — strong, already flagged ({len(top_standing)})</p>'
+                     f'<table role="presentation" width="100%">{body_rows}</table>')
+    aged = len([r for r in ranked if status_of[r["id"]] == "repeat"]) - len(top_standing)
+    if aged > 0:
+        parts.append(f'<p style="font:12px sans-serif;color:#8a939a;margin-top:10px">'
+                     f'+ {aged} more standing {"opportunity" if aged == 1 else "opportunities"} on the '
+                     f'<a href="{esc(dashboard_link)}" style="color:#0a5960">dashboard →</a></p>')
+    if not shown:
+        parts.append('<p style="font:14px sans-serif;color:#6c7a82">No signal-worthy lots in your watchlist '
+                     f'today. <a href="{esc(dashboard_link)}" style="color:#0a5960">Browse the dashboard →</a></p>')
+    main_html = "".join(parts)
+
+    # persist what we showed, so tomorrow knows what's already been seen
+    for r in shown:
+        rid = str(r["id"]); prev = seen.get(rid, {})
+        seen[rid] = {
+            "first_reported": prev.get("first_reported", today),
+            "times_shown": 1 if status_of[r["id"]] in ("new", "changed") else prev.get("times_shown", 0) + 1,
+            "fingerprint": fingerprint(r), "last_shown": today,
+        }
+    ledger["lots"] = seen; ledger["last_digest_date"] = today
+    REPORT_LEDGER.write_text(json.dumps(ledger, ensure_ascii=False, indent=1))
+
+    top_count = len(shown)
+    subject = (f"[Auctions] Morning top {len(shown)}"
+               + (f" · {len(top_fresh)} new/updated" if top_fresh else " · nothing new today"))
+    heading = f"Morning report — {len(top_fresh)} new/updated, {len(top_standing)} standing"
+else:
+    qualifying = sorted([r for r in rows if eligible(r)], key=rank_score, reverse=True)
+    top_picks = qualifying[:TOP_N]
+    top_count = len(top_picks)
+    if top_picks:
+        top_ids = {r["id"] for r in top_picks}
+        rest = [r for r in rows if r["id"] not in top_ids]
+        top_html = "".join(card(r, curation.get(r["id"]) if curation else None, why=reasons(r)) for r in top_picks)
+        main_html = (f'<p style="font:600 13px sans-serif;color:#12232e;margin:0 0 8px">🎯 Top {top_count} to act on today</p>'
+                     f'{top_html}{compact_list(rest, "Also listed — no strong buy-to-sell signal, or a flag noted")}')
+    else:
+        main_html = "".join(card(r) for r in rows)
+    label = "propert" + ("y" if len(rows) == 1 else "ies") + " with a price cut" if is_drop_digest else \
+            "new auction listing" + ("" if len(rows) == 1 else "s")
+    subject = f"[Auctions] {len(rows)} {label}" + (f" · top {top_count} of the day" if top_count else "")
+    heading = f"{len(rows)} {label}"
+
 disclaimer = ("Notes above are drafted from each listing's own text and are not legal or financial advice. "
               if curation is not None else "")
 body = f"""<div style="max-width:640px;margin:auto;font-family:sans-serif">
-<h2 style="font-family:Georgia,serif;color:#12232e">{len(rows)} {label}</h2>
+<h2 style="font-family:Georgia,serif;color:#12232e">{esc(heading)}</h2>
 <p style="color:#6c7a82;font-size:13px">Scan {meta.get('last_run','')} · source eauction24.gr ·
 <a href="{esc(dashboard_link)}" style="color:#0a5960">view &amp; filter on the dashboard →</a></p>
 {main_html}

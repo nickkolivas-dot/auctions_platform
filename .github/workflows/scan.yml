@@ -1,18 +1,35 @@
 name: auction-scan
 on:
   schedule:
-    - cron: '0 6 * * *'    # 09:00 Athens (summer) — morning scan
-    - cron: '0 14 * * *'   # 17:00 Athens (summer) — afternoon scan
-  workflow_dispatch:
-    inputs:
-      force_email:
-        description: "Send an email even if nothing new was found this run (uses the current price-drop list instead)"
-        type: boolean
-        default: false
+    # Two fires straddling EU DST; the gate below lets ONLY the 09:00-Athens one
+    # through, so the morning digest lands at 9am Greece year-round (GitHub cron
+    # is UTC-only and can't do DST). 06:00 UTC = 09:00 Athens in summer, 07:00
+    # UTC = 09:00 Athens in winter.
+    - cron: '0 6 * * *'
+    - cron: '0 7 * * *'
+  workflow_dispatch:   # manual "send the digest now" — bypasses the hour gate
 permissions:
   contents: write
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.g.outputs.go }}
+    steps:
+      - id: g
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "manual dispatch — proceeding"; echo "go=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          H=$(TZ=Europe/Athens date +%H)
+          if [ "$H" = "09" ]; then
+            echo "09:00 Athens — proceeding"; echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Athens hour is $H, not 09 — skipping this fire"; echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
   scan:
+    needs: gate
+    if: needs.gate.outputs.go == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,7 +58,7 @@ jobs:
           WALKAWAY_RENO_PER_M2:      ${{ vars.WALKAWAY_RENO_PER_M2 }}      # default 350
           WALKAWAY_TXN_COST_PCT:     ${{ vars.WALKAWAY_TXN_COST_PCT }}     # default 0.06
           WALKAWAY_LEGAL_CONTINGENCY: ${{ vars.WALKAWAY_LEGAL_CONTINGENCY }} # default 3000
-      - name: email new listings
+      - name: send morning digest (Top 10 to act on)
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
@@ -55,14 +72,16 @@ jobs:
           ALERT_LOC:       ${{ vars.ALERT_LOC }}
           # watchlist: OR-list of area tokens, ";"-separated (region/muni/locality names)
           ALERT_AREAS:     ${{ vars.ALERT_AREAS }}
-          FORCE_EMAIL:     ${{ inputs.force_email }}
+          # every-morning "Top 10 to act on" digest: ranks the whole active watchlist,
+          # splits new/changed vs already-shown via data/report_seen.json
+          DAILY_DIGEST:    '1'
           # optional AI curation of the digest -- leave both unset to skip it
           # entirely (falls back to the plain list). OpenAI wins if both are set.
           OPENAI_API_KEY:    ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL:      ${{ vars.OPENAI_MODEL }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL }}
-          # how many listings can appear in the daily "Top picks" section (default 5)
+          # how many listings can appear in the daily "Top picks" section (default 10)
           TOP_N:             ${{ vars.TOP_N }}
         run: python notify.py
       - name: commit data

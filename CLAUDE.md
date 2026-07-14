@@ -58,8 +58,10 @@ diffs for new lots, emails a digest, serves a static dashboard. Personal tool
   + `walkaway.json`, falls back to seed. Shows per-card max-bid ceiling +
   occupancy caveat; "🎯 First-deal mode" preset = full ownership + 10%+ below
   median + not debtor-occupied (`?firstdeal=1`).
-- `.github/workflows/scan.yml` — cron 09:00 + 17:00 Athens: scrape → link rounds
-  → score comps → walk-away ceilings → email → commit.
+- `.github/workflows/scan.yml` — once every morning at 09:00 Athens (a `gate`
+  job straddles EU DST: crons fire 06:00 & 07:00 UTC, only the 09:00-Athens one
+  proceeds; workflow_dispatch bypasses the gate to "send now"): scrape → link
+  rounds → comps → walk-away → morning digest (DAILY_DIGEST=1) → commit.
 - Runs on GitHub Actions. No server, no agent runner, no database.
 
 ## Hard rules
