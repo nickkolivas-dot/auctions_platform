@@ -35,9 +35,12 @@ from pathlib import Path
 
 DASHBOARD_URL = "https://nickkolivas-dot.github.io/auctions_platform/"
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL") or "claude-haiku-4-5-20251001"
-# gpt-5.6-luna: cheapest of the gpt-5.6 family ($1/$6 per MTok), enough for a
-# ~30-listing/day tag-extraction job. Override with the OPENAI_MODEL repo var.
-OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-5.6-luna"
+# gpt-4.1-mini: cheap, fast, native function-calling on /v1/chat/completions.
+# NOT a gpt-5.x reasoning model on purpose -- those reject function tools on
+# chat/completions unless reasoning is off (verified: 400 "Function tools with
+# reasoning_effort are not supported ... set reasoning_effort to 'none'"). We
+# still handle a gpt-5.x override below. Change via the OPENAI_MODEL repo var.
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-4.1-mini"
 MAX_CURATE = 30  # bounds cost/latency per run; rows beyond this just show uncurated
 TOP_N = int(os.environ.get("TOP_N") or 10)  # daily cap on the "Top picks" section
 REPORT_LEDGER = Path("data") / "report_seen.json"  # what the daily digest has shown, for freshness
@@ -254,20 +257,26 @@ def _call_anthropic(api_key, payload):
 
 
 def _call_openai(api_key, payload):
+    body = {
+        "model": OPENAI_MODEL,
+        "messages": [
+            {"role": "system", "content": CURATION_SYSTEM_PROMPT},
+            {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+        ],
+        "tools": [{"type": "function", "function": {"name": "curate_listings",
+                   "description": "Return a screening note for each listing",
+                   "parameters": CURATION_RESULT_SCHEMA}}],
+        "tool_choice": {"type": "function", "function": {"name": "curate_listings"}},
+    }
+    # gpt-5.x are reasoning models; on chat/completions they reject function tools
+    # unless reasoning is disabled (verified against the API). Harmless to omit for
+    # the gpt-4.x/4o default, which rejects the parameter, so only send it when needed.
+    if OPENAI_MODEL.startswith("gpt-5"):
+        body["reasoning_effort"] = "none"
     resp = requests.post(
         "https://api.openai.com/v1/chat/completions",
         headers={"Authorization": f"Bearer {api_key}", "content-type": "application/json"},
-        json={
-            "model": OPENAI_MODEL,
-            "messages": [
-                {"role": "system", "content": CURATION_SYSTEM_PROMPT},
-                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
-            ],
-            "tools": [{"type": "function", "function": {"name": "curate_listings",
-                       "description": "Return a screening note for each listing",
-                       "parameters": CURATION_RESULT_SCHEMA}}],
-            "tool_choice": {"type": "function", "function": {"name": "curate_listings"}},
-        },
+        json=body,
         timeout=60,
     )
     resp.raise_for_status()
