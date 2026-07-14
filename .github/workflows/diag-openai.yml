@@ -34,9 +34,9 @@ jobs:
               "tools":[{"type":"function","function":{"name":"curate_listings",
                         "description":"Return a screening note for each listing","parameters":SCHEMA}}],
               "tool_choice":{"type":"function","function":{"name":"curate_listings"}},
-              "reasoning_effort":"none"}
-          r = requests.post("https://api.openai.com/v1/chat/completions", headers=H, timeout=90, json=body)
-          print("===== gpt-5-mini + tools + reasoning_effort=none =====")
+              "reasoning_effort":"minimal"}
+          r = requests.post("https://api.openai.com/v1/chat/completions", headers=H, timeout=120, json=body)
+          print("===== gpt-5-mini + tools + reasoning_effort=minimal =====")
           print("status:", r.status_code)
           if r.status_code == 200:
               args = r.json()["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]
