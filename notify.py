@@ -35,7 +35,9 @@ from pathlib import Path
 
 DASHBOARD_URL = "https://nickkolivas-dot.github.io/auctions_platform/"
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL") or "claude-haiku-4-5-20251001"
-OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-5.6-sol"
+# gpt-5.6-luna: cheapest of the gpt-5.6 family ($1/$6 per MTok), enough for a
+# ~30-listing/day tag-extraction job. Override with the OPENAI_MODEL repo var.
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL") or "gpt-5.6-luna"
 MAX_CURATE = 30  # bounds cost/latency per run; rows beyond this just show uncurated
 TOP_N = int(os.environ.get("TOP_N") or 10)  # daily cap on the "Top picks" section
 REPORT_LEDGER = Path("data") / "report_seen.json"  # what the daily digest has shown, for freshness
@@ -306,7 +308,8 @@ def curate(rows):
         results = _call_openai(openai_key, payload) if openai_key else _call_anthropic(anthropic_key, payload)
         return {item["id"]: item for item in results if "id" in item}
     except Exception as e:
-        print(f"curation skipped: {e}", file=sys.stderr)
+        body = getattr(getattr(e, "response", None), "text", "") or ""
+        print(f"curation skipped: {e}{(' | ' + body[:400]) if body else ''}", file=sys.stderr)
         return None
 
 
