@@ -1,13 +1,15 @@
 name: auction-scan
 on:
   schedule:
-    # Two fires straddling EU DST; the gate below lets ONLY the 09:00-Athens one
-    # through, so the morning digest lands at 9am Greece year-round (GitHub cron
-    # is UTC-only and can't do DST). 06:00 UTC = 09:00 Athens in summer, 07:00
-    # UTC = 09:00 Athens in winter.
+    # Morning fires (UTC). GitHub delays scheduled runs unpredictably (seen 40min–3h
+    # here), so we do NOT gate on an exact clock hour — that skipped every run. Instead
+    # the gate is idempotent: the FIRST fire each day sends the digest, later fires that
+    # day see it's already sent and skip. Two fires = redundancy if GitHub drops one.
+    # 05:00/06:00 UTC ≈ 08:00/09:00 Athens (summer), biased early so a delayed run still
+    # lands in the morning.
+    - cron: '0 5 * * *'
     - cron: '0 6 * * *'
-    - cron: '0 7 * * *'
-  workflow_dispatch:   # manual "send the digest now" — bypasses the hour gate
+  workflow_dispatch:   # manual "send the digest now" — always proceeds
 permissions:
   contents: write
 jobs:
@@ -16,16 +18,18 @@ jobs:
     outputs:
       go: ${{ steps.g.outputs.go }}
     steps:
+      - uses: actions/checkout@v4
       - id: g
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "manual dispatch — proceeding"; echo "go=true" >> "$GITHUB_OUTPUT"; exit 0
           fi
-          H=$(TZ=Europe/Athens date +%H)
-          if [ "$H" = "09" ]; then
-            echo "09:00 Athens — proceeding"; echo "go=true" >> "$GITHUB_OUTPUT"
+          TODAY=$(date -u +%F)
+          LAST=$(python3 -c "import json,pathlib as p; f=p.Path('data/report_seen.json'); print(json.loads(f.read_text()).get('last_digest_date','') if f.exists() else '')" 2>/dev/null || echo "")
+          if [ "$LAST" = "$TODAY" ]; then
+            echo "digest already sent today ($TODAY) — skip this fire"; echo "go=false" >> "$GITHUB_OUTPUT"
           else
-            echo "Athens hour is $H, not 09 — skipping this fire"; echo "go=false" >> "$GITHUB_OUTPUT"
+            echo "no digest yet today (today=$TODAY, last=$LAST) — proceeding"; echo "go=true" >> "$GITHUB_OUTPUT"
           fi
   scan:
     needs: gate
