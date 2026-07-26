@@ -7,6 +7,60 @@
   "legal_contingency": 3000.0
  },
  "lots": {
+  "30730": {
+   "ceiling_eur": 81888,
+   "viable": true,
+   "resale_value_eur": 250309,
+   "reno_eur": 97930,
+   "headroom_pct": -106.4,
+   "basis": "municipality",
+   "sample_size": 20
+  },
+  "30716": {
+   "ceiling_eur": 10210,
+   "viable": true,
+   "resale_value_eur": 75830,
+   "reno_eur": 43050,
+   "headroom_pct": -1173.3,
+   "basis": "region",
+   "sample_size": 64
+  },
+  "30646": {
+   "ceiling_eur": 0,
+   "viable": false,
+   "resale_value_eur": 23381,
+   "reno_eur": 18904,
+   "headroom_pct": null,
+   "basis": "region",
+   "sample_size": 138
+  },
+  "30645": {
+   "ceiling_eur": 0,
+   "viable": false,
+   "resale_value_eur": 19372,
+   "reno_eur": 15662,
+   "headroom_pct": null,
+   "basis": "region",
+   "sample_size": 138
+  },
+  "30601": {
+   "ceiling_eur": 603600,
+   "viable": true,
+   "resale_value_eur": 857088,
+   "reno_eur": 0,
+   "headroom_pct": 94.9,
+   "basis": "municipality",
+   "sample_size": 7
+  },
+  "30599": {
+   "ceiling_eur": 193521,
+   "viable": true,
+   "resale_value_eur": 562176,
+   "reno_eur": 213500,
+   "headroom_pct": -94.8,
+   "basis": "municipality",
+   "sample_size": 7
+  },
   "30546": {
    "ceiling_eur": 0,
    "viable": false,
@@ -233,31 +287,31 @@
    "sample_size": 21
   },
   "29588": {
-   "ceiling_eur": 13065,
+   "ceiling_eur": 7573,
    "viable": true,
-   "resale_value_eur": 38500,
+   "resale_value_eur": 30738,
    "reno_eur": 12026,
-   "headroom_pct": -366.9,
+   "headroom_pct": -705.5,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "29587": {
-   "ceiling_eur": 32833,
+   "ceiling_eur": 20511,
    "viable": true,
-   "resale_value_eur": 86379,
+   "resale_value_eur": 68965,
    "reno_eur": 26982,
-   "headroom_pct": -299.0,
+   "headroom_pct": -538.7,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "29586": {
-   "ceiling_eur": 18432,
+   "ceiling_eur": 11086,
    "viable": true,
-   "resale_value_eur": 51498,
+   "resale_value_eur": 41116,
    "reno_eur": 16086,
-   "headroom_pct": -339.5,
+   "headroom_pct": -630.7,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "29549": {
    "ceiling_eur": 19168,
@@ -467,13 +521,13 @@
    "sample_size": 7
   },
   "28010": {
-   "ceiling_eur": 14231,
+   "ceiling_eur": 14078,
    "viable": true,
-   "resale_value_eur": 42761,
+   "resale_value_eur": 42545,
    "reno_eur": 13986,
-   "headroom_pct": -968.1,
+   "headroom_pct": -979.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "27945": {
    "ceiling_eur": 213758,
@@ -485,49 +539,49 @@
    "sample_size": 29
   },
   "27803": {
-   "ceiling_eur": 22360,
+   "ceiling_eur": 22135,
    "viable": true,
-   "resale_value_eur": 63136,
+   "resale_value_eur": 62817,
    "reno_eur": 20650,
-   "headroom_pct": -803.4,
+   "headroom_pct": -812.6,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "27709": {
-   "ceiling_eur": 41444,
+   "ceiling_eur": 22547,
    "viable": true,
-   "resale_value_eur": 94778,
+   "resale_value_eur": 68071,
    "reno_eur": 24154,
-   "headroom_pct": -225.7,
+   "headroom_pct": -498.7,
    "basis": "municipality",
-   "sample_size": 10
+   "sample_size": 11
   },
   "27659": {
-   "ceiling_eur": 40293,
+   "ceiling_eur": 39907,
    "viable": true,
-   "resale_value_eur": 108080,
+   "resale_value_eur": 107535,
    "reno_eur": 35350,
-   "headroom_pct": -495.6,
+   "headroom_pct": -501.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "27621": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 53313,
+   "resale_value_eur": 35732,
    "reno_eur": 55584,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 9
+   "sample_size": 11
   },
   "27620": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 110499,
+   "resale_value_eur": 74061,
    "reno_eur": 115206,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 9
+   "sample_size": 11
   },
   "27529": {
    "ceiling_eur": 0,
@@ -586,11 +640,11 @@
   "27145": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 29418,
+   "resale_value_eur": 28845,
    "reno_eur": 31868,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "26985": {
    "ceiling_eur": 0,
@@ -899,13 +953,13 @@
    "sample_size": 8
   },
   "25750": {
-   "ceiling_eur": 6853,
+   "ceiling_eur": 16252,
    "viable": true,
-   "resale_value_eur": 97686,
+   "resale_value_eur": 110970,
    "reno_eur": 63000,
-   "headroom_pct": -3694.0,
+   "headroom_pct": -1499.8,
    "basis": "region",
-   "sample_size": 66
+   "sample_size": 64
   },
   "25732": {
    "ceiling_eur": 10509,
@@ -941,7 +995,7 @@
    "reno_eur": 127400,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "25519": {
    "ceiling_eur": 2993,
@@ -986,7 +1040,7 @@
    "reno_eur": 227500,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "25043": {
    "ceiling_eur": 4525,
@@ -1013,16 +1067,16 @@
    "reno_eur": 35780,
    "headroom_pct": -1961.4,
    "basis": "region",
-   "sample_size": 134
+   "sample_size": 138
   },
   "24967": {
-   "ceiling_eur": 33087,
+   "ceiling_eur": 20678,
    "viable": true,
-   "resale_value_eur": 86996,
+   "resale_value_eur": 69457,
    "reno_eur": 27174,
-   "headroom_pct": -447.0,
+   "headroom_pct": -775.3,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "24770": {
    "ceiling_eur": 0,
@@ -1099,11 +1153,11 @@
   "24233": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 3231,
+   "resale_value_eur": 3168,
    "reno_eur": 0,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "24028": {
    "ceiling_eur": 7148,
@@ -1171,11 +1225,11 @@
   "23602": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 32472,
+   "resale_value_eur": 31838,
    "reno_eur": 35175,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "23599": {
    "ceiling_eur": 0,
@@ -1184,7 +1238,7 @@
    "reno_eur": 175000,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "23229": {
    "ceiling_eur": 199328,
@@ -1394,31 +1448,31 @@
    "sample_size": 10
   },
   "18219": {
-   "ceiling_eur": 27518,
+   "ceiling_eur": 27246,
    "viable": true,
-   "resale_value_eur": 76063,
+   "resale_value_eur": 75679,
    "reno_eur": 24878,
-   "headroom_pct": -790.3,
+   "headroom_pct": -799.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "18218": {
-   "ceiling_eur": 956,
+   "ceiling_eur": 936,
    "viable": true,
-   "resale_value_eur": 5350,
+   "resale_value_eur": 5324,
    "reno_eur": 0,
-   "headroom_pct": -213.8,
+   "headroom_pct": -220.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "18217": {
-   "ceiling_eur": 4840,
+   "ceiling_eur": 4801,
    "viable": true,
-   "resale_value_eur": 10840,
+   "resale_value_eur": 10785,
    "reno_eur": 0,
-   "headroom_pct": -189.3,
+   "headroom_pct": -191.6,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "18216": {
    "ceiling_eur": 0,
@@ -1439,13 +1493,13 @@
    "sample_size": 8
   },
   "18211": {
-   "ceiling_eur": 35203,
+   "ceiling_eur": 34863,
    "viable": true,
-   "resale_value_eur": 95325,
+   "resale_value_eur": 94843,
    "reno_eur": 31178,
-   "headroom_pct": -323.3,
+   "headroom_pct": -327.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "18202": {
    "ceiling_eur": 18428,
@@ -1592,13 +1646,13 @@
    "sample_size": 32
   },
   "18171": {
-   "ceiling_eur": 379604,
+   "ceiling_eur": 376182,
    "viable": true,
-   "resale_value_eur": 958510,
+   "resale_value_eur": 953673,
    "reno_eur": 313502,
-   "headroom_pct": 74.4,
+   "headroom_pct": 74.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "18164": {
    "ceiling_eur": 6743,
@@ -1630,11 +1684,11 @@
   "18159": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 67860,
+   "resale_value_eur": 61020,
    "reno_eur": 70000,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 7
+   "sample_size": 8
   },
   "18149": {
    "ceiling_eur": 2178,
@@ -1745,13 +1799,13 @@
    "sample_size": 14
   },
   "18115": {
-   "ceiling_eur": 30959,
+   "ceiling_eur": 30657,
    "viable": true,
-   "resale_value_eur": 84688,
+   "resale_value_eur": 84260,
    "reno_eur": 27699,
-   "headroom_pct": -381.3,
+   "headroom_pct": -386.0,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "18114": {
    "ceiling_eur": 13604,
@@ -1810,20 +1864,20 @@
   "17859": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 49560,
+   "resale_value_eur": 48594,
    "reno_eur": 53686,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "17858": {
-   "ceiling_eur": 60095,
+   "ceiling_eur": 59532,
    "viable": true,
-   "resale_value_eur": 157711,
+   "resale_value_eur": 156915,
    "reno_eur": 51583,
-   "headroom_pct": -216.2,
+   "headroom_pct": -219.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "17693": {
    "ceiling_eur": 7984,
@@ -1846,56 +1900,56 @@
   "17682": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 1373,
+   "resale_value_eur": 1346,
    "reno_eur": 0,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "17678": {
-   "ceiling_eur": 27355,
+   "ceiling_eur": 14472,
    "viable": true,
-   "resale_value_eur": 64618,
+   "resale_value_eur": 46410,
    "reno_eur": 16468,
-   "headroom_pct": -254.6,
+   "headroom_pct": -570.3,
    "basis": "municipality",
-   "sample_size": 10
+   "sample_size": 11
   },
   "17677": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 139579,
+   "resale_value_eur": 136858,
    "reno_eur": 151200,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "17676": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 32310,
+   "resale_value_eur": 31680,
    "reno_eur": 35000,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "17674": {
-   "ceiling_eur": 39866,
+   "ceiling_eur": 39483,
    "viable": true,
-   "resale_value_eur": 107010,
+   "resale_value_eur": 106470,
    "reno_eur": 35000,
-   "headroom_pct": -50.5,
+   "headroom_pct": -52.0,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "17670": {
-   "ceiling_eur": 14248,
+   "ceiling_eur": 14095,
    "viable": true,
-   "resale_value_eur": 42804,
+   "resale_value_eur": 42588,
    "reno_eur": 14000,
-   "headroom_pct": -672.0,
+   "headroom_pct": -680.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "17669": {
    "ceiling_eur": 6735,
@@ -2060,22 +2114,22 @@
    "sample_size": 43
   },
   "17300": {
-   "ceiling_eur": 46242,
+   "ceiling_eur": 11655,
    "viable": true,
-   "resale_value_eur": 90356,
+   "resale_value_eur": 41472,
    "reno_eur": 15750,
-   "headroom_pct": -667.7,
+   "headroom_pct": -2945.9,
    "basis": "municipality",
-   "sample_size": 5
+   "sample_size": 7
   },
   "17284": {
-   "ceiling_eur": 70777,
+   "ceiling_eur": 70119,
    "viable": true,
-   "resale_value_eur": 184485,
+   "resale_value_eur": 183554,
    "reno_eur": 60340,
-   "headroom_pct": -306.9,
+   "headroom_pct": -310.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "17041": {
    "ceiling_eur": 0,
@@ -2098,11 +2152,11 @@
   "17031": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 21648,
+   "resale_value_eur": 21226,
    "reno_eur": 23450,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "17025": {
    "ceiling_eur": 22767,
@@ -2114,13 +2168,13 @@
    "sample_size": 9
   },
   "17024": {
-   "ceiling_eur": 19372,
+   "ceiling_eur": 19173,
    "viable": true,
-   "resale_value_eur": 55645,
+   "resale_value_eur": 55364,
    "reno_eur": 18200,
-   "headroom_pct": -364.6,
+   "headroom_pct": -369.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "17023": {
    "ceiling_eur": 34737,
@@ -2132,13 +2186,13 @@
    "sample_size": 10
   },
   "17000": {
-   "ceiling_eur": 36885,
+   "ceiling_eur": 36530,
    "viable": true,
-   "resale_value_eur": 99541,
+   "resale_value_eur": 99038,
    "reno_eur": 32557,
-   "headroom_pct": -252.4,
+   "headroom_pct": -255.9,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16994": {
    "ceiling_eur": 0,
@@ -2174,16 +2228,16 @@
    "reno_eur": 26411,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "16985": {
-   "ceiling_eur": 35047,
+   "ceiling_eur": 18881,
    "viable": true,
-   "resale_value_eur": 81086,
+   "resale_value_eur": 58237,
    "reno_eur": 20664,
-   "headroom_pct": -267.2,
+   "headroom_pct": -581.7,
    "basis": "municipality",
-   "sample_size": 10
+   "sample_size": 11
   },
   "16984": {
    "ceiling_eur": 83095,
@@ -2294,13 +2348,13 @@
    "sample_size": 52
   },
   "16958": {
-   "ceiling_eur": 34827,
+   "ceiling_eur": 34490,
    "viable": true,
-   "resale_value_eur": 94383,
+   "resale_value_eur": 93907,
    "reno_eur": 30870,
-   "headroom_pct": -362.3,
+   "headroom_pct": -366.8,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16957": {
    "ceiling_eur": 42223,
@@ -2312,13 +2366,13 @@
    "sample_size": 6
   },
   "16956": {
-   "ceiling_eur": 8348,
+   "ceiling_eur": 8248,
    "viable": true,
-   "resale_value_eur": 28015,
+   "resale_value_eur": 27874,
    "reno_eur": 9163,
-   "headroom_pct": -978.1,
+   "headroom_pct": -991.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16954": {
    "ceiling_eur": 19374,
@@ -2399,7 +2453,7 @@
    "reno_eur": 10910,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 134
+   "sample_size": 138
   },
   "16923": {
    "ceiling_eur": 3083,
@@ -2465,13 +2519,13 @@
    "sample_size": 29
   },
   "16866": {
-   "ceiling_eur": 35007,
+   "ceiling_eur": 34668,
    "viable": true,
-   "resale_value_eur": 94832,
+   "resale_value_eur": 94354,
    "reno_eur": 31017,
-   "headroom_pct": -492.5,
+   "headroom_pct": -498.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16863": {
    "ceiling_eur": 16435,
@@ -2519,13 +2573,13 @@
    "sample_size": 7
   },
   "16852": {
-   "ceiling_eur": 577,
+   "ceiling_eur": 560,
    "viable": true,
-   "resale_value_eur": 4815,
+   "resale_value_eur": 4791,
    "reno_eur": 0,
-   "headroom_pct": -134.0,
+   "headroom_pct": -141.1,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16847": {
    "ceiling_eur": 87595,
@@ -2582,13 +2636,13 @@
    "sample_size": 29
   },
   "16834": {
-   "ceiling_eur": 46087,
+   "ceiling_eur": 29186,
    "viable": true,
-   "resale_value_eur": 118482,
+   "resale_value_eur": 94595,
    "reno_eur": 37009,
-   "headroom_pct": -273.9,
+   "headroom_pct": -490.4,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "16825": {
    "ceiling_eur": 0,
@@ -2732,7 +2786,7 @@
    "reno_eur": 31500,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "16757": {
    "ceiling_eur": 32774,
@@ -2750,7 +2804,7 @@
    "reno_eur": 35000,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "16753": {
    "ceiling_eur": 0,
@@ -2798,13 +2852,13 @@
    "sample_size": 19
   },
   "16742": {
-   "ceiling_eur": 9887,
+   "ceiling_eur": 6486,
    "viable": true,
-   "resale_value_eur": 51200,
+   "resale_value_eur": 46394,
    "reno_eur": 24920,
-   "headroom_pct": -1417.1,
+   "headroom_pct": -2212.7,
    "basis": "municipality",
-   "sample_size": 16
+   "sample_size": 17
   },
   "16738": {
    "ceiling_eur": 39632,
@@ -2827,11 +2881,11 @@
   "16731": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 48232,
+   "resale_value_eur": 47292,
    "reno_eur": 52248,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "16730": {
    "ceiling_eur": 22413,
@@ -2888,31 +2942,31 @@
    "sample_size": 16
   },
   "16711": {
-   "ceiling_eur": 4840,
+   "ceiling_eur": 4801,
    "viable": true,
-   "resale_value_eur": 10840,
+   "resale_value_eur": 10785,
    "reno_eur": 0,
-   "headroom_pct": -106.6,
+   "headroom_pct": -108.3,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16710": {
-   "ceiling_eur": 1486,
+   "ceiling_eur": 1464,
    "viable": true,
-   "resale_value_eur": 6100,
+   "resale_value_eur": 6069,
    "reno_eur": 0,
-   "headroom_pct": -34.6,
+   "headroom_pct": -36.6,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16709": {
-   "ceiling_eur": 31967,
+   "ceiling_eur": 31655,
    "viable": true,
-   "resale_value_eur": 87213,
+   "resale_value_eur": 86773,
    "reno_eur": 28525,
-   "headroom_pct": -500.6,
+   "headroom_pct": -506.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16707": {
    "ceiling_eur": 7925,
@@ -2960,13 +3014,13 @@
    "sample_size": 78
   },
   "16695": {
-   "ceiling_eur": 15807,
+   "ceiling_eur": 15640,
    "viable": true,
-   "resale_value_eur": 46710,
+   "resale_value_eur": 46474,
    "reno_eur": 15278,
-   "headroom_pct": -431.4,
+   "headroom_pct": -437.1,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16693": {
    "ceiling_eur": 0,
@@ -3023,13 +3077,13 @@
    "sample_size": 11
   },
   "16673": {
-   "ceiling_eur": 40933,
+   "ceiling_eur": 40541,
    "viable": true,
-   "resale_value_eur": 109685,
+   "resale_value_eur": 109132,
    "reno_eur": 35875,
-   "headroom_pct": -286.0,
+   "headroom_pct": -289.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16670": {
    "ceiling_eur": 31658,
@@ -3074,7 +3128,7 @@
    "reno_eur": 27160,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "16657": {
    "ceiling_eur": 478,
@@ -3178,11 +3232,11 @@
   "16637": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 47738,
+   "resale_value_eur": 46807,
    "reno_eur": 51712,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "16636": {
    "ceiling_eur": 0,
@@ -3248,13 +3302,13 @@
    "sample_size": 16
   },
   "16627": {
-   "ceiling_eur": 26416,
+   "ceiling_eur": 26155,
    "viable": true,
-   "resale_value_eur": 73302,
+   "resale_value_eur": 72932,
    "reno_eur": 23975,
-   "headroom_pct": -403.5,
+   "headroom_pct": -408.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16626": {
    "ceiling_eur": 0,
@@ -3293,13 +3347,13 @@
    "sample_size": 14
   },
   "16621": {
-   "ceiling_eur": 31326,
+   "ceiling_eur": 31021,
    "viable": true,
-   "resale_value_eur": 85608,
+   "resale_value_eur": 85176,
    "reno_eur": 28000,
-   "headroom_pct": -394.8,
+   "headroom_pct": -399.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16618": {
    "ceiling_eur": 21925,
@@ -3320,31 +3374,31 @@
    "sample_size": 5
   },
   "16613": {
-   "ceiling_eur": 6369,
+   "ceiling_eur": 6323,
    "viable": true,
-   "resale_value_eur": 13002,
+   "resale_value_eur": 12936,
    "reno_eur": 0,
-   "headroom_pct": -41.3,
+   "headroom_pct": -42.3,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16612": {
-   "ceiling_eur": 39375,
+   "ceiling_eur": 38997,
    "viable": true,
-   "resale_value_eur": 105779,
+   "resale_value_eur": 105246,
    "reno_eur": 34598,
-   "headroom_pct": -639.0,
+   "headroom_pct": -646.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16606": {
-   "ceiling_eur": 29159,
+   "ceiling_eur": 28998,
    "viable": true,
-   "resale_value_eur": 45212,
+   "resale_value_eur": 44984,
    "reno_eur": 0,
-   "headroom_pct": 41.7,
+   "headroom_pct": 41.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16604": {
    "ceiling_eur": 0,
@@ -3410,13 +3464,13 @@
    "sample_size": 14
   },
   "16589": {
-   "ceiling_eur": 17561,
+   "ceiling_eur": 17379,
    "viable": true,
-   "resale_value_eur": 51108,
+   "resale_value_eur": 50850,
    "reno_eur": 16716,
-   "headroom_pct": -454.6,
+   "headroom_pct": -460.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16584": {
    "ceiling_eur": 0,
@@ -3446,13 +3500,13 @@
    "sample_size": 29
   },
   "16573": {
-   "ceiling_eur": 26843,
+   "ceiling_eur": 26578,
    "viable": true,
-   "resale_value_eur": 74372,
+   "resale_value_eur": 73997,
    "reno_eur": 24325,
-   "headroom_pct": -406.6,
+   "headroom_pct": -411.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16567": {
    "ceiling_eur": 69149,
@@ -3520,11 +3574,11 @@
   "16553": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 22617,
+   "resale_value_eur": 22176,
    "reno_eur": 24500,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "16552": {
    "ceiling_eur": 42494,
@@ -3556,11 +3610,11 @@
   "16536": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 29580,
+   "resale_value_eur": 29003,
    "reno_eur": 32042,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "16535": {
    "ceiling_eur": 49708,
@@ -3662,13 +3716,13 @@
    "sample_size": 32
   },
   "16490": {
-   "ceiling_eur": 36181,
+   "ceiling_eur": 35832,
    "viable": true,
-   "resale_value_eur": 97775,
+   "resale_value_eur": 97282,
    "reno_eur": 31980,
-   "headroom_pct": -328.4,
+   "headroom_pct": -332.6,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "16489": {
    "ceiling_eur": 0,
@@ -3698,13 +3752,13 @@
    "sample_size": 10
   },
   "16484": {
-   "ceiling_eur": 17353,
+   "ceiling_eur": 11956,
    "viable": true,
-   "resale_value_eur": 81258,
+   "resale_value_eur": 73631,
    "reno_eur": 39550,
-   "headroom_pct": -1221.3,
+   "headroom_pct": -1817.7,
    "basis": "municipality",
-   "sample_size": 16
+   "sample_size": 17
   },
   "16478": {
    "ceiling_eur": 0,
@@ -3743,13 +3797,13 @@
    "sample_size": 10
   },
   "16468": {
-   "ceiling_eur": 5811,
+   "ceiling_eur": 3500,
    "viable": true,
-   "resale_value_eur": 34790,
+   "resale_value_eur": 31524,
    "reno_eur": 16933,
-   "headroom_pct": -1896.2,
+   "headroom_pct": -3214.3,
    "basis": "municipality",
-   "sample_size": 16
+   "sample_size": 17
   },
   "16467": {
    "ceiling_eur": 0,
@@ -3758,7 +3812,7 @@
    "reno_eur": 44908,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "16466": {
    "ceiling_eur": 0,
@@ -3767,7 +3821,7 @@
    "reno_eur": 44908,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "16463": {
    "ceiling_eur": 37906,
@@ -3824,13 +3878,13 @@
    "sample_size": 10
   },
   "15881": {
-   "ceiling_eur": 33888,
+   "ceiling_eur": 33560,
    "viable": true,
-   "resale_value_eur": 92029,
+   "resale_value_eur": 91564,
    "reno_eur": 30100,
-   "headroom_pct": -88.9,
+   "headroom_pct": -90.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "15705": {
    "ceiling_eur": 11388,
@@ -3952,11 +4006,11 @@
   "14976": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 27863,
+   "resale_value_eur": 18675,
    "reno_eur": 29050,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 9
+   "sample_size": 11
   },
   "14973": {
    "ceiling_eur": 23350,
@@ -4013,31 +4067,31 @@
    "sample_size": 11
   },
   "14936": {
-   "ceiling_eur": 40719,
+   "ceiling_eur": 40330,
    "viable": true,
-   "resale_value_eur": 109150,
+   "resale_value_eur": 108599,
    "reno_eur": 35700,
-   "headroom_pct": -216.8,
+   "headroom_pct": -219.9,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14934": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 24297,
+   "resale_value_eur": 23823,
    "reno_eur": 26320,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "14930": {
-   "ceiling_eur": 14632,
+   "ceiling_eur": 14476,
    "viable": true,
-   "resale_value_eur": 43767,
+   "resale_value_eur": 43546,
    "reno_eur": 14315,
-   "headroom_pct": -275.9,
+   "headroom_pct": -279.9,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14929": {
    "ceiling_eur": 107104,
@@ -4175,13 +4229,13 @@
    "sample_size": 9
   },
   "14879": {
-   "ceiling_eur": 32266,
+   "ceiling_eur": 31952,
    "viable": true,
-   "resale_value_eur": 87962,
+   "resale_value_eur": 87518,
    "reno_eur": 28770,
-   "headroom_pct": -389.7,
+   "headroom_pct": -394.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14870": {
    "ceiling_eur": 97496,
@@ -4211,13 +4265,13 @@
    "sample_size": 21
   },
   "14855": {
-   "ceiling_eur": 51913,
+   "ceiling_eur": 13329,
    "viable": true,
-   "resale_value_eur": 100797,
+   "resale_value_eur": 46264,
    "reno_eur": 17570,
-   "headroom_pct": -115.7,
+   "headroom_pct": -740.3,
    "basis": "municipality",
-   "sample_size": 5
+   "sample_size": 7
   },
   "14854": {
    "ceiling_eur": 13606,
@@ -4238,13 +4292,13 @@
    "sample_size": 16
   },
   "14845": {
-   "ceiling_eur": 5271,
+   "ceiling_eur": 3105,
    "viable": true,
-   "resale_value_eur": 32618,
+   "resale_value_eur": 29557,
    "reno_eur": 15876,
-   "headroom_pct": -3106.2,
+   "headroom_pct": -5342.8,
    "basis": "municipality",
-   "sample_size": 16
+   "sample_size": 17
   },
   "14844": {
    "ceiling_eur": 116118,
@@ -4274,31 +4328,31 @@
    "sample_size": 12
   },
   "14827": {
-   "ceiling_eur": 6081,
+   "ceiling_eur": 6036,
    "viable": true,
-   "resale_value_eur": 12595,
+   "resale_value_eur": 12532,
    "reno_eur": 0,
-   "headroom_pct": 17.8,
+   "headroom_pct": 17.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14826": {
-   "ceiling_eur": 96173,
+   "ceiling_eur": 95287,
    "viable": true,
-   "resale_value_eur": 248135,
+   "resale_value_eur": 246883,
    "reno_eur": 81158,
-   "headroom_pct": -68.4,
+   "headroom_pct": -70.0,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14822": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 69903,
+   "resale_value_eur": 68540,
    "reno_eur": 75722,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "14819": {
    "ceiling_eur": 23594,
@@ -4337,13 +4391,13 @@
    "sample_size": 78
   },
   "14798": {
-   "ceiling_eur": 29320,
+   "ceiling_eur": 29032,
    "viable": true,
-   "resale_value_eur": 80579,
+   "resale_value_eur": 80172,
    "reno_eur": 26355,
-   "headroom_pct": -302.5,
+   "headroom_pct": -306.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14794": {
    "ceiling_eur": 0,
@@ -4357,38 +4411,38 @@
   "14793": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 51713,
+   "resale_value_eur": 47572,
    "reno_eur": 37450,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "14792": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 27442,
+   "resale_value_eur": 25244,
    "reno_eur": 19873,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "14791": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 53719,
+   "resale_value_eur": 49417,
    "reno_eur": 38902,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "14790": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 34947,
+   "resale_value_eur": 32149,
    "reno_eur": 25308,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "14783": {
    "ceiling_eur": 44402,
@@ -4406,7 +4460,7 @@
    "reno_eur": 45409,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "14781": {
    "ceiling_eur": 36805,
@@ -4447,11 +4501,11 @@
   "14776": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 24232,
+   "resale_value_eur": 23760,
    "reno_eur": 26250,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "14775": {
    "ceiling_eur": 24511,
@@ -4487,16 +4541,16 @@
    "reno_eur": 29253,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "14770": {
-   "ceiling_eur": 23065,
+   "ceiling_eur": 22833,
    "viable": true,
-   "resale_value_eur": 64902,
+   "resale_value_eur": 64574,
    "reno_eur": 21228,
-   "headroom_pct": -103.8,
+   "headroom_pct": -105.8,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14769": {
    "ceiling_eur": 1559,
@@ -4505,7 +4559,7 @@
    "reno_eur": 29610,
    "headroom_pct": -5640.9,
    "basis": "region",
-   "sample_size": 134
+   "sample_size": 138
   },
   "14767": {
    "ceiling_eur": 45469,
@@ -4526,13 +4580,13 @@
    "sample_size": 7
   },
   "14764": {
-   "ceiling_eur": 31326,
+   "ceiling_eur": 31021,
    "viable": true,
-   "resale_value_eur": 85608,
+   "resale_value_eur": 85176,
    "reno_eur": 28000,
-   "headroom_pct": -273.5,
+   "headroom_pct": -277.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14763": {
    "ceiling_eur": 5125,
@@ -4550,7 +4604,7 @@
    "reno_eur": 28000,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "14760": {
    "ceiling_eur": 13321,
@@ -4706,22 +4760,22 @@
    "sample_size": 33
   },
   "14718": {
-   "ceiling_eur": 15871,
+   "ceiling_eur": 15777,
    "viable": true,
-   "resale_value_eur": 26431,
+   "resale_value_eur": 26298,
    "reno_eur": 0,
-   "headroom_pct": 11.8,
+   "headroom_pct": 11.3,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14717": {
-   "ceiling_eur": 24213,
+   "ceiling_eur": 23971,
    "viable": true,
-   "resale_value_eur": 67780,
+   "resale_value_eur": 67438,
    "reno_eur": 22169,
-   "headroom_pct": -151.9,
+   "headroom_pct": -154.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14715": {
    "ceiling_eur": 24837,
@@ -4780,11 +4834,11 @@
   "14686": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 6272554,
+   "resale_value_eur": 4204125,
    "reno_eur": 6539750,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 9
+   "sample_size": 11
   },
   "14685": {
    "ceiling_eur": 0,
@@ -4834,11 +4888,11 @@
   "14667": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 28142,
+   "resale_value_eur": 27593,
    "reno_eur": 30485,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "14661": {
    "ceiling_eur": 3759,
@@ -4847,7 +4901,7 @@
    "reno_eur": 44450,
    "headroom_pct": -2009.6,
    "basis": "region",
-   "sample_size": 134
+   "sample_size": 138
   },
   "14658": {
    "ceiling_eur": 0,
@@ -4859,13 +4913,13 @@
    "sample_size": 11
   },
   "14650": {
-   "ceiling_eur": 44228,
+   "ceiling_eur": 39811,
    "viable": true,
-   "resale_value_eur": 66510,
+   "resale_value_eur": 60266,
    "reno_eur": 0,
-   "headroom_pct": 54.8,
+   "headroom_pct": 49.8,
    "basis": "municipality",
-   "sample_size": 16
+   "sample_size": 17
   },
   "14640": {
    "ceiling_eur": 6082,
@@ -4967,22 +5021,22 @@
    "sample_size": 18
   },
   "14622": {
-   "ceiling_eur": 4741,
+   "ceiling_eur": 4703,
    "viable": true,
-   "resale_value_eur": 10701,
+   "resale_value_eur": 10647,
    "reno_eur": 0,
-   "headroom_pct": 70.5,
+   "headroom_pct": 70.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14621": {
-   "ceiling_eur": 31869,
+   "ceiling_eur": 31558,
    "viable": true,
-   "resale_value_eur": 86967,
+   "resale_value_eur": 86528,
    "reno_eur": 28444,
-   "headroom_pct": -78.5,
+   "headroom_pct": -80.3,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14616": {
    "ceiling_eur": 31038,
@@ -5032,38 +5086,38 @@
   "14498": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 53163,
+   "resale_value_eur": 48906,
    "reno_eur": 38500,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "14490": {
-   "ceiling_eur": 6256,
+   "ceiling_eur": 6210,
    "viable": true,
-   "resale_value_eur": 12841,
+   "resale_value_eur": 12776,
    "reno_eur": 0,
-   "headroom_pct": -139.8,
+   "headroom_pct": -141.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14489": {
-   "ceiling_eur": 1713,
+   "ceiling_eur": 1690,
    "viable": true,
-   "resale_value_eur": 6421,
+   "resale_value_eur": 6388,
    "reno_eur": 0,
-   "headroom_pct": -75.1,
+   "headroom_pct": -77.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14488": {
-   "ceiling_eur": 37496,
+   "ceiling_eur": 37135,
    "viable": true,
-   "resale_value_eur": 101071,
+   "resale_value_eur": 100561,
    "reno_eur": 33058,
-   "headroom_pct": -678.7,
+   "headroom_pct": -686.3,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14231": {
    "ceiling_eur": 5703,
@@ -5075,13 +5129,13 @@
    "sample_size": 9
   },
   "14227": {
-   "ceiling_eur": 17664,
+   "ceiling_eur": 17480,
    "viable": true,
-   "resale_value_eur": 51365,
+   "resale_value_eur": 51106,
    "reno_eur": 16800,
-   "headroom_pct": -448.4,
+   "headroom_pct": -454.1,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "14225": {
    "ceiling_eur": 512,
@@ -5122,11 +5176,11 @@
   "13873": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 41322,
+   "resale_value_eur": 38013,
    "reno_eur": 29925,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "13695": {
    "ceiling_eur": 32757,
@@ -5180,25 +5234,25 @@
    "reno_eur": 294616,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "13614": {
-   "ceiling_eur": 40079,
+   "ceiling_eur": 39695,
    "viable": true,
-   "resale_value_eur": 107545,
+   "resale_value_eur": 107002,
    "reno_eur": 35175,
-   "headroom_pct": -417.7,
+   "headroom_pct": -422.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "13612": {
-   "ceiling_eur": 129600,
+   "ceiling_eur": 36260,
    "viable": true,
-   "resale_value_eur": 243839,
+   "resale_value_eur": 111919,
    "reno_eur": 42504,
-   "headroom_pct": -262.7,
+   "headroom_pct": -1196.2,
    "basis": "municipality",
-   "sample_size": 5
+   "sample_size": 7
   },
   "13611": {
    "ceiling_eur": 76998,
@@ -5221,11 +5275,11 @@
   "13599": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 24888,
+   "resale_value_eur": 24403,
    "reno_eur": 26960,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "13598": {
    "ceiling_eur": 15403,
@@ -5239,11 +5293,11 @@
   "13597": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 22617,
+   "resale_value_eur": 22176,
    "reno_eur": 24500,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "13596": {
    "ceiling_eur": 2705,
@@ -5363,13 +5417,13 @@
    "sample_size": 29
   },
   "13527": {
-   "ceiling_eur": 86590,
+   "ceiling_eur": 23565,
    "viable": true,
-   "resale_value_eur": 164648,
+   "resale_value_eur": 75571,
    "reno_eur": 28700,
-   "headroom_pct": 3.0,
+   "headroom_pct": -256.5,
    "basis": "municipality",
-   "sample_size": 5
+   "sample_size": 7
   },
   "13526": {
    "ceiling_eur": 128042,
@@ -5399,13 +5453,13 @@
    "sample_size": 52
   },
   "13515": {
-   "ceiling_eur": 23116,
+   "ceiling_eur": 22884,
    "viable": true,
-   "resale_value_eur": 65030,
+   "resale_value_eur": 64702,
    "reno_eur": 21270,
-   "headroom_pct": -202.8,
+   "headroom_pct": -205.9,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "13514": {
    "ceiling_eur": 34774,
@@ -5498,13 +5552,13 @@
    "sample_size": 29
   },
   "13487": {
-   "ceiling_eur": 84073,
+   "ceiling_eur": 54048,
    "viable": true,
-   "resale_value_eur": 210486,
+   "resale_value_eur": 168051,
    "reno_eur": 65748,
-   "headroom_pct": -22.5,
+   "headroom_pct": -90.6,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "13485": {
    "ceiling_eur": 59775,
@@ -5516,22 +5570,22 @@
    "sample_size": 6
   },
   "13483": {
-   "ceiling_eur": 5877,
+   "ceiling_eur": 5833,
    "viable": true,
-   "resale_value_eur": 12306,
+   "resale_value_eur": 12244,
    "reno_eur": 0,
-   "headroom_pct": 83.0,
+   "headroom_pct": 82.9,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "13482": {
-   "ceiling_eur": 49425,
+   "ceiling_eur": 48958,
    "viable": true,
-   "resale_value_eur": 130970,
+   "resale_value_eur": 130309,
    "reno_eur": 42836,
-   "headroom_pct": -72.0,
+   "headroom_pct": -73.6,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "13481": {
    "ceiling_eur": 40853,
@@ -5561,13 +5615,13 @@
    "sample_size": 7
   },
   "13473": {
-   "ceiling_eur": 36984,
+   "ceiling_eur": 36627,
    "viable": true,
-   "resale_value_eur": 99787,
+   "resale_value_eur": 99283,
    "reno_eur": 32638,
-   "headroom_pct": -296.1,
+   "headroom_pct": -300.0,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "13472": {
    "ceiling_eur": 14740,
@@ -5585,7 +5639,7 @@
    "reno_eur": 140000,
    "headroom_pct": -798.2,
    "basis": "region",
-   "sample_size": 134
+   "sample_size": 138
   },
   "13465": {
    "ceiling_eur": 19773,
@@ -5684,7 +5738,7 @@
    "reno_eur": 38210,
    "headroom_pct": -2652.3,
    "basis": "region",
-   "sample_size": 134
+   "sample_size": 138
   },
   "13407": {
    "ceiling_eur": 160667,
@@ -5705,13 +5759,13 @@
    "sample_size": 29
   },
   "13395": {
-   "ceiling_eur": 29320,
+   "ceiling_eur": 29032,
    "viable": true,
-   "resale_value_eur": 80579,
+   "resale_value_eur": 80172,
    "reno_eur": 26355,
-   "headroom_pct": -120.3,
+   "headroom_pct": -122.5,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "13393": {
    "ceiling_eur": 46914,
@@ -5777,13 +5831,13 @@
    "sample_size": 43
   },
   "12865": {
-   "ceiling_eur": 28039,
+   "ceiling_eur": 27763,
    "viable": true,
-   "resale_value_eur": 77368,
+   "resale_value_eur": 76978,
    "reno_eur": 25305,
-   "headroom_pct": -196.0,
+   "headroom_pct": -199.0,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "12864": {
    "ceiling_eur": 0,
@@ -5842,11 +5896,11 @@
   "12703": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 41680,
+   "resale_value_eur": 40867,
    "reno_eur": 45150,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "12699": {
    "ceiling_eur": 0,
@@ -5896,11 +5950,11 @@
   "12690": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 22633,
+   "resale_value_eur": 22192,
    "reno_eur": 24518,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "12689": {
    "ceiling_eur": 11421,
@@ -5921,13 +5975,13 @@
    "sample_size": 6
   },
   "12666": {
-   "ceiling_eur": 26777,
+   "ceiling_eur": 16548,
    "viable": true,
-   "resale_value_eur": 71712,
+   "resale_value_eur": 57254,
    "reno_eur": 22400,
-   "headroom_pct": -77.8,
+   "headroom_pct": -187.6,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "12665": {
    "ceiling_eur": 81932,
@@ -5984,13 +6038,13 @@
    "sample_size": 8
   },
   "12622": {
-   "ceiling_eur": 70811,
+   "ceiling_eur": 70152,
    "viable": true,
-   "resale_value_eur": 184571,
+   "resale_value_eur": 183639,
    "reno_eur": 60368,
-   "headroom_pct": -286.9,
+   "headroom_pct": -290.6,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "12616": {
    "ceiling_eur": 134,
@@ -6076,11 +6130,11 @@
   "12255": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 20565,
+   "resale_value_eur": 20164,
    "reno_eur": 22278,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "12254": {
    "ceiling_eur": 15515,
@@ -6092,13 +6146,13 @@
    "sample_size": 7
   },
   "12247": {
-   "ceiling_eur": 19535,
+   "ceiling_eur": 13555,
    "viable": true,
-   "resale_value_eur": 90046,
+   "resale_value_eur": 81593,
    "reno_eur": 43827,
-   "headroom_pct": -749.8,
+   "headroom_pct": -1124.6,
    "basis": "municipality",
-   "sample_size": 16
+   "sample_size": 17
   },
   "12246": {
    "ceiling_eur": 0,
@@ -6143,34 +6197,34 @@
    "reno_eur": 30275,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "11640": {
-   "ceiling_eur": 31712,
+   "ceiling_eur": 24748,
    "viable": true,
-   "resale_value_eur": 48820,
+   "resale_value_eur": 38978,
    "reno_eur": 0,
-   "headroom_pct": 90.5,
+   "headroom_pct": 87.9,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "11636": {
-   "ceiling_eur": 3114,
+   "ceiling_eur": 1061,
    "viable": true,
-   "resale_value_eur": 14398,
+   "resale_value_eur": 11496,
    "reno_eur": 4498,
-   "headroom_pct": -413.8,
+   "headroom_pct": -1408.0,
    "basis": "municipality",
-   "sample_size": 19
+   "sample_size": 20
   },
   "11303": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 507590,
+   "resale_value_eur": 497693,
    "reno_eur": 549850,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "10666": {
    "ceiling_eur": 40400,
@@ -6263,13 +6317,13 @@
    "sample_size": 6
   },
   "10620": {
-   "ceiling_eur": 15529,
+   "ceiling_eur": 15365,
    "viable": true,
-   "resale_value_eur": 46014,
+   "resale_value_eur": 45782,
    "reno_eur": 15050,
-   "headroom_pct": -254.2,
+   "headroom_pct": -258.0,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "10616": {
    "ceiling_eur": 39558,
@@ -6281,13 +6335,13 @@
    "sample_size": 52
   },
   "10604": {
-   "ceiling_eur": 47551,
+   "ceiling_eur": 47100,
    "viable": true,
-   "resale_value_eur": 126272,
+   "resale_value_eur": 125635,
    "reno_eur": 41300,
-   "headroom_pct": -264.9,
+   "headroom_pct": -268.4,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "10603": {
    "ceiling_eur": 35769,
@@ -6337,7 +6391,7 @@
   "10579": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 97105,
+   "resale_value_eur": 98957,
    "reno_eur": 80006,
    "headroom_pct": null,
    "basis": "region",
@@ -6373,20 +6427,20 @@
   "10563": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 3210,
+   "resale_value_eur": 3194,
    "reno_eur": 0,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "10562": {
-   "ceiling_eur": 11610,
+   "ceiling_eur": 11480,
    "viable": true,
-   "resale_value_eur": 36191,
+   "resale_value_eur": 36008,
    "reno_eur": 11837,
-   "headroom_pct": -593.4,
+   "headroom_pct": -601.2,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "10561": {
    "ceiling_eur": 40054,
@@ -6409,11 +6463,11 @@
   "10528": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 19139,
+   "resale_value_eur": 17606,
    "reno_eur": 13860,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "10527": {
    "ceiling_eur": 14534,
@@ -6445,11 +6499,11 @@
   "10523": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 339300,
+   "resale_value_eur": 305100,
    "reno_eur": 350000,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 7
+   "sample_size": 8
   },
   "10522": {
    "ceiling_eur": 0,
@@ -6458,7 +6512,7 @@
    "reno_eur": 280000,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 11
+   "sample_size": 12
   },
   "10521": {
    "ceiling_eur": 23457,
@@ -6470,13 +6524,13 @@
    "sample_size": 21
   },
   "10519": {
-   "ceiling_eur": 31540,
+   "ceiling_eur": 31232,
    "viable": true,
-   "resale_value_eur": 86143,
+   "resale_value_eur": 85708,
    "reno_eur": 28175,
-   "headroom_pct": -429.5,
+   "headroom_pct": -434.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "10518": {
    "ceiling_eur": 14767,
@@ -6544,7 +6598,7 @@
   "10488": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 2993833,
+   "resale_value_eur": 3050919,
    "reno_eur": 2466670,
    "headroom_pct": null,
    "basis": "region",
@@ -6598,11 +6652,11 @@
   "10448": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 43942,
+   "resale_value_eur": 43085,
    "reno_eur": 47600,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 229
+   "sample_size": 234
   },
   "10447": {
    "ceiling_eur": 44409,
@@ -6641,13 +6695,13 @@
    "sample_size": 52
   },
   "10428": {
-   "ceiling_eur": 19653,
+   "ceiling_eur": 19452,
    "viable": true,
-   "resale_value_eur": 56351,
+   "resale_value_eur": 56067,
    "reno_eur": 18431,
-   "headroom_pct": -215.5,
+   "headroom_pct": -218.7,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "10426": {
    "ceiling_eur": 37709,
@@ -6791,16 +6845,16 @@
    "reno_eur": 35444,
    "headroom_pct": null,
    "basis": "region",
-   "sample_size": 105
+   "sample_size": 106
   },
   "10370": {
    "ceiling_eur": 0,
    "viable": false,
-   "resale_value_eur": 6041,
+   "resale_value_eur": 5558,
    "reno_eur": 4375,
    "headroom_pct": null,
    "basis": "municipality",
-   "sample_size": 21
+   "sample_size": 22
   },
   "10360": {
    "ceiling_eur": 0,
@@ -6848,13 +6902,13 @@
    "sample_size": 6
   },
   "10349": {
-   "ceiling_eur": 25776,
+   "ceiling_eur": 25520,
    "viable": true,
-   "resale_value_eur": 71697,
+   "resale_value_eur": 71335,
    "reno_eur": 23450,
-   "headroom_pct": -423.7,
+   "headroom_pct": -429.0,
    "basis": "region",
-   "sample_size": 349
+   "sample_size": 351
   },
   "10344": {
    "ceiling_eur": 42861,
