@@ -1637,7 +1637,7 @@
     "title": "Αγροτεμάχιο 5515.13 τ.μ. Δήμος Ήλιδας σε πλειστηριασμό",
     "auction_date": "2026-07-31",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 5400,
     "area_m2": 5515.13
    },
@@ -1647,7 +1647,7 @@
     "title": "Αγροτεμάχιο 5515.13 τ.μ. Δήμος Ήλιδας σε πλειστηριασμό",
     "auction_date": "2026-07-31",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 4000,
     "area_m2": 5515.13
    }
@@ -4657,7 +4657,7 @@
     "title": "Άλλος Επαγγελματικός Χώρος 70.20 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
     "auction_date": "2026-07-31",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 136000,
     "area_m2": 70.2
    },
@@ -4667,7 +4667,7 @@
     "title": "Κατοικία 70.20 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
     "auction_date": "2026-07-31",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 103000,
     "area_m2": 70.2
    },
@@ -4677,7 +4677,7 @@
     "title": "Κατοικία 70.20 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
     "auction_date": "2026-07-31",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 139000,
     "area_m2": 70.2
    }
@@ -4705,7 +4705,7 @@
     "title": "Κατοικία 225.29 τ.μ. Δήμος Κορυδαλλού σε πλειστηριασμό",
     "auction_date": "2026-07-31",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 450000,
     "area_m2": 225.29
    },
@@ -4715,7 +4715,7 @@
     "title": "Αποθήκη 14.70 τ.μ. Δήμος Κορυδαλλού σε πλειστηριασμό",
     "auction_date": "2026-07-31",
     "first_seen": "2026-07-06",
-    "status": "active",
+    "status": "removed",
     "price_eur": 6500,
     "area_m2": 14.7
    }
