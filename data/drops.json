@@ -1,5 +1,43 @@
 [
  {
+  "key": "Κεντρικής Μακεδονίας|Ηρωικής Πόλεως Νάουσας|τ κ αγγελοχωρίου της δ ε ειρηνούπολης του δήμου νάουσας ημαθίας στη θέση «ρουντινα»",
+  "region": "Κεντρικής Μακεδονίας",
+  "municipality": "Ηρωικής Πόλεως Νάουσας",
+  "address": "Τ.Κ. Αγγελοχωρίου της Δ.Ε. Ειρηνούπολης του Δήμου Νάουσας Ημαθίας, στη θέση «ΡΟΥΝΤΙΝΑ»",
+  "rounds": [
+   {
+    "id": 15870,
+    "url": "https://eauction24.gr/auction/15870",
+    "title": "Αγροτεμάχιο με κτίσμα 1000 τ.μ. Δήμος Ηρωικής Πόλεως Νάουσας σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 143000,
+    "area_m2": 1000
+   },
+   {
+    "id": 15869,
+    "url": "https://eauction24.gr/auction/15869",
+    "title": "Αγροτεμάχιο με κτίσμα 1000 τ.μ. Δήμος Ηρωικής Πόλεως Νάουσας σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 9100,
+    "area_m2": 1000
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 143000,
+  "latest_price": 9100,
+  "drop_pct": 93.6,
+  "latest_id": 15869,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
   "key": "Δυτικής Μακεδονίας|Σερβίων - Βελβεντού|δ κ και δ ε σερβίων δήμος σερβίων π ε κοζάνης περιφέρεια δυτ μακεδονίας θέση «τσαΐρι»",
   "region": "Δυτικής Μακεδονίας",
   "municipality": "Σερβίων - Βελβεντού",
@@ -63,9 +101,85 @@
   "latest_price": 2200,
   "drop_pct": 90.0,
   "latest_id": 12672,
-  "recent_cuts_30d": 2,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Νοτίου Αιγαίου|Ρόδου|δημοτική κοινότητα αφάντου δημοτική ενότητα αφάντου περιφερειακή ενότητα ρόδου περιφέρεια νοτίου αιγαίου",
+  "region": "Νοτίου Αιγαίου",
+  "municipality": "Ρόδου",
+  "address": "δημοτική κοινότητα Αφάντου, δημοτική ενότητα Αφάντου, περιφερειακή ενότητα Ρόδου, περιφέρεια Νοτίου Αιγαίου",
+  "rounds": [
+   {
+    "id": 9896,
+    "url": "https://eauction24.gr/auction/9896",
+    "title": "Κατάστημα 32.42 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 73000,
+    "area_m2": 32.42
+   },
+   {
+    "id": 9895,
+    "url": "https://eauction24.gr/auction/9895",
+    "title": "Αποθήκη 32.42 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 11000,
+    "area_m2": 32.42
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 73000,
+  "latest_price": 11000,
+  "drop_pct": 84.9,
+  "latest_id": 9895,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Πελοποννήσου|Βέλου - Βόχας|θέση ραπτη της κτηματικής περιφέρειας της δημοτικής κοινότητας ζευγολατιού κορινθίας της δημοτικής ενότητας βόχας του δήμου βέλου βόχας κορινθίας π ε κορινθίας περιφέρειας πελοποννήσου",
+  "region": "Πελοποννήσου",
+  "municipality": "Βέλου - Βόχας",
+  "address": "θέση ΡΑΠΤΗ της κτηματικής περιφέρειας της δημοτικής κοινότητας Ζευγολατιού Κορινθίας, της δημοτικής ενότητας Βόχας, του Δήμου Βέλου-Βόχας Κορινθίας, Π.Ε. Κορινθίας, Περιφέρειας Πελοποννήσου",
+  "rounds": [
+   {
+    "id": 8633,
+    "url": "https://eauction24.gr/auction/8633",
+    "title": "Αγροτεμάχιο 3149.20 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 57300,
+    "area_m2": 3149.2
+   },
+   {
+    "id": 8632,
+    "url": "https://eauction24.gr/auction/8632",
+    "title": "Αγροτεμάχιο 3149.20 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 9300,
+    "area_m2": 3149.2
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 57300,
+  "latest_price": 9300,
+  "drop_pct": 83.8,
+  "latest_id": 8632,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Κεντρικής Μακεδονίας|Κασσάνδρας|κτηματική περιοχή της δ κ νέας φώκαιας δημοτικής ενότητας κασσάνδρας δήμου κασσάνδρας νομού και περιφερειακής ενότητας χαλκιδικής",
@@ -151,9 +265,47 @@
   "latest_price": 9000,
   "drop_pct": 82.0,
   "latest_id": 18092,
-  "recent_cuts_30d": 5,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Αχαρνών|δήμος αχαρνών αττικής θέση «πατητήρι φράγκου» επί των οδών σάμου και κοσμά αιτωλού αριθ 29",
+  "region": "Αττικής",
+  "municipality": "Αχαρνών",
+  "address": "Δήμος Αχαρνών Αττικής, θέση «Πατητήρι Φράγκου», επί των οδών Σάμου και Κοσμά Αιτωλού αριθ. 29",
+  "rounds": [
+   {
+    "id": 8586,
+    "url": "https://eauction24.gr/auction/8586",
+    "title": "Οικόπεδο 723.10 τ.μ. Δήμος Αχαρνών σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 191111,
+    "area_m2": 723.1
+   },
+   {
+    "id": 8585,
+    "url": "https://eauction24.gr/auction/8585",
+    "title": "Οικόπεδο 723.10 τ.μ. Δήμος Αχαρνών σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 42926,
+    "area_m2": 723.1
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 191111,
+  "latest_price": 42926,
+  "drop_pct": 77.5,
+  "latest_id": 8585,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Νοτίου Αιγαίου|Θήρας|δημοτική κοινότητα επισκοπής γωνιάς του δήμου θήρας στη θέση «σπιτότοπος μέσα γωνιάς»",
@@ -209,9 +361,47 @@
   "latest_price": 109000,
   "drop_pct": 76.7,
   "latest_id": 17482,
-  "recent_cuts_30d": 2,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Ηλιουπόλεως|οδός φειδίου αρ 106 ηλιούπολη αττικής",
+  "region": "Αττικής",
+  "municipality": "Ηλιουπόλεως",
+  "address": "οδός Φειδίου αρ. 106, Ηλιούπολη Αττικής",
+  "rounds": [
+   {
+    "id": 9922,
+    "url": "https://eauction24.gr/auction/9922",
+    "title": "Κατοικία 87.86 τ.μ. Δήμος Ηλιουπόλεως σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 178000,
+    "area_m2": 87.86
+   },
+   {
+    "id": 9921,
+    "url": "https://eauction24.gr/auction/9921",
+    "title": "Κατοικία 87.86 τ.μ. Δήμος Ηλιουπόλεως σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 42000,
+    "area_m2": 87.86
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 178000,
+  "latest_price": 42000,
+  "drop_pct": 76.4,
+  "latest_id": 9921,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Κρήτης|Αγίου Νικολάου|οδός γεωργίου κοντογιάννη αρ 21 άγιος νικόλαος συνοικία αμμος",
@@ -257,9 +447,171 @@
   "latest_price": 89000,
   "drop_pct": 68.2,
   "latest_id": 8509,
-  "recent_cuts_30d": 2,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Ηπείρου|Αρταίων|βασιλέως κωνσταντίνου 50 άρτα",
+  "region": "Ηπείρου",
+  "municipality": "Αρταίων",
+  "address": "Βασιλέως Κωνσταντίνου 50, Άρτα",
+  "rounds": [
+   {
+    "id": 15005,
+    "url": "https://eauction24.gr/auction/15005",
+    "title": "Κατοικία 80 τ.μ. Δήμος Αρταίων σε πλειστηριασμό",
+    "auction_date": "2026-09-25",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 109000,
+    "area_m2": 80
+   },
+   {
+    "id": 14999,
+    "url": "https://eauction24.gr/auction/14999",
+    "title": "Κατοικία 80 τ.μ. Δήμος Αρταίων σε πλειστηριασμό",
+    "auction_date": "2026-09-25",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 36000,
+    "area_m2": 80
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 109000,
+  "latest_price": 36000,
+  "drop_pct": 67.0,
+  "latest_id": 14999,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Στερεάς Ελλάδας|Σκύρου|θέση «άγιος νικόλαος» της περιοχής «αχίλλι» της δ κ σκύρου της δ ε σκύρου του δήμου σκύρου της π ε ευβοίας της περιφέρειας στερεάς ελλάδας",
+  "region": "Στερεάς Ελλάδας",
+  "municipality": "Σκύρου",
+  "address": "θέση «Άγιος Νικόλαος» της περιοχής «Αχίλλι» της Δ.Κ. Σκύρου, της Δ.Ε. Σκύρου, του Δήμου Σκύρου, της Π.Ε. Ευβοίας, της Περιφέρειας Στερεάς Ελλάδας",
+  "rounds": [
+   {
+    "id": 12252,
+    "url": "https://eauction24.gr/auction/12252",
+    "title": "Αγροτεμάχιο 49200 τ.μ. Δήμος Σκύρου σε πλειστηριασμό",
+    "auction_date": "2026-09-02",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 299000,
+    "area_m2": 49200
+   },
+   {
+    "id": 12251,
+    "url": "https://eauction24.gr/auction/12251",
+    "title": "Αγροτεμάχιο 49200 τ.μ. Δήμος Σκύρου σε πλειστηριασμό",
+    "auction_date": "2026-09-02",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 108000,
+    "area_m2": 49200
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 299000,
+  "latest_price": 108000,
+  "drop_pct": 63.9,
+  "latest_id": 12251,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Δυτικής Μακεδονίας|Κοζάνης|οδός αρχελάου αριθμ 25 κοζάνη",
+  "region": "Δυτικής Μακεδονίας",
+  "municipality": "Κοζάνης",
+  "address": "οδός Αρχελάου αριθμ. 25, Κοζάνη",
+  "rounds": [
+   {
+    "id": 6988,
+    "url": "https://eauction24.gr/auction/6988",
+    "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
+    "auction_date": "2026-07-08",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 91500,
+    "area_m2": 91.5
+   },
+   {
+    "id": 6987,
+    "url": "https://eauction24.gr/auction/6987",
+    "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
+    "auction_date": "2026-07-08",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 34500,
+    "area_m2": 91.5
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 91500,
+  "latest_price": 34500,
+  "drop_pct": 62.3,
+  "latest_id": 6987,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Θεσσαλίας|Λαρισαίων|λάρισα οδός χατζηγιάννη αρ 4",
+  "region": "Θεσσαλίας",
+  "municipality": "Λαρισαίων",
+  "address": "Λάρισα, οδός Χατζηγιάννη αρ. 4",
+  "rounds": [
+   {
+    "id": 16798,
+    "url": "https://eauction24.gr/auction/16798",
+    "title": "Θέση Στάθμευσης (parking) 10.12 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 10000,
+    "area_m2": 10.12
+   },
+   {
+    "id": 16797,
+    "url": "https://eauction24.gr/auction/16797",
+    "title": "Αποθήκη 10.15 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 4000,
+    "area_m2": 10.15
+   },
+   {
+    "id": 16796,
+    "url": "https://eauction24.gr/auction/16796",
+    "title": "Αποθήκη 10.15 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 4000,
+    "area_m2": 10.15
+   }
+  ],
+  "rounds_count": 3,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 10000,
+  "latest_price": 4000,
+  "drop_pct": 60.0,
+  "latest_id": 16796,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Αττικής|Αθηναίων|οδός νιόβης",
@@ -315,9 +667,9 @@
   "latest_price": 43000,
   "drop_pct": 59.0,
   "latest_id": 9837,
-  "recent_cuts_30d": 3,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Αττικής|Διονύσου|οδός γαίας 12 σταμάτα αττικής",
@@ -383,9 +735,143 @@
   "latest_price": 111000,
   "drop_pct": 58.1,
   "latest_id": 10305,
-  "recent_cuts_30d": 2,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Αθηναίων|λεωφόρος κηφισίας 125 127 ψυχικό δήμος αθηναίων",
+  "region": "Αττικής",
+  "municipality": "Αθηναίων",
+  "address": "Λεωφόρος Κηφισίας 125-127, Ψυχικό, Δήμος Αθηναίων",
+  "rounds": [
+   {
+    "id": 16916,
+    "url": "https://eauction24.gr/auction/16916",
+    "title": "Κατάστημα 53 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 46255,
+    "area_m2": 53
+   },
+   {
+    "id": 16898,
+    "url": "https://eauction24.gr/auction/16898",
+    "title": "Κατάστημα 53 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 58500,
+    "area_m2": 53
+   },
+   {
+    "id": 16883,
+    "url": "https://eauction24.gr/auction/16883",
+    "title": "Κατάστημα 53 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 21632,
+    "area_m2": 53
+   }
+  ],
+  "rounds_count": 3,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 46255,
+  "latest_price": 21632,
+  "drop_pct": 53.2,
+  "latest_id": 16883,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Κρήτης|Ηρακλείου ΚΡΗΤΗΣ|οδός αμαζόνων αρ 17 ηράκλειο κρήτης",
+  "region": "Κρήτης",
+  "municipality": "Ηρακλείου ΚΡΗΤΗΣ",
+  "address": "οδός Αμαζόνων αρ.17, Ηράκλειο Κρήτης",
+  "rounds": [
+   {
+    "id": 7207,
+    "url": "https://eauction24.gr/auction/7207",
+    "title": "Κατοικία 114.45 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
+    "auction_date": "2026-07-08",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 100000,
+    "area_m2": 114.45
+   },
+   {
+    "id": 7206,
+    "url": "https://eauction24.gr/auction/7206",
+    "title": "Κατοικία 114.45 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
+    "auction_date": "2026-07-08",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 118000,
+    "area_m2": 114.45
+   },
+   {
+    "id": 7205,
+    "url": "https://eauction24.gr/auction/7205",
+    "title": "Αποθήκη 115.63 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
+    "auction_date": "2026-07-08",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 50000,
+    "area_m2": 115.63
+   }
+  ],
+  "rounds_count": 3,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 100000,
+  "latest_price": 50000,
+  "drop_pct": 50.0,
+  "latest_id": 7205,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Θεσσαλίας|Φαρσάλων|φάρσαλα δ κ και ενότητα φαρσάλων δήμος φαρσάλων περιφερειακή ενότητα λάρισας περιφέρεια θεσσαλίας θέση «θωμαϊδη ο τ 539α»",
+  "region": "Θεσσαλίας",
+  "municipality": "Φαρσάλων",
+  "address": "Φάρσαλα, Δ.Κ. και Ενότητα Φαρσάλων, Δήμος Φαρσάλων, Περιφερειακή Ενότητα Λάρισας, Περιφέρεια Θεσσαλίας, θέση «ΘΩΜΑΪΔΗ – Ο.Τ. 539Α»",
+  "rounds": [
+   {
+    "id": 9817,
+    "url": "https://eauction24.gr/auction/9817",
+    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 15625,
+    "area_m2": 265
+   },
+   {
+    "id": 9814,
+    "url": "https://eauction24.gr/auction/9814",
+    "title": "Οικόπεδο 262.49 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 7875,
+    "area_m2": 262.49
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 15625,
+  "latest_price": 7875,
+  "drop_pct": 49.6,
+  "latest_id": 9814,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Αττικής|Αθηναίων|λεωφόρος κηφισίας 125 127 περιοχή ψυχικό ερυθρός δήμος αθηναίων",
@@ -441,9 +927,285 @@
   "latest_price": 24336,
   "drop_pct": 47.7,
   "latest_id": 16888,
-  "recent_cuts_30d": 2,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Ανατολικής Μακεδονίας και Θράκης|Δοξάτου|συμβολή της οδού εθνικής αντιστάσεως με την οδόν βασιλείου βουλγαροκτόνου δημοτική κοινότητα δοξάτου δημοτική ενότητα δοξάτου δήμος δοξάτου περιφερειακή ενότητα δράμας",
+  "region": "Ανατολικής Μακεδονίας και Θράκης",
+  "municipality": "Δοξάτου",
+  "address": "συμβολή της οδού Εθνικής Αντιστάσεως με την οδόν Βασιλείου Βουλγαροκτόνου, Δημοτική Κοινότητα Δοξάτου, Δημοτική Ενότητα Δοξάτου, Δήμος Δοξάτου, Περιφερειακή Ενότητα Δράμας",
+  "rounds": [
+   {
+    "id": 16655,
+    "url": "https://eauction24.gr/auction/16655",
+    "title": "Οικόπεδο 1047.78 τ.μ. Δήμος Δοξάτου σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 1210,
+    "area_m2": 1047.78
+   },
+   {
+    "id": 16654,
+    "url": "https://eauction24.gr/auction/16654",
+    "title": "Οικόπεδο 1047.78 τ.μ. Δήμος Δοξάτου σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 660,
+    "area_m2": 1047.78
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 1210,
+  "latest_price": 660,
+  "drop_pct": 45.5,
+  "latest_id": 16654,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Βορείου Αιγαίου|Λέσβου|θέση «δεργας» της αγροτικής περιφέρειας ερεσού του δήμου δυτικής λέσβου με την ειδική ονομασία «πετραδερη»",
+  "region": "Βορείου Αιγαίου",
+  "municipality": "Λέσβου",
+  "address": "θέση «ΔΕΡΓΑΣ» της αγροτικής περιφέρειας Ερεσού του Δήμου Δυτικής Λέσβου, με την ειδική ονομασία «ΠΕΤΡΑΔΕΡΗ»",
+  "rounds": [
+   {
+    "id": 9908,
+    "url": "https://eauction24.gr/auction/9908",
+    "title": "Αγροτεμάχιο 19790.29 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 120000,
+    "area_m2": 19790.29
+   },
+   {
+    "id": 9907,
+    "url": "https://eauction24.gr/auction/9907",
+    "title": "Αγροτεμάχιο 19790.29 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 160000,
+    "area_m2": 19790.29
+   },
+   {
+    "id": 9906,
+    "url": "https://eauction24.gr/auction/9906",
+    "title": "Αγροτεμάχιο 19790.29 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 66600,
+    "area_m2": 19790.29
+   }
+  ],
+  "rounds_count": 3,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 120000,
+  "latest_price": 66600,
+  "drop_pct": 44.5,
+  "latest_id": 9906,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Δυτικής Ελλάδας|Αγρινίου|δημοτική κοινότητα αγίου κωνσταντίνου της δημοτικής ενότητας αγρινίου του διευρυμένου δήμου αγρινίου περιφερειακή ενότητα αιτωλοακαρνανίας περιφέρεια δυτικής ελλάδος στο ο τ 102 και επί της δημοτικής οδού πλαστήρα",
+  "region": "Δυτικής Ελλάδας",
+  "municipality": "Αγρινίου",
+  "address": "Δημοτική Κοινότητα Αγίου Κωνσταντίνου της Δημοτικής Ενότητας Αγρινίου του διευρυμένου Δήμου Αγρινίου, Περιφερειακή Ενότητα Αιτωλοακαρνανίας, Περιφέρεια Δυτικής Ελλάδος, στο Ο.Τ. 102 και επί της δημοτικής οδού Πλαστήρα",
+  "rounds": [
+   {
+    "id": 12621,
+    "url": "https://eauction24.gr/auction/12621",
+    "title": "Οικόπεδο 592.50 τ.μ. Δήμος Αγρινίου σε πλειστηριασμό",
+    "auction_date": "2026-09-09",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 56000,
+    "area_m2": 592.5
+   },
+   {
+    "id": 12619,
+    "url": "https://eauction24.gr/auction/12619",
+    "title": "Οικόπεδο 584 τ.μ. Δήμος Αγρινίου σε πλειστηριασμό",
+    "auction_date": "2026-09-09",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 33000,
+    "area_m2": 584
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 56000,
+  "latest_price": 33000,
+  "drop_pct": 41.1,
+  "latest_id": 12619,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Δυτικής Ελλάδας|Πατρέων|θ κυρηναίου 56 ταραμπούρα πάτρα",
+  "region": "Δυτικής Ελλάδας",
+  "municipality": "Πατρέων",
+  "address": "Θ. Κυρηναίου 56, Ταραμπούρα, Πάτρα",
+  "rounds": [
+   {
+    "id": 10131,
+    "url": "https://eauction24.gr/auction/10131",
+    "title": "Οικόπεδο  Δήμος Πατρέων σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 150000,
+    "area_m2": null
+   },
+   {
+    "id": 10130,
+    "url": "https://eauction24.gr/auction/10130",
+    "title": "Κατοικία 74.39 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 90000,
+    "area_m2": 74.39
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 150000,
+  "latest_price": 90000,
+  "drop_pct": 40.0,
+  "latest_id": 10130,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Περιστερίου|ορφέως 25 περιστέρι αττικής",
+  "region": "Αττικής",
+  "municipality": "Περιστερίου",
+  "address": "Ορφέως 25, Περιστέρι Αττικής",
+  "rounds": [
+   {
+    "id": 9888,
+    "url": "https://eauction24.gr/auction/9888",
+    "title": "Κατοικία 44 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 106000,
+    "area_m2": 44
+   },
+   {
+    "id": 9886,
+    "url": "https://eauction24.gr/auction/9886",
+    "title": "Κατοικία 44 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 65500,
+    "area_m2": 44
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 106000,
+  "latest_price": 65500,
+  "drop_pct": 38.2,
+  "latest_id": 9886,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Πελοποννήσου|Τριφυλίας|θέση «κριθαρίτσα» περιφέρειας τ κ στασιού δ ε κυπαρισσίας δήμου τριφυλίας π ε μεσσηνίας",
+  "region": "Πελοποννήσου",
+  "municipality": "Τριφυλίας",
+  "address": "θέση «Κριθαρίτσα», περιφέρειας Τ.Κ. Στασιού, Δ.Ε. Κυπαρισσίας, Δήμου Τριφυλίας, Π.Ε. Μεσσηνίας",
+  "rounds": [
+   {
+    "id": 8549,
+    "url": "https://eauction24.gr/auction/8549",
+    "title": "Αγροτεμάχιο 2000 τ.μ. Δήμος Τριφυλίας σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 58000,
+    "area_m2": 2000
+   },
+   {
+    "id": 8548,
+    "url": "https://eauction24.gr/auction/8548",
+    "title": "Αγροτεμάχιο 2000 τ.μ. Δήμος Τριφυλίας σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 36000,
+    "area_m2": 2000
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 58000,
+  "latest_price": 36000,
+  "drop_pct": 37.9,
+  "latest_id": 8548,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Ιονίων Νήσων|Κέρκυρας|ε ο κέρκυρας παλαιοκαστρίτσας κέρκυρα",
+  "region": "Ιονίων Νήσων",
+  "municipality": "Κέρκυρας",
+  "address": "Ε.Ο. Κέρκυρας-Παλαιοκαστρίτσας, Κέρκυρα",
+  "rounds": [
+   {
+    "id": 16747,
+    "url": "https://eauction24.gr/auction/16747",
+    "title": "Κατάστημα 101.19 τ.μ. Δήμος Κέρκυρας σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 166000,
+    "area_m2": 101.19
+   },
+   {
+    "id": 16746,
+    "url": "https://eauction24.gr/auction/16746",
+    "title": "Κατάστημα 101.19 τ.μ. Δήμος Κέρκυρας σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 104000,
+    "area_m2": 101.19
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 166000,
+  "latest_price": 104000,
+  "drop_pct": 37.3,
+  "latest_id": 16746,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Θεσσαλίας|Φαρσάλων|θωμαϊδη ο τ 539α φάρσαλα δήμος φαρσάλων περιφερειακή ενότητα λάρισας περιφέρεια θεσσαλίας",
@@ -519,9 +1281,285 @@
   "latest_price": 8625,
   "drop_pct": 37.3,
   "latest_id": 9806,
-  "recent_cuts_30d": 3,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Αθηναίων|σκρα 4 & αννίνου μ 1 3 & πατησίων 337 άνω πατήσια αθήνα",
+  "region": "Αττικής",
+  "municipality": "Αθηναίων",
+  "address": "Σκρα 4 & Αννίνου Μ. 1-3 & Πατησίων 337, Άνω Πατήσια, Αθήνα",
+  "rounds": [
+   {
+    "id": 10226,
+    "url": "https://eauction24.gr/auction/10226",
+    "title": "Κατοικία 117.80 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 200100,
+    "area_m2": 117.8
+   },
+   {
+    "id": 10225,
+    "url": "https://eauction24.gr/auction/10225",
+    "title": "Κατοικία 117.80 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 131200,
+    "area_m2": 117.8
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 200100,
+  "latest_price": 131200,
+  "drop_pct": 34.4,
+  "latest_id": 10225,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Φιλοθέης - Ψυχικού|φιλοθέη αττικής στη θέση «καλογρέζα» στο συνοικισμό υπαλλήλων εθνικής τράπεζας επί της οδού καποδιστρίου αρ 21α",
+  "region": "Αττικής",
+  "municipality": "Φιλοθέης - Ψυχικού",
+  "address": "Φιλοθέη Αττικής, στη θέση «Καλογρέζα», στο συνοικισμό Υπαλλήλων Εθνικής Τράπεζας, επί της οδού Καποδιστρίου αρ. 21Α",
+  "rounds": [
+   {
+    "id": 16815,
+    "url": "https://eauction24.gr/auction/16815",
+    "title": "Αποθήκη 41 τ.μ. Δήμος Φιλοθέης - Ψυχικού σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 15453,
+    "area_m2": 41
+   },
+   {
+    "id": 16814,
+    "url": "https://eauction24.gr/auction/16814",
+    "title": "Αποθήκη 41 τ.μ. Δήμος Φιλοθέης - Ψυχικού σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 10930,
+    "area_m2": 41
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 15453,
+  "latest_price": 10930,
+  "drop_pct": 29.3,
+  "latest_id": 16814,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Δυτικής Ελλάδας|Πατρέων|οδός αλσυλλίου αριθ 12 πάτρα",
+  "region": "Δυτικής Ελλάδας",
+  "municipality": "Πατρέων",
+  "address": "οδός Αλσυλλίου αριθ. 12, Πάτρα",
+  "rounds": [
+   {
+    "id": 13535,
+    "url": "https://eauction24.gr/auction/13535",
+    "title": "Κατοικία 31.50 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
+    "auction_date": "2026-09-16",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 69000,
+    "area_m2": 31.5
+   },
+   {
+    "id": 13534,
+    "url": "https://eauction24.gr/auction/13534",
+    "title": "Κατοικία 31.50 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
+    "auction_date": "2026-09-16",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 72500,
+    "area_m2": 31.5
+   },
+   {
+    "id": 13532,
+    "url": "https://eauction24.gr/auction/13532",
+    "title": "Κατοικία 31.50 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
+    "auction_date": "2026-09-16",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 49500,
+    "area_m2": 31.5
+   }
+  ],
+  "rounds_count": 3,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 69000,
+  "latest_price": 49500,
+  "drop_pct": 28.3,
+  "latest_id": 13532,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Δυτικής Ελλάδας|Ήλιδας|θέση μαρμαρα τοπική και δημοτική ενότητα αμαλιάδας δήμος ήλιδας περιφερειακή ενότητα ηλείας περιφέρεια δυτικής ελλάδας",
+  "region": "Δυτικής Ελλάδας",
+  "municipality": "Ήλιδας",
+  "address": "θέση ΜΑΡΜΑΡΑ, Τοπική και Δημοτική Ενότητα Αμαλιάδας, Δήμος Ήλιδας, Περιφερειακή Ενότητα Ηλείας, Περιφέρεια Δυτικής Ελλάδας",
+  "rounds": [
+   {
+    "id": 10638,
+    "url": "https://eauction24.gr/auction/10638",
+    "title": "Αγροτεμάχιο 5515.13 τ.μ. Δήμος Ήλιδας σε πλειστηριασμό",
+    "auction_date": "2026-07-31",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 5400,
+    "area_m2": 5515.13
+   },
+   {
+    "id": 10636,
+    "url": "https://eauction24.gr/auction/10636",
+    "title": "Αγροτεμάχιο 5515.13 τ.μ. Δήμος Ήλιδας σε πλειστηριασμό",
+    "auction_date": "2026-07-31",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 4000,
+    "area_m2": 5515.13
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 5400,
+  "latest_price": 4000,
+  "drop_pct": 25.9,
+  "latest_id": 10636,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Νοτίου Αιγαίου|Ρόδου|δήμος ρόδου περιφερειακή ενότητα ρόδου περιφέρεια νοτίου αιγαίου επί οικοπέδου στη μερίδα 938αα",
+  "region": "Νοτίου Αιγαίου",
+  "municipality": "Ρόδου",
+  "address": "Δήμος Ρόδου, περιφερειακή ενότητα Ρόδου, περιφέρεια Νοτίου Αιγαίου (επί οικοπέδου στη μερίδα 938ΑΑ)",
+  "rounds": [
+   {
+    "id": 7082,
+    "url": "https://eauction24.gr/auction/7082",
+    "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
+    "auction_date": "2026-07-08",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 11500,
+    "area_m2": 33.5
+   },
+   {
+    "id": 7079,
+    "url": "https://eauction24.gr/auction/7079",
+    "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
+    "auction_date": "2026-07-08",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 8800,
+    "area_m2": 33.5
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 11500,
+  "latest_price": 8800,
+  "drop_pct": 23.5,
+  "latest_id": 7079,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Βάρης - Βούλας - Βουλιαγμένης|οδός θάσου αρ 37 περιοχή βάρκιζα δήμος βάρης βούλας βουλιαγμένης αττική",
+  "region": "Αττικής",
+  "municipality": "Βάρης - Βούλας - Βουλιαγμένης",
+  "address": "οδός Θάσου αρ. 37, περιοχή Βάρκιζα, Δήμος Βάρης-Βούλας-Βουλιαγμένης, Αττική",
+  "rounds": [
+   {
+    "id": 16581,
+    "url": "https://eauction24.gr/auction/16581",
+    "title": "Κατοικία 146.23 τ.μ. Δήμος Βάρης - Βούλας - Βουλιαγμένης σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 94300,
+    "area_m2": 146.23
+   },
+   {
+    "id": 16580,
+    "url": "https://eauction24.gr/auction/16580",
+    "title": "Κατοικία 146.23 τ.μ. Δήμος Βάρης - Βούλας - Βουλιαγμένης σε πλειστηριασμό",
+    "auction_date": "2026-09-30",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 78100,
+    "area_m2": 146.23
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 94300,
+  "latest_price": 78100,
+  "drop_pct": 17.2,
+  "latest_id": 16580,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Μεγαρέων|οδός μίνωας αριθμός 60 μέγαρα αττικής",
+  "region": "Αττικής",
+  "municipality": "Μεγαρέων",
+  "address": "οδός Μίνωας αριθμός 60, Μέγαρα Αττικής",
+  "rounds": [
+   {
+    "id": 17311,
+    "url": "https://eauction24.gr/auction/17311",
+    "title": "Κατοικία 137.60 τ.μ. Δήμος Μεγαρέων σε πλειστηριασμό",
+    "auction_date": "2026-10-02",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 65000,
+    "area_m2": 137.6
+   },
+   {
+    "id": 17310,
+    "url": "https://eauction24.gr/auction/17310",
+    "title": "Κατοικία 137.60 τ.μ. Δήμος Μεγαρέων σε πλειστηριασμό",
+    "auction_date": "2026-10-02",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 55000,
+    "area_m2": 137.6
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 65000,
+  "latest_price": 55000,
+  "drop_pct": 15.4,
+  "latest_id": 17310,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Πελοποννήσου|Κορινθίων|οδός αχιλλέως περιοχή αγίου γεωργίου κόρινθος",
@@ -647,9 +1685,295 @@
   "latest_price": 22000,
   "drop_pct": 13.0,
   "latest_id": 16430,
-  "recent_cuts_30d": 2,
-  "recent_drop": true,
-  "multi_cut": true
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Πελοποννήσου|Βέλου - Βόχας|θέση παλατια εντός οικισμού της δημοτικής κοινότητας κρηνών της δημοτικής ενότητας βέλου του δήμου βέλου βόχας περιφερειακής ενότητας κορινθίας",
+  "region": "Πελοποννήσου",
+  "municipality": "Βέλου - Βόχας",
+  "address": "θέση ΠΑΛΑΤΙΑ, εντός οικισμού της Δημοτικής Κοινότητας Κρηνών, της Δημοτικής Ενότητας Βέλου, του Δήμου Βέλου – Βόχας, Περιφερειακής Ενότητας Κορινθίας",
+  "rounds": [
+   {
+    "id": 8439,
+    "url": "https://eauction24.gr/auction/8439",
+    "title": "Οικόπεδο 1256.56 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 39000,
+    "area_m2": 1256.56
+   },
+   {
+    "id": 8438,
+    "url": "https://eauction24.gr/auction/8438",
+    "title": "Οικόπεδο 1256.56 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 34000,
+    "area_m2": 1256.56
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 39000,
+  "latest_price": 34000,
+  "drop_pct": 12.8,
+  "latest_id": 8438,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Κρήτης|Φαιστού|σκούρβουλα ηρακλείου τοπική κοινότητα σκουρβούλων δημοτική ενότητα μοιρών δήμος φαιστού περιφερειακή ενότητα ηρακλείου νομός ηρακλείου περιφέρεια κρήτης στη θέση «χελιδονιά»",
+  "region": "Κρήτης",
+  "municipality": "Φαιστού",
+  "address": "Σκούρβουλα Ηρακλείου, Τοπική Κοινότητα Σκουρβούλων, Δημοτική Ενότητα Μοιρών, Δήμος Φαιστού, Περιφερειακή Ενότητα Ηρακλείου, Νομός Ηρακλείου, Περιφέρεια Κρήτης, στη θέση «Χελιδονιά»",
+  "rounds": [
+   {
+    "id": 14665,
+    "url": "https://eauction24.gr/auction/14665",
+    "title": "Αγροτεμάχιο 2634 τ.μ. Δήμος Φαιστού σε πλειστηριασμό",
+    "auction_date": "2026-09-23",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 16000,
+    "area_m2": 2634
+   },
+   {
+    "id": 14663,
+    "url": "https://eauction24.gr/auction/14663",
+    "title": "Αγροτεμάχιο 2634 τ.μ. Δήμος Φαιστού σε πλειστηριασμό",
+    "auction_date": "2026-09-23",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 14000,
+    "area_m2": 2634
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 16000,
+  "latest_price": 14000,
+  "drop_pct": 12.5,
+  "latest_id": 14663,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Αττικής|Διονύσου|οδός ηούς σταμάτα δημοτική ενότητα διονύσου δήμος διονύσου περιφερειακή ενότητα ανατολικής αττικής περιφέρεια αττικής",
+  "region": "Αττικής",
+  "municipality": "Διονύσου",
+  "address": "οδός Ηούς, Σταμάτα, Δημοτική Ενότητα Διονύσου, Δήμος Διονύσου, Περιφερειακή Ενότητα Ανατολικής Αττικής, Περιφέρεια Αττικής",
+  "rounds": [
+   {
+    "id": 10273,
+    "url": "https://eauction24.gr/auction/10273",
+    "title": "Οικόπεδο 1557.71 τ.μ. Δήμος Διονύσου σε πλειστηριασμό",
+    "auction_date": "2026-07-23",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 310000,
+    "area_m2": 1557.71
+   },
+   {
+    "id": 10272,
+    "url": "https://eauction24.gr/auction/10272",
+    "title": "Οικόπεδο 1557.71 τ.μ. Δήμος Διονύσου σε πλειστηριασμό",
+    "auction_date": "2026-07-23",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 284000,
+    "area_m2": 1557.71
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 310000,
+  "latest_price": 284000,
+  "drop_pct": 8.4,
+  "latest_id": 10272,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Θεσσαλίας|Φαρσάλων|θωμαϊδη ο τ 539α φάρσαλα περιφερειακή ενότητα λάρισας περιφέρεια θεσσαλίας",
+  "region": "Θεσσαλίας",
+  "municipality": "Φαρσάλων",
+  "address": "ΘΩΜΑΪΔΗ – Ο.Τ. 539Α, Φάρσαλα, Περιφερειακή Ενότητα Λάρισας, Περιφέρεια Θεσσαλίας",
+  "rounds": [
+   {
+    "id": 9820,
+    "url": "https://eauction24.gr/auction/9820",
+    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 9750,
+    "area_m2": 265
+   },
+   {
+    "id": 9813,
+    "url": "https://eauction24.gr/auction/9813",
+    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 13125,
+    "area_m2": 265
+   },
+   {
+    "id": 9804,
+    "url": "https://eauction24.gr/auction/9804",
+    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
+    "auction_date": "2026-07-15",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 9000,
+    "area_m2": 265
+   }
+  ],
+  "rounds_count": 3,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 9750,
+  "latest_price": 9000,
+  "drop_pct": 7.7,
+  "latest_id": 9804,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Κρήτης|Ηρακλείου ΚΡΗΤΗΣ|οδός πινδάρου 28 ηράκλειο",
+  "region": "Κρήτης",
+  "municipality": "Ηρακλείου ΚΡΗΤΗΣ",
+  "address": "οδός Πινδάρου 28, Ηράκλειο",
+  "rounds": [
+   {
+    "id": 14486,
+    "url": "https://eauction24.gr/auction/14486",
+    "title": "Κατοικία 233.81 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
+    "auction_date": "2026-09-23",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 186000,
+    "area_m2": 233.81
+   },
+   {
+    "id": 14485,
+    "url": "https://eauction24.gr/auction/14485",
+    "title": "Κατοικία 233.81 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
+    "auction_date": "2026-09-23",
+    "first_seen": "2026-07-06",
+    "status": "active",
+    "price_eur": 173000,
+    "area_m2": 233.81
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 186000,
+  "latest_price": 173000,
+  "drop_pct": 7.0,
+  "latest_id": 14485,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Κεντρικής Μακεδονίας|Κατερίνης|θέση «αδριανός λόφος» της κτηματικής περιοχής του αγροκτήματος βροντούς κονταριώτισσας υπέρ σαακ λόφου της δ κ λόφου της δ ε πέτρας του δήμου κατερίνης της π ε πιερίας της περιφέρειας κεντρικής μακεδονίας",
+  "region": "Κεντρικής Μακεδονίας",
+  "municipality": "Κατερίνης",
+  "address": "θέση «Αδριανός Λόφος» της κτηματικής περιοχής του αγροκτήματος Βροντούς Κονταριώτισσας υπέρ ΣΑΑΚ Λόφου της Δ.Κ Λόφου της Δ.Ε Πέτρας του Δήμου Κατερίνης της Π.Ε Πιερίας της Περιφέρειας Κεντρικής Μακεδονίας",
+  "rounds": [
+   {
+    "id": 10531,
+    "url": "https://eauction24.gr/auction/10531",
+    "title": "Αγροτεμάχιο 5206 τ.μ. Δήμος Κατερίνης σε πλειστηριασμό",
+    "auction_date": "2026-07-29",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 6700,
+    "area_m2": 5206
+   },
+   {
+    "id": 10530,
+    "url": "https://eauction24.gr/auction/10530",
+    "title": "Αγροτεμάχιο 5125 τ.μ. Δήμος Κατερίνης σε πλειστηριασμό",
+    "auction_date": "2026-07-29",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 6300,
+    "area_m2": 5125
+   }
+  ],
+  "rounds_count": 2,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 6700,
+  "latest_price": 6300,
+  "drop_pct": 6.0,
+  "latest_id": 10530,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
+ },
+ {
+  "key": "Θεσσαλίας|Τρικκαίων|μιαούλη τρίκαλα",
+  "region": "Θεσσαλίας",
+  "municipality": "Τρικκαίων",
+  "address": "Μιαούλη, Τρίκαλα",
+  "rounds": [
+   {
+    "id": 10192,
+    "url": "https://eauction24.gr/auction/10192",
+    "title": "Γραφείο 23 τ.μ. Δήμος Τρικκαίων σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 20000,
+    "area_m2": 23
+   },
+   {
+    "id": 10191,
+    "url": "https://eauction24.gr/auction/10191",
+    "title": "Γραφείο 23 τ.μ. Δήμος Τρικκαίων σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 26000,
+    "area_m2": 23
+   },
+   {
+    "id": 10190,
+    "url": "https://eauction24.gr/auction/10190",
+    "title": "Γραφείο 23 τ.μ. Δήμος Τρικκαίων σε πλειστηριασμό",
+    "auction_date": "2026-07-22",
+    "first_seen": "2026-07-06",
+    "status": "removed",
+    "price_eur": 19000,
+    "area_m2": 23
+   }
+  ],
+  "rounds_count": 3,
+  "area_mismatch": false,
+  "has_drop": true,
+  "first_price": 20000,
+  "latest_price": 19000,
+  "drop_pct": 5.0,
+  "latest_id": 10190,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
+  "multi_cut": false
  },
  {
   "key": "Αττικής|Διονύσου|οδός ηούς 7 σταμάτα αττικής",
@@ -735,1332 +2059,8 @@
   "latest_price": 194000,
   "drop_pct": 3.5,
   "latest_id": 10285,
-  "recent_cuts_30d": 2,
-  "recent_drop": true,
-  "multi_cut": true
- },
- {
-  "key": "Κεντρικής Μακεδονίας|Ηρωικής Πόλεως Νάουσας|τ κ αγγελοχωρίου της δ ε ειρηνούπολης του δήμου νάουσας ημαθίας στη θέση «ρουντινα»",
-  "region": "Κεντρικής Μακεδονίας",
-  "municipality": "Ηρωικής Πόλεως Νάουσας",
-  "address": "Τ.Κ. Αγγελοχωρίου της Δ.Ε. Ειρηνούπολης του Δήμου Νάουσας Ημαθίας, στη θέση «ΡΟΥΝΤΙΝΑ»",
-  "rounds": [
-   {
-    "id": 15870,
-    "url": "https://eauction24.gr/auction/15870",
-    "title": "Αγροτεμάχιο με κτίσμα 1000 τ.μ. Δήμος Ηρωικής Πόλεως Νάουσας σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 143000,
-    "area_m2": 1000
-   },
-   {
-    "id": 15869,
-    "url": "https://eauction24.gr/auction/15869",
-    "title": "Αγροτεμάχιο με κτίσμα 1000 τ.μ. Δήμος Ηρωικής Πόλεως Νάουσας σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 9100,
-    "area_m2": 1000
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 143000,
-  "latest_price": 9100,
-  "drop_pct": 93.6,
-  "latest_id": 15869,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Νοτίου Αιγαίου|Ρόδου|δημοτική κοινότητα αφάντου δημοτική ενότητα αφάντου περιφερειακή ενότητα ρόδου περιφέρεια νοτίου αιγαίου",
-  "region": "Νοτίου Αιγαίου",
-  "municipality": "Ρόδου",
-  "address": "δημοτική κοινότητα Αφάντου, δημοτική ενότητα Αφάντου, περιφερειακή ενότητα Ρόδου, περιφέρεια Νοτίου Αιγαίου",
-  "rounds": [
-   {
-    "id": 9896,
-    "url": "https://eauction24.gr/auction/9896",
-    "title": "Κατάστημα 32.42 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 73000,
-    "area_m2": 32.42
-   },
-   {
-    "id": 9895,
-    "url": "https://eauction24.gr/auction/9895",
-    "title": "Αποθήκη 32.42 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 11000,
-    "area_m2": 32.42
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 73000,
-  "latest_price": 11000,
-  "drop_pct": 84.9,
-  "latest_id": 9895,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Πελοποννήσου|Βέλου - Βόχας|θέση ραπτη της κτηματικής περιφέρειας της δημοτικής κοινότητας ζευγολατιού κορινθίας της δημοτικής ενότητας βόχας του δήμου βέλου βόχας κορινθίας π ε κορινθίας περιφέρειας πελοποννήσου",
-  "region": "Πελοποννήσου",
-  "municipality": "Βέλου - Βόχας",
-  "address": "θέση ΡΑΠΤΗ της κτηματικής περιφέρειας της δημοτικής κοινότητας Ζευγολατιού Κορινθίας, της δημοτικής ενότητας Βόχας, του Δήμου Βέλου-Βόχας Κορινθίας, Π.Ε. Κορινθίας, Περιφέρειας Πελοποννήσου",
-  "rounds": [
-   {
-    "id": 8633,
-    "url": "https://eauction24.gr/auction/8633",
-    "title": "Αγροτεμάχιο 3149.20 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 57300,
-    "area_m2": 3149.2
-   },
-   {
-    "id": 8632,
-    "url": "https://eauction24.gr/auction/8632",
-    "title": "Αγροτεμάχιο 3149.20 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 9300,
-    "area_m2": 3149.2
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 57300,
-  "latest_price": 9300,
-  "drop_pct": 83.8,
-  "latest_id": 8632,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Αχαρνών|δήμος αχαρνών αττικής θέση «πατητήρι φράγκου» επί των οδών σάμου και κοσμά αιτωλού αριθ 29",
-  "region": "Αττικής",
-  "municipality": "Αχαρνών",
-  "address": "Δήμος Αχαρνών Αττικής, θέση «Πατητήρι Φράγκου», επί των οδών Σάμου και Κοσμά Αιτωλού αριθ. 29",
-  "rounds": [
-   {
-    "id": 8586,
-    "url": "https://eauction24.gr/auction/8586",
-    "title": "Οικόπεδο 723.10 τ.μ. Δήμος Αχαρνών σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 191111,
-    "area_m2": 723.1
-   },
-   {
-    "id": 8585,
-    "url": "https://eauction24.gr/auction/8585",
-    "title": "Οικόπεδο 723.10 τ.μ. Δήμος Αχαρνών σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 42926,
-    "area_m2": 723.1
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 191111,
-  "latest_price": 42926,
-  "drop_pct": 77.5,
-  "latest_id": 8585,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Ηλιουπόλεως|οδός φειδίου αρ 106 ηλιούπολη αττικής",
-  "region": "Αττικής",
-  "municipality": "Ηλιουπόλεως",
-  "address": "οδός Φειδίου αρ. 106, Ηλιούπολη Αττικής",
-  "rounds": [
-   {
-    "id": 9922,
-    "url": "https://eauction24.gr/auction/9922",
-    "title": "Κατοικία 87.86 τ.μ. Δήμος Ηλιουπόλεως σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 178000,
-    "area_m2": 87.86
-   },
-   {
-    "id": 9921,
-    "url": "https://eauction24.gr/auction/9921",
-    "title": "Κατοικία 87.86 τ.μ. Δήμος Ηλιουπόλεως σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 42000,
-    "area_m2": 87.86
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 178000,
-  "latest_price": 42000,
-  "drop_pct": 76.4,
-  "latest_id": 9921,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Ηπείρου|Αρταίων|βασιλέως κωνσταντίνου 50 άρτα",
-  "region": "Ηπείρου",
-  "municipality": "Αρταίων",
-  "address": "Βασιλέως Κωνσταντίνου 50, Άρτα",
-  "rounds": [
-   {
-    "id": 15005,
-    "url": "https://eauction24.gr/auction/15005",
-    "title": "Κατοικία 80 τ.μ. Δήμος Αρταίων σε πλειστηριασμό",
-    "auction_date": "2026-09-25",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 109000,
-    "area_m2": 80
-   },
-   {
-    "id": 14999,
-    "url": "https://eauction24.gr/auction/14999",
-    "title": "Κατοικία 80 τ.μ. Δήμος Αρταίων σε πλειστηριασμό",
-    "auction_date": "2026-09-25",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 36000,
-    "area_m2": 80
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 109000,
-  "latest_price": 36000,
-  "drop_pct": 67.0,
-  "latest_id": 14999,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Στερεάς Ελλάδας|Σκύρου|θέση «άγιος νικόλαος» της περιοχής «αχίλλι» της δ κ σκύρου της δ ε σκύρου του δήμου σκύρου της π ε ευβοίας της περιφέρειας στερεάς ελλάδας",
-  "region": "Στερεάς Ελλάδας",
-  "municipality": "Σκύρου",
-  "address": "θέση «Άγιος Νικόλαος» της περιοχής «Αχίλλι» της Δ.Κ. Σκύρου, της Δ.Ε. Σκύρου, του Δήμου Σκύρου, της Π.Ε. Ευβοίας, της Περιφέρειας Στερεάς Ελλάδας",
-  "rounds": [
-   {
-    "id": 12252,
-    "url": "https://eauction24.gr/auction/12252",
-    "title": "Αγροτεμάχιο 49200 τ.μ. Δήμος Σκύρου σε πλειστηριασμό",
-    "auction_date": "2026-09-02",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 299000,
-    "area_m2": 49200
-   },
-   {
-    "id": 12251,
-    "url": "https://eauction24.gr/auction/12251",
-    "title": "Αγροτεμάχιο 49200 τ.μ. Δήμος Σκύρου σε πλειστηριασμό",
-    "auction_date": "2026-09-02",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 108000,
-    "area_m2": 49200
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 299000,
-  "latest_price": 108000,
-  "drop_pct": 63.9,
-  "latest_id": 12251,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Δυτικής Μακεδονίας|Κοζάνης|οδός αρχελάου αριθμ 25 κοζάνη",
-  "region": "Δυτικής Μακεδονίας",
-  "municipality": "Κοζάνης",
-  "address": "οδός Αρχελάου αριθμ. 25, Κοζάνη",
-  "rounds": [
-   {
-    "id": 6988,
-    "url": "https://eauction24.gr/auction/6988",
-    "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
-    "auction_date": "2026-07-08",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 91500,
-    "area_m2": 91.5
-   },
-   {
-    "id": 6987,
-    "url": "https://eauction24.gr/auction/6987",
-    "title": "Κατοικία 91.50 τ.μ. Δήμος Κοζάνης σε πλειστηριασμό",
-    "auction_date": "2026-07-08",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 34500,
-    "area_m2": 91.5
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 91500,
-  "latest_price": 34500,
-  "drop_pct": 62.3,
-  "latest_id": 6987,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Θεσσαλίας|Λαρισαίων|λάρισα οδός χατζηγιάννη αρ 4",
-  "region": "Θεσσαλίας",
-  "municipality": "Λαρισαίων",
-  "address": "Λάρισα, οδός Χατζηγιάννη αρ. 4",
-  "rounds": [
-   {
-    "id": 16798,
-    "url": "https://eauction24.gr/auction/16798",
-    "title": "Θέση Στάθμευσης (parking) 10.12 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 10000,
-    "area_m2": 10.12
-   },
-   {
-    "id": 16797,
-    "url": "https://eauction24.gr/auction/16797",
-    "title": "Αποθήκη 10.15 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 4000,
-    "area_m2": 10.15
-   },
-   {
-    "id": 16796,
-    "url": "https://eauction24.gr/auction/16796",
-    "title": "Αποθήκη 10.15 τ.μ. Δήμος Λαρισαίων σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 4000,
-    "area_m2": 10.15
-   }
-  ],
-  "rounds_count": 3,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 10000,
-  "latest_price": 4000,
-  "drop_pct": 60.0,
-  "latest_id": 16796,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Αθηναίων|λεωφόρος κηφισίας 125 127 ψυχικό δήμος αθηναίων",
-  "region": "Αττικής",
-  "municipality": "Αθηναίων",
-  "address": "Λεωφόρος Κηφισίας 125-127, Ψυχικό, Δήμος Αθηναίων",
-  "rounds": [
-   {
-    "id": 16916,
-    "url": "https://eauction24.gr/auction/16916",
-    "title": "Κατάστημα 53 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 46255,
-    "area_m2": 53
-   },
-   {
-    "id": 16898,
-    "url": "https://eauction24.gr/auction/16898",
-    "title": "Κατάστημα 53 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 58500,
-    "area_m2": 53
-   },
-   {
-    "id": 16883,
-    "url": "https://eauction24.gr/auction/16883",
-    "title": "Κατάστημα 53 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 21632,
-    "area_m2": 53
-   }
-  ],
-  "rounds_count": 3,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 46255,
-  "latest_price": 21632,
-  "drop_pct": 53.2,
-  "latest_id": 16883,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Κρήτης|Ηρακλείου ΚΡΗΤΗΣ|οδός αμαζόνων αρ 17 ηράκλειο κρήτης",
-  "region": "Κρήτης",
-  "municipality": "Ηρακλείου ΚΡΗΤΗΣ",
-  "address": "οδός Αμαζόνων αρ.17, Ηράκλειο Κρήτης",
-  "rounds": [
-   {
-    "id": 7207,
-    "url": "https://eauction24.gr/auction/7207",
-    "title": "Κατοικία 114.45 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
-    "auction_date": "2026-07-08",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 100000,
-    "area_m2": 114.45
-   },
-   {
-    "id": 7206,
-    "url": "https://eauction24.gr/auction/7206",
-    "title": "Κατοικία 114.45 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
-    "auction_date": "2026-07-08",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 118000,
-    "area_m2": 114.45
-   },
-   {
-    "id": 7205,
-    "url": "https://eauction24.gr/auction/7205",
-    "title": "Αποθήκη 115.63 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
-    "auction_date": "2026-07-08",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 50000,
-    "area_m2": 115.63
-   }
-  ],
-  "rounds_count": 3,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 100000,
-  "latest_price": 50000,
-  "drop_pct": 50.0,
-  "latest_id": 7205,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Θεσσαλίας|Φαρσάλων|φάρσαλα δ κ και ενότητα φαρσάλων δήμος φαρσάλων περιφερειακή ενότητα λάρισας περιφέρεια θεσσαλίας θέση «θωμαϊδη ο τ 539α»",
-  "region": "Θεσσαλίας",
-  "municipality": "Φαρσάλων",
-  "address": "Φάρσαλα, Δ.Κ. και Ενότητα Φαρσάλων, Δήμος Φαρσάλων, Περιφερειακή Ενότητα Λάρισας, Περιφέρεια Θεσσαλίας, θέση «ΘΩΜΑΪΔΗ – Ο.Τ. 539Α»",
-  "rounds": [
-   {
-    "id": 9817,
-    "url": "https://eauction24.gr/auction/9817",
-    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 15625,
-    "area_m2": 265
-   },
-   {
-    "id": 9814,
-    "url": "https://eauction24.gr/auction/9814",
-    "title": "Οικόπεδο 262.49 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 7875,
-    "area_m2": 262.49
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 15625,
-  "latest_price": 7875,
-  "drop_pct": 49.6,
-  "latest_id": 9814,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Ανατολικής Μακεδονίας και Θράκης|Δοξάτου|συμβολή της οδού εθνικής αντιστάσεως με την οδόν βασιλείου βουλγαροκτόνου δημοτική κοινότητα δοξάτου δημοτική ενότητα δοξάτου δήμος δοξάτου περιφερειακή ενότητα δράμας",
-  "region": "Ανατολικής Μακεδονίας και Θράκης",
-  "municipality": "Δοξάτου",
-  "address": "συμβολή της οδού Εθνικής Αντιστάσεως με την οδόν Βασιλείου Βουλγαροκτόνου, Δημοτική Κοινότητα Δοξάτου, Δημοτική Ενότητα Δοξάτου, Δήμος Δοξάτου, Περιφερειακή Ενότητα Δράμας",
-  "rounds": [
-   {
-    "id": 16655,
-    "url": "https://eauction24.gr/auction/16655",
-    "title": "Οικόπεδο 1047.78 τ.μ. Δήμος Δοξάτου σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 1210,
-    "area_m2": 1047.78
-   },
-   {
-    "id": 16654,
-    "url": "https://eauction24.gr/auction/16654",
-    "title": "Οικόπεδο 1047.78 τ.μ. Δήμος Δοξάτου σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 660,
-    "area_m2": 1047.78
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 1210,
-  "latest_price": 660,
-  "drop_pct": 45.5,
-  "latest_id": 16654,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Βορείου Αιγαίου|Λέσβου|θέση «δεργας» της αγροτικής περιφέρειας ερεσού του δήμου δυτικής λέσβου με την ειδική ονομασία «πετραδερη»",
-  "region": "Βορείου Αιγαίου",
-  "municipality": "Λέσβου",
-  "address": "θέση «ΔΕΡΓΑΣ» της αγροτικής περιφέρειας Ερεσού του Δήμου Δυτικής Λέσβου, με την ειδική ονομασία «ΠΕΤΡΑΔΕΡΗ»",
-  "rounds": [
-   {
-    "id": 9908,
-    "url": "https://eauction24.gr/auction/9908",
-    "title": "Αγροτεμάχιο 19790.29 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 120000,
-    "area_m2": 19790.29
-   },
-   {
-    "id": 9907,
-    "url": "https://eauction24.gr/auction/9907",
-    "title": "Αγροτεμάχιο 19790.29 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 160000,
-    "area_m2": 19790.29
-   },
-   {
-    "id": 9906,
-    "url": "https://eauction24.gr/auction/9906",
-    "title": "Αγροτεμάχιο 19790.29 τ.μ. Δήμος Λέσβου σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 66600,
-    "area_m2": 19790.29
-   }
-  ],
-  "rounds_count": 3,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 120000,
-  "latest_price": 66600,
-  "drop_pct": 44.5,
-  "latest_id": 9906,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Δυτικής Ελλάδας|Αγρινίου|δημοτική κοινότητα αγίου κωνσταντίνου της δημοτικής ενότητας αγρινίου του διευρυμένου δήμου αγρινίου περιφερειακή ενότητα αιτωλοακαρνανίας περιφέρεια δυτικής ελλάδος στο ο τ 102 και επί της δημοτικής οδού πλαστήρα",
-  "region": "Δυτικής Ελλάδας",
-  "municipality": "Αγρινίου",
-  "address": "Δημοτική Κοινότητα Αγίου Κωνσταντίνου της Δημοτικής Ενότητας Αγρινίου του διευρυμένου Δήμου Αγρινίου, Περιφερειακή Ενότητα Αιτωλοακαρνανίας, Περιφέρεια Δυτικής Ελλάδος, στο Ο.Τ. 102 και επί της δημοτικής οδού Πλαστήρα",
-  "rounds": [
-   {
-    "id": 12621,
-    "url": "https://eauction24.gr/auction/12621",
-    "title": "Οικόπεδο 592.50 τ.μ. Δήμος Αγρινίου σε πλειστηριασμό",
-    "auction_date": "2026-09-09",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 56000,
-    "area_m2": 592.5
-   },
-   {
-    "id": 12619,
-    "url": "https://eauction24.gr/auction/12619",
-    "title": "Οικόπεδο 584 τ.μ. Δήμος Αγρινίου σε πλειστηριασμό",
-    "auction_date": "2026-09-09",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 33000,
-    "area_m2": 584
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 56000,
-  "latest_price": 33000,
-  "drop_pct": 41.1,
-  "latest_id": 12619,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Δυτικής Ελλάδας|Πατρέων|θ κυρηναίου 56 ταραμπούρα πάτρα",
-  "region": "Δυτικής Ελλάδας",
-  "municipality": "Πατρέων",
-  "address": "Θ. Κυρηναίου 56, Ταραμπούρα, Πάτρα",
-  "rounds": [
-   {
-    "id": 10131,
-    "url": "https://eauction24.gr/auction/10131",
-    "title": "Οικόπεδο  Δήμος Πατρέων σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 150000,
-    "area_m2": null
-   },
-   {
-    "id": 10130,
-    "url": "https://eauction24.gr/auction/10130",
-    "title": "Κατοικία 74.39 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 90000,
-    "area_m2": 74.39
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 150000,
-  "latest_price": 90000,
-  "drop_pct": 40.0,
-  "latest_id": 10130,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Περιστερίου|ορφέως 25 περιστέρι αττικής",
-  "region": "Αττικής",
-  "municipality": "Περιστερίου",
-  "address": "Ορφέως 25, Περιστέρι Αττικής",
-  "rounds": [
-   {
-    "id": 9888,
-    "url": "https://eauction24.gr/auction/9888",
-    "title": "Κατοικία 44 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 106000,
-    "area_m2": 44
-   },
-   {
-    "id": 9886,
-    "url": "https://eauction24.gr/auction/9886",
-    "title": "Κατοικία 44 τ.μ. Δήμος Περιστερίου σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 65500,
-    "area_m2": 44
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 106000,
-  "latest_price": 65500,
-  "drop_pct": 38.2,
-  "latest_id": 9886,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Πελοποννήσου|Τριφυλίας|θέση «κριθαρίτσα» περιφέρειας τ κ στασιού δ ε κυπαρισσίας δήμου τριφυλίας π ε μεσσηνίας",
-  "region": "Πελοποννήσου",
-  "municipality": "Τριφυλίας",
-  "address": "θέση «Κριθαρίτσα», περιφέρειας Τ.Κ. Στασιού, Δ.Ε. Κυπαρισσίας, Δήμου Τριφυλίας, Π.Ε. Μεσσηνίας",
-  "rounds": [
-   {
-    "id": 8549,
-    "url": "https://eauction24.gr/auction/8549",
-    "title": "Αγροτεμάχιο 2000 τ.μ. Δήμος Τριφυλίας σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 58000,
-    "area_m2": 2000
-   },
-   {
-    "id": 8548,
-    "url": "https://eauction24.gr/auction/8548",
-    "title": "Αγροτεμάχιο 2000 τ.μ. Δήμος Τριφυλίας σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 36000,
-    "area_m2": 2000
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 58000,
-  "latest_price": 36000,
-  "drop_pct": 37.9,
-  "latest_id": 8548,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Ιονίων Νήσων|Κέρκυρας|ε ο κέρκυρας παλαιοκαστρίτσας κέρκυρα",
-  "region": "Ιονίων Νήσων",
-  "municipality": "Κέρκυρας",
-  "address": "Ε.Ο. Κέρκυρας-Παλαιοκαστρίτσας, Κέρκυρα",
-  "rounds": [
-   {
-    "id": 16747,
-    "url": "https://eauction24.gr/auction/16747",
-    "title": "Κατάστημα 101.19 τ.μ. Δήμος Κέρκυρας σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 166000,
-    "area_m2": 101.19
-   },
-   {
-    "id": 16746,
-    "url": "https://eauction24.gr/auction/16746",
-    "title": "Κατάστημα 101.19 τ.μ. Δήμος Κέρκυρας σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 104000,
-    "area_m2": 101.19
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 166000,
-  "latest_price": 104000,
-  "drop_pct": 37.3,
-  "latest_id": 16746,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Αθηναίων|σκρα 4 & αννίνου μ 1 3 & πατησίων 337 άνω πατήσια αθήνα",
-  "region": "Αττικής",
-  "municipality": "Αθηναίων",
-  "address": "Σκρα 4 & Αννίνου Μ. 1-3 & Πατησίων 337, Άνω Πατήσια, Αθήνα",
-  "rounds": [
-   {
-    "id": 10226,
-    "url": "https://eauction24.gr/auction/10226",
-    "title": "Κατοικία 117.80 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 200100,
-    "area_m2": 117.8
-   },
-   {
-    "id": 10225,
-    "url": "https://eauction24.gr/auction/10225",
-    "title": "Κατοικία 117.80 τ.μ. Δήμος Αθηναίων σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 131200,
-    "area_m2": 117.8
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 200100,
-  "latest_price": 131200,
-  "drop_pct": 34.4,
-  "latest_id": 10225,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Φιλοθέης - Ψυχικού|φιλοθέη αττικής στη θέση «καλογρέζα» στο συνοικισμό υπαλλήλων εθνικής τράπεζας επί της οδού καποδιστρίου αρ 21α",
-  "region": "Αττικής",
-  "municipality": "Φιλοθέης - Ψυχικού",
-  "address": "Φιλοθέη Αττικής, στη θέση «Καλογρέζα», στο συνοικισμό Υπαλλήλων Εθνικής Τράπεζας, επί της οδού Καποδιστρίου αρ. 21Α",
-  "rounds": [
-   {
-    "id": 16815,
-    "url": "https://eauction24.gr/auction/16815",
-    "title": "Αποθήκη 41 τ.μ. Δήμος Φιλοθέης - Ψυχικού σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 15453,
-    "area_m2": 41
-   },
-   {
-    "id": 16814,
-    "url": "https://eauction24.gr/auction/16814",
-    "title": "Αποθήκη 41 τ.μ. Δήμος Φιλοθέης - Ψυχικού σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 10930,
-    "area_m2": 41
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 15453,
-  "latest_price": 10930,
-  "drop_pct": 29.3,
-  "latest_id": 16814,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Δυτικής Ελλάδας|Πατρέων|οδός αλσυλλίου αριθ 12 πάτρα",
-  "region": "Δυτικής Ελλάδας",
-  "municipality": "Πατρέων",
-  "address": "οδός Αλσυλλίου αριθ. 12, Πάτρα",
-  "rounds": [
-   {
-    "id": 13535,
-    "url": "https://eauction24.gr/auction/13535",
-    "title": "Κατοικία 31.50 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
-    "auction_date": "2026-09-16",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 69000,
-    "area_m2": 31.5
-   },
-   {
-    "id": 13534,
-    "url": "https://eauction24.gr/auction/13534",
-    "title": "Κατοικία 31.50 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
-    "auction_date": "2026-09-16",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 72500,
-    "area_m2": 31.5
-   },
-   {
-    "id": 13532,
-    "url": "https://eauction24.gr/auction/13532",
-    "title": "Κατοικία 31.50 τ.μ. Δήμος Πατρέων σε πλειστηριασμό",
-    "auction_date": "2026-09-16",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 49500,
-    "area_m2": 31.5
-   }
-  ],
-  "rounds_count": 3,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 69000,
-  "latest_price": 49500,
-  "drop_pct": 28.3,
-  "latest_id": 13532,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Δυτικής Ελλάδας|Ήλιδας|θέση μαρμαρα τοπική και δημοτική ενότητα αμαλιάδας δήμος ήλιδας περιφερειακή ενότητα ηλείας περιφέρεια δυτικής ελλάδας",
-  "region": "Δυτικής Ελλάδας",
-  "municipality": "Ήλιδας",
-  "address": "θέση ΜΑΡΜΑΡΑ, Τοπική και Δημοτική Ενότητα Αμαλιάδας, Δήμος Ήλιδας, Περιφερειακή Ενότητα Ηλείας, Περιφέρεια Δυτικής Ελλάδας",
-  "rounds": [
-   {
-    "id": 10638,
-    "url": "https://eauction24.gr/auction/10638",
-    "title": "Αγροτεμάχιο 5515.13 τ.μ. Δήμος Ήλιδας σε πλειστηριασμό",
-    "auction_date": "2026-07-31",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 5400,
-    "area_m2": 5515.13
-   },
-   {
-    "id": 10636,
-    "url": "https://eauction24.gr/auction/10636",
-    "title": "Αγροτεμάχιο 5515.13 τ.μ. Δήμος Ήλιδας σε πλειστηριασμό",
-    "auction_date": "2026-07-31",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 4000,
-    "area_m2": 5515.13
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 5400,
-  "latest_price": 4000,
-  "drop_pct": 25.9,
-  "latest_id": 10636,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Νοτίου Αιγαίου|Ρόδου|δήμος ρόδου περιφερειακή ενότητα ρόδου περιφέρεια νοτίου αιγαίου επί οικοπέδου στη μερίδα 938αα",
-  "region": "Νοτίου Αιγαίου",
-  "municipality": "Ρόδου",
-  "address": "Δήμος Ρόδου, περιφερειακή ενότητα Ρόδου, περιφέρεια Νοτίου Αιγαίου (επί οικοπέδου στη μερίδα 938ΑΑ)",
-  "rounds": [
-   {
-    "id": 7082,
-    "url": "https://eauction24.gr/auction/7082",
-    "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
-    "auction_date": "2026-07-08",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 11500,
-    "area_m2": 33.5
-   },
-   {
-    "id": 7079,
-    "url": "https://eauction24.gr/auction/7079",
-    "title": "Κατάστημα 33.50 τ.μ. Δήμος Ρόδου σε πλειστηριασμό",
-    "auction_date": "2026-07-08",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 8800,
-    "area_m2": 33.5
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 11500,
-  "latest_price": 8800,
-  "drop_pct": 23.5,
-  "latest_id": 7079,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Βάρης - Βούλας - Βουλιαγμένης|οδός θάσου αρ 37 περιοχή βάρκιζα δήμος βάρης βούλας βουλιαγμένης αττική",
-  "region": "Αττικής",
-  "municipality": "Βάρης - Βούλας - Βουλιαγμένης",
-  "address": "οδός Θάσου αρ. 37, περιοχή Βάρκιζα, Δήμος Βάρης-Βούλας-Βουλιαγμένης, Αττική",
-  "rounds": [
-   {
-    "id": 16581,
-    "url": "https://eauction24.gr/auction/16581",
-    "title": "Κατοικία 146.23 τ.μ. Δήμος Βάρης - Βούλας - Βουλιαγμένης σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 94300,
-    "area_m2": 146.23
-   },
-   {
-    "id": 16580,
-    "url": "https://eauction24.gr/auction/16580",
-    "title": "Κατοικία 146.23 τ.μ. Δήμος Βάρης - Βούλας - Βουλιαγμένης σε πλειστηριασμό",
-    "auction_date": "2026-09-30",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 78100,
-    "area_m2": 146.23
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 94300,
-  "latest_price": 78100,
-  "drop_pct": 17.2,
-  "latest_id": 16580,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Μεγαρέων|οδός μίνωας αριθμός 60 μέγαρα αττικής",
-  "region": "Αττικής",
-  "municipality": "Μεγαρέων",
-  "address": "οδός Μίνωας αριθμός 60, Μέγαρα Αττικής",
-  "rounds": [
-   {
-    "id": 17311,
-    "url": "https://eauction24.gr/auction/17311",
-    "title": "Κατοικία 137.60 τ.μ. Δήμος Μεγαρέων σε πλειστηριασμό",
-    "auction_date": "2026-10-02",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 65000,
-    "area_m2": 137.6
-   },
-   {
-    "id": 17310,
-    "url": "https://eauction24.gr/auction/17310",
-    "title": "Κατοικία 137.60 τ.μ. Δήμος Μεγαρέων σε πλειστηριασμό",
-    "auction_date": "2026-10-02",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 55000,
-    "area_m2": 137.6
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 65000,
-  "latest_price": 55000,
-  "drop_pct": 15.4,
-  "latest_id": 17310,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Πελοποννήσου|Βέλου - Βόχας|θέση παλατια εντός οικισμού της δημοτικής κοινότητας κρηνών της δημοτικής ενότητας βέλου του δήμου βέλου βόχας περιφερειακής ενότητας κορινθίας",
-  "region": "Πελοποννήσου",
-  "municipality": "Βέλου - Βόχας",
-  "address": "θέση ΠΑΛΑΤΙΑ, εντός οικισμού της Δημοτικής Κοινότητας Κρηνών, της Δημοτικής Ενότητας Βέλου, του Δήμου Βέλου – Βόχας, Περιφερειακής Ενότητας Κορινθίας",
-  "rounds": [
-   {
-    "id": 8439,
-    "url": "https://eauction24.gr/auction/8439",
-    "title": "Οικόπεδο 1256.56 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 39000,
-    "area_m2": 1256.56
-   },
-   {
-    "id": 8438,
-    "url": "https://eauction24.gr/auction/8438",
-    "title": "Οικόπεδο 1256.56 τ.μ. Δήμος Βέλου - Βόχας σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 34000,
-    "area_m2": 1256.56
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 39000,
-  "latest_price": 34000,
-  "drop_pct": 12.8,
-  "latest_id": 8438,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Κρήτης|Φαιστού|σκούρβουλα ηρακλείου τοπική κοινότητα σκουρβούλων δημοτική ενότητα μοιρών δήμος φαιστού περιφερειακή ενότητα ηρακλείου νομός ηρακλείου περιφέρεια κρήτης στη θέση «χελιδονιά»",
-  "region": "Κρήτης",
-  "municipality": "Φαιστού",
-  "address": "Σκούρβουλα Ηρακλείου, Τοπική Κοινότητα Σκουρβούλων, Δημοτική Ενότητα Μοιρών, Δήμος Φαιστού, Περιφερειακή Ενότητα Ηρακλείου, Νομός Ηρακλείου, Περιφέρεια Κρήτης, στη θέση «Χελιδονιά»",
-  "rounds": [
-   {
-    "id": 14665,
-    "url": "https://eauction24.gr/auction/14665",
-    "title": "Αγροτεμάχιο 2634 τ.μ. Δήμος Φαιστού σε πλειστηριασμό",
-    "auction_date": "2026-09-23",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 16000,
-    "area_m2": 2634
-   },
-   {
-    "id": 14663,
-    "url": "https://eauction24.gr/auction/14663",
-    "title": "Αγροτεμάχιο 2634 τ.μ. Δήμος Φαιστού σε πλειστηριασμό",
-    "auction_date": "2026-09-23",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 14000,
-    "area_m2": 2634
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 16000,
-  "latest_price": 14000,
-  "drop_pct": 12.5,
-  "latest_id": 14663,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Αττικής|Διονύσου|οδός ηούς σταμάτα δημοτική ενότητα διονύσου δήμος διονύσου περιφερειακή ενότητα ανατολικής αττικής περιφέρεια αττικής",
-  "region": "Αττικής",
-  "municipality": "Διονύσου",
-  "address": "οδός Ηούς, Σταμάτα, Δημοτική Ενότητα Διονύσου, Δήμος Διονύσου, Περιφερειακή Ενότητα Ανατολικής Αττικής, Περιφέρεια Αττικής",
-  "rounds": [
-   {
-    "id": 10273,
-    "url": "https://eauction24.gr/auction/10273",
-    "title": "Οικόπεδο 1557.71 τ.μ. Δήμος Διονύσου σε πλειστηριασμό",
-    "auction_date": "2026-07-23",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 310000,
-    "area_m2": 1557.71
-   },
-   {
-    "id": 10272,
-    "url": "https://eauction24.gr/auction/10272",
-    "title": "Οικόπεδο 1557.71 τ.μ. Δήμος Διονύσου σε πλειστηριασμό",
-    "auction_date": "2026-07-23",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 284000,
-    "area_m2": 1557.71
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 310000,
-  "latest_price": 284000,
-  "drop_pct": 8.4,
-  "latest_id": 10272,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Θεσσαλίας|Φαρσάλων|θωμαϊδη ο τ 539α φάρσαλα περιφερειακή ενότητα λάρισας περιφέρεια θεσσαλίας",
-  "region": "Θεσσαλίας",
-  "municipality": "Φαρσάλων",
-  "address": "ΘΩΜΑΪΔΗ – Ο.Τ. 539Α, Φάρσαλα, Περιφερειακή Ενότητα Λάρισας, Περιφέρεια Θεσσαλίας",
-  "rounds": [
-   {
-    "id": 9820,
-    "url": "https://eauction24.gr/auction/9820",
-    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 9750,
-    "area_m2": 265
-   },
-   {
-    "id": 9813,
-    "url": "https://eauction24.gr/auction/9813",
-    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 13125,
-    "area_m2": 265
-   },
-   {
-    "id": 9804,
-    "url": "https://eauction24.gr/auction/9804",
-    "title": "Οικόπεδο 265 τ.μ. Δήμος Φαρσάλων σε πλειστηριασμό",
-    "auction_date": "2026-07-15",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 9000,
-    "area_m2": 265
-   }
-  ],
-  "rounds_count": 3,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 9750,
-  "latest_price": 9000,
-  "drop_pct": 7.7,
-  "latest_id": 9804,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Κρήτης|Ηρακλείου ΚΡΗΤΗΣ|οδός πινδάρου 28 ηράκλειο",
-  "region": "Κρήτης",
-  "municipality": "Ηρακλείου ΚΡΗΤΗΣ",
-  "address": "οδός Πινδάρου 28, Ηράκλειο",
-  "rounds": [
-   {
-    "id": 14486,
-    "url": "https://eauction24.gr/auction/14486",
-    "title": "Κατοικία 233.81 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
-    "auction_date": "2026-09-23",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 186000,
-    "area_m2": 233.81
-   },
-   {
-    "id": 14485,
-    "url": "https://eauction24.gr/auction/14485",
-    "title": "Κατοικία 233.81 τ.μ. Δήμος Ηρακλείου ΚΡΗΤΗΣ σε πλειστηριασμό",
-    "auction_date": "2026-09-23",
-    "first_seen": "2026-07-06",
-    "status": "active",
-    "price_eur": 173000,
-    "area_m2": 233.81
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 186000,
-  "latest_price": 173000,
-  "drop_pct": 7.0,
-  "latest_id": 14485,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Κεντρικής Μακεδονίας|Κατερίνης|θέση «αδριανός λόφος» της κτηματικής περιοχής του αγροκτήματος βροντούς κονταριώτισσας υπέρ σαακ λόφου της δ κ λόφου της δ ε πέτρας του δήμου κατερίνης της π ε πιερίας της περιφέρειας κεντρικής μακεδονίας",
-  "region": "Κεντρικής Μακεδονίας",
-  "municipality": "Κατερίνης",
-  "address": "θέση «Αδριανός Λόφος» της κτηματικής περιοχής του αγροκτήματος Βροντούς Κονταριώτισσας υπέρ ΣΑΑΚ Λόφου της Δ.Κ Λόφου της Δ.Ε Πέτρας του Δήμου Κατερίνης της Π.Ε Πιερίας της Περιφέρειας Κεντρικής Μακεδονίας",
-  "rounds": [
-   {
-    "id": 10531,
-    "url": "https://eauction24.gr/auction/10531",
-    "title": "Αγροτεμάχιο 5206 τ.μ. Δήμος Κατερίνης σε πλειστηριασμό",
-    "auction_date": "2026-07-29",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 6700,
-    "area_m2": 5206
-   },
-   {
-    "id": 10530,
-    "url": "https://eauction24.gr/auction/10530",
-    "title": "Αγροτεμάχιο 5125 τ.μ. Δήμος Κατερίνης σε πλειστηριασμό",
-    "auction_date": "2026-07-29",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 6300,
-    "area_m2": 5125
-   }
-  ],
-  "rounds_count": 2,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 6700,
-  "latest_price": 6300,
-  "drop_pct": 6.0,
-  "latest_id": 10530,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
-  "multi_cut": false
- },
- {
-  "key": "Θεσσαλίας|Τρικκαίων|μιαούλη τρίκαλα",
-  "region": "Θεσσαλίας",
-  "municipality": "Τρικκαίων",
-  "address": "Μιαούλη, Τρίκαλα",
-  "rounds": [
-   {
-    "id": 10192,
-    "url": "https://eauction24.gr/auction/10192",
-    "title": "Γραφείο 23 τ.μ. Δήμος Τρικκαίων σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 20000,
-    "area_m2": 23
-   },
-   {
-    "id": 10191,
-    "url": "https://eauction24.gr/auction/10191",
-    "title": "Γραφείο 23 τ.μ. Δήμος Τρικκαίων σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 26000,
-    "area_m2": 23
-   },
-   {
-    "id": 10190,
-    "url": "https://eauction24.gr/auction/10190",
-    "title": "Γραφείο 23 τ.μ. Δήμος Τρικκαίων σε πλειστηριασμό",
-    "auction_date": "2026-07-22",
-    "first_seen": "2026-07-06",
-    "status": "removed",
-    "price_eur": 19000,
-    "area_m2": 23
-   }
-  ],
-  "rounds_count": 3,
-  "area_mismatch": false,
-  "has_drop": true,
-  "first_price": 20000,
-  "latest_price": 19000,
-  "drop_pct": 5.0,
-  "latest_id": 10190,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -2097,8 +2097,8 @@
   "latest_price": 170000,
   "drop_pct": 2.9,
   "latest_id": 10346,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -2145,8 +2145,8 @@
   "latest_price": 146000,
   "drop_pct": 2.7,
   "latest_id": 12658,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -2183,8 +2183,8 @@
   "latest_price": 72000,
   "drop_pct": 1.4,
   "latest_id": 12858,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -2593,8 +2593,8 @@
   "latest_price": 21000,
   "drop_pct": null,
   "latest_id": 17011,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -4431,8 +4431,8 @@
   "latest_price": 33000,
   "drop_pct": null,
   "latest_id": 13035,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -4689,8 +4689,8 @@
   "latest_price": 139000,
   "drop_pct": null,
   "latest_id": 10658,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -5033,8 +5033,8 @@
   "latest_price": 43000,
   "drop_pct": null,
   "latest_id": 10462,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
@@ -5253,8 +5253,8 @@
   "latest_price": 262000,
   "drop_pct": null,
   "latest_id": 10274,
-  "recent_cuts_30d": 1,
-  "recent_drop": true,
+  "recent_cuts_30d": 0,
+  "recent_drop": false,
   "multi_cut": false
  },
  {
