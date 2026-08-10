@@ -1,5 +1,5 @@
 {
- "last_digest_date": "2026-08-09",
+ "last_digest_date": "2026-08-10",
  "lots": {
   "10305": {
    "first_reported": "2026-07-14",
@@ -1500,6 +1500,66 @@
    "times_shown": 1,
    "fingerprint": "p117000|r0|d0|i0",
    "last_shown": "2026-08-09"
+  },
+  "18113": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p117000|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "31741": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p119700|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "18323": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p122000|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "30101": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p123000|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "28730": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p123000|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "30021": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p125122.4|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "26968": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p126000|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "19636": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p127000|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "29600": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p132000|r0|d0|i0",
+   "last_shown": "2026-08-10"
+  },
+  "30698": {
+   "first_reported": "2026-08-10",
+   "times_shown": 1,
+   "fingerprint": "p133000|r0|d0|i0",
+   "last_shown": "2026-08-10"
   }
  }
 }
