@@ -1,4 +1,15 @@
 {
+ "32657": {
+  "ppsqm": 26638,
+  "bare_or_usufruct": false,
+  "low_price_outlier": false,
+  "high_price_outlier": true,
+  "shared_listing": false,
+  "median_ppsqm": 2098,
+  "vs_median_pct": 1169.4,
+  "basis": "municipality",
+  "sample_size": 9
+ },
  "32621": {
   "ppsqm": 1186,
   "bare_or_usufruct": false,
@@ -8,7 +19,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -0.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "32620": {
   "ppsqm": 1323,
@@ -19,7 +30,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 10.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "32576": {
   "ppsqm": 894,
@@ -2516,7 +2527,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -21.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "29220": {
   "ppsqm": 66,
@@ -3418,7 +3429,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 218.1,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "27963": {
   "ppsqm": 1411,
@@ -3473,7 +3484,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 186.3,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "27709": {
   "ppsqm": 1956,
@@ -5607,7 +5618,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 5.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18220": {
   "ppsqm": 940,
@@ -5629,7 +5640,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 188.3,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18218": {
   "ppsqm": 600,
@@ -5640,7 +5651,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -49.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18217": {
   "ppsqm": 1382,
@@ -5651,7 +5662,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 15.6,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18216": {
   "ppsqm": 979,
@@ -5684,7 +5695,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 39.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18210": {
   "ppsqm": 500,
@@ -5992,7 +6003,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -90.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18170": {
   "ppsqm": 233,
@@ -6003,7 +6014,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -80.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18169": {
   "ppsqm": 23,
@@ -6014,7 +6025,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -98.1,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18168": {
   "ppsqm": 23,
@@ -6025,7 +6036,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -98.1,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18164": {
   "ppsqm": 431,
@@ -6333,7 +6344,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 57.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "18114": {
   "ppsqm": 703,
@@ -6355,7 +6366,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": 11.5,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "18105": {
   "ppsqm": 2,
@@ -6674,7 +6685,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 7.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17693": {
   "ppsqm": 939,
@@ -6773,7 +6784,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -49.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17672": {
   "ppsqm": 679,
@@ -6806,7 +6817,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 130.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17669": {
   "ppsqm": 762,
@@ -7070,7 +7081,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 61.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17314": {
   "ppsqm": 768,
@@ -7202,7 +7213,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 39.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17041": {
   "ppsqm": 55,
@@ -7268,7 +7279,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -98.3,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17025": {
   "ppsqm": 1249,
@@ -7290,7 +7301,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 44.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17023": {
   "ppsqm": 512,
@@ -7301,7 +7312,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": -75.6,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "17022": {
   "ppsqm": 2798,
@@ -7312,7 +7323,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": 33.3,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "17021": {
   "ppsqm": 544,
@@ -7323,7 +7334,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": -74.1,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "17020": {
   "ppsqm": 1290,
@@ -7334,7 +7345,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": -38.5,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "17019": {
   "ppsqm": 2123,
@@ -7345,7 +7356,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": 1.2,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "17018": {
   "ppsqm": 155,
@@ -7477,7 +7488,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -59.1,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "17006": {
   "ppsqm": 880,
@@ -7510,7 +7521,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 16.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16999": {
   "ppsqm": 3791,
@@ -7884,7 +7895,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 52.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16957": {
   "ppsqm": 2324,
@@ -7906,7 +7917,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 187.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16955": {
   "ppsqm": 2632,
@@ -8665,7 +8676,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 95.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16864": {
   "ppsqm": 6,
@@ -8753,7 +8764,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -74.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16850": {
   "ppsqm": 435,
@@ -8973,7 +8984,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 47.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16818": {
   "ppsqm": 530,
@@ -8984,7 +8995,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -55.6,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16817": {
   "ppsqm": 843,
@@ -8995,7 +9006,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -29.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16816": {
   "ppsqm": 613,
@@ -9006,7 +9017,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -48.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16815": {
   "ppsqm": 377,
@@ -9017,7 +9028,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -68.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16814": {
   "ppsqm": 267,
@@ -9028,7 +9039,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -77.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16813": {
   "ppsqm": 138,
@@ -9039,7 +9050,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -88.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16812": {
   "ppsqm": 1062,
@@ -9050,7 +9061,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -11.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16811": {
   "ppsqm": 1062,
@@ -9061,7 +9072,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -11.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16810": {
   "ppsqm": 1062,
@@ -9072,7 +9083,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -11.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16809": {
   "ppsqm": 1062,
@@ -9083,7 +9094,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -11.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16808": {
   "ppsqm": 1062,
@@ -9094,7 +9105,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -11.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16806": {
   "ppsqm": 1062,
@@ -9105,7 +9116,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -11.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16805": {
   "ppsqm": 345,
@@ -9336,7 +9347,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -99.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16772": {
   "ppsqm": 480,
@@ -9776,7 +9787,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -17.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16710": {
   "ppsqm": 351,
@@ -9787,7 +9798,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -70.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16709": {
   "ppsqm": 2356,
@@ -9798,7 +9809,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 97.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16708": {
   "ppsqm": 139,
@@ -9809,7 +9820,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -88.3,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16707": {
   "ppsqm": 1217,
@@ -9930,7 +9941,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 60.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16693": {
   "ppsqm": 1041,
@@ -10084,7 +10095,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 28.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16670": {
   "ppsqm": 1085,
@@ -10227,7 +10238,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": -61.9,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "16650": {
   "ppsqm": 160,
@@ -10238,7 +10249,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": -92.4,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "16649": {
   "ppsqm": 2533,
@@ -10249,7 +10260,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": 20.7,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "16647": {
   "ppsqm": 1868,
@@ -10304,7 +10315,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 133.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16642": {
   "ppsqm": 3568,
@@ -10326,7 +10337,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 47.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16640": {
   "ppsqm": 1769,
@@ -10469,7 +10480,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 62.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16626": {
   "ppsqm": 226,
@@ -10535,7 +10546,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 62.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16620": {
   "ppsqm": 394,
@@ -10612,7 +10623,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -38.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16612": {
   "ppsqm": 2944,
@@ -10623,7 +10634,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 146.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16610": {
   "ppsqm": 22,
@@ -10656,7 +10667,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -66.3,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16605": {
   "ppsqm": 28,
@@ -10799,7 +10810,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 70.6,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16584": {
   "ppsqm": 1075,
@@ -10876,7 +10887,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 63.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16570": {
   "ppsqm": 1042,
@@ -10887,7 +10898,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -12.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16567": {
   "ppsqm": 1886,
@@ -11228,7 +11239,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -99.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16518": {
   "ppsqm": 11,
@@ -11239,7 +11250,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -99.1,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16517": {
   "ppsqm": 11,
@@ -11338,7 +11349,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": 18.4,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "16505": {
   "ppsqm": 143,
@@ -11470,7 +11481,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 41.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16489": {
   "ppsqm": 400,
@@ -11602,7 +11613,7 @@
   "median_ppsqm": 2098,
   "vs_median_pct": -11.5,
   "basis": "municipality",
-  "sample_size": 8
+  "sample_size": 9
  },
  "16471": {
   "ppsqm": 1052,
@@ -11723,7 +11734,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -75.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "16184": {
   "ppsqm": 335,
@@ -11734,7 +11745,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -72.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "15882": {
   "ppsqm": 1780,
@@ -12262,7 +12273,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 5.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14935": {
   "ppsqm": 1757,
@@ -12317,7 +12328,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 12.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14929": {
   "ppsqm": 1062,
@@ -12339,7 +12350,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -99.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14927": {
   "ppsqm": 1011,
@@ -12482,7 +12493,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 235.1,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14914": {
   "ppsqm": 5114,
@@ -12493,7 +12504,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 327.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14913": {
   "ppsqm": 5114,
@@ -12504,7 +12515,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 327.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14912": {
   "ppsqm": 1492,
@@ -12680,7 +12691,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 60.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14877": {
   "ppsqm": 2017,
@@ -12966,7 +12977,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -64.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14826": {
   "ppsqm": 699,
@@ -12977,7 +12988,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -41.6,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14825": {
   "ppsqm": 385,
@@ -13186,7 +13197,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 31.1,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14795": {
   "ppsqm": 302,
@@ -13406,7 +13417,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -35.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14769": {
   "ppsqm": 1058,
@@ -13472,7 +13483,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 22.3,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14763": {
   "ppsqm": 413,
@@ -13824,7 +13835,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -52.6,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14717": {
   "ppsqm": 963,
@@ -13835,7 +13846,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -19.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14716": {
   "ppsqm": 329,
@@ -14583,7 +14594,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -88.3,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14621": {
   "ppsqm": 700,
@@ -14594,7 +14605,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -41.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14620": {
   "ppsqm": 142,
@@ -14803,7 +14814,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 4.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14489": {
   "ppsqm": 500,
@@ -14814,7 +14825,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -58.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14488": {
   "ppsqm": 3092,
@@ -14825,7 +14836,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 158.6,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "14486": {
   "ppsqm": 796,
@@ -15089,7 +15100,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 72.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13613": {
   "ppsqm": 49,
@@ -15298,7 +15309,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -36.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13588": {
   "ppsqm": 199,
@@ -15683,7 +15694,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -3.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13514": {
   "ppsqm": 1265,
@@ -15771,7 +15782,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 51.8,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13502": {
   "ppsqm": 210,
@@ -15925,7 +15936,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -92.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13482": {
   "ppsqm": 695,
@@ -15936,7 +15947,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -41.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13481": {
   "ppsqm": 707,
@@ -16024,7 +16035,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 31.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13472": {
   "ppsqm": 1160,
@@ -16134,7 +16145,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 12.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13451": {
   "ppsqm": 1960,
@@ -16321,7 +16332,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -92.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13422": {
   "ppsqm": 604,
@@ -16497,7 +16508,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -28.2,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13394": {
   "ppsqm": 1369,
@@ -16651,7 +16662,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -99.7,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13380": {
   "ppsqm": 6,
@@ -16662,7 +16673,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -99.5,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "13377": {
   "ppsqm": 800,
@@ -16695,7 +16706,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -4.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "12864": {
   "ppsqm": 158,
@@ -16783,7 +16794,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 205.0,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "12706": {
   "ppsqm": 365,
@@ -17355,7 +17366,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": 32.9,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "12621": {
   "ppsqm": 95,
@@ -17597,7 +17608,7 @@
   "median_ppsqm": 1196,
   "vs_median_pct": -92.4,
   "basis": "region",
-  "sample_size": 296
+  "sample_size": 297
  },
  "12281": {
   "ppsqm": 700,
