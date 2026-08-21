@@ -1,4 +1,59 @@
 {
+ "32774": {
+  "ppsqm": 24,
+  "bare_or_usufruct": false,
+  "low_price_outlier": false,
+  "high_price_outlier": false,
+  "shared_listing": false,
+  "median_ppsqm": 30,
+  "vs_median_pct": -17.7,
+  "basis": "municipality",
+  "sample_size": 6
+ },
+ "32773": {
+  "ppsqm": 25,
+  "bare_or_usufruct": false,
+  "low_price_outlier": false,
+  "high_price_outlier": false,
+  "shared_listing": false,
+  "median_ppsqm": 30,
+  "vs_median_pct": -16.2,
+  "basis": "municipality",
+  "sample_size": 6
+ },
+ "32772": {
+  "ppsqm": 65,
+  "bare_or_usufruct": false,
+  "low_price_outlier": false,
+  "high_price_outlier": false,
+  "shared_listing": false,
+  "median_ppsqm": 30,
+  "vs_median_pct": 120.6,
+  "basis": "municipality",
+  "sample_size": 6
+ },
+ "32771": {
+  "ppsqm": 30,
+  "bare_or_usufruct": false,
+  "low_price_outlier": false,
+  "high_price_outlier": false,
+  "shared_listing": false,
+  "median_ppsqm": 30,
+  "vs_median_pct": 0.0,
+  "basis": "municipality",
+  "sample_size": 6
+ },
+ "32770": {
+  "ppsqm": 38,
+  "bare_or_usufruct": false,
+  "low_price_outlier": false,
+  "high_price_outlier": false,
+  "shared_listing": false,
+  "median_ppsqm": 30,
+  "vs_median_pct": 30.1,
+  "basis": "municipality",
+  "sample_size": 6
+ },
  "32723": {
   "ppsqm": 2042,
   "bare_or_usufruct": false,
@@ -1259,10 +1314,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": 87.8,
+  "median_ppsqm": 961,
+  "vs_median_pct": 138.0,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "30730": {
   "ppsqm": 604,
@@ -3072,12 +3127,12 @@
   "ppsqm": 1218,
   "bare_or_usufruct": false,
   "low_price_outlier": false,
-  "high_price_outlier": false,
+  "high_price_outlier": true,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": 0.0,
-  "basis": "region",
-  "sample_size": 25
+  "median_ppsqm": 30,
+  "vs_median_pct": 4020.2,
+  "basis": "municipality",
+  "sample_size": 6
  },
  "28568": {
   "ppsqm": 3450,
@@ -3525,10 +3580,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -74.8,
+  "median_ppsqm": 961,
+  "vs_median_pct": -68.0,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "27693": {
   "ppsqm": 140,
@@ -3536,10 +3591,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -88.5,
+  "median_ppsqm": 961,
+  "vs_median_pct": -85.4,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "27581": {
   "ppsqm": 52,
@@ -3613,10 +3668,10 @@
   "low_price_outlier": false,
   "high_price_outlier": true,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": 1583.9,
+  "median_ppsqm": 961,
+  "vs_median_pct": 2033.4,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "27396": {
   "ppsqm": 100000,
@@ -3624,10 +3679,10 @@
   "low_price_outlier": false,
   "high_price_outlier": true,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": 8114.1,
+  "median_ppsqm": 961,
+  "vs_median_pct": 10306.6,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "27378": {
   "ppsqm": 21,
@@ -4889,10 +4944,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -69.6,
+  "median_ppsqm": 961,
+  "vs_median_pct": -61.5,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "21560": {
   "ppsqm": 7886,
@@ -10664,10 +10719,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": true,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -98.2,
+  "median_ppsqm": 961,
+  "vs_median_pct": -97.7,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "16609": {
   "ppsqm": 188,
@@ -10675,10 +10730,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": true,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -84.5,
+  "median_ppsqm": 961,
+  "vs_median_pct": -80.4,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "16606": {
   "ppsqm": 402,
@@ -11049,10 +11104,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": false,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -63.7,
+  "median_ppsqm": 961,
+  "vs_median_pct": -54.0,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "16550": {
   "ppsqm": 460,
@@ -11060,10 +11115,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": true,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -62.2,
+  "median_ppsqm": 961,
+  "vs_median_pct": -52.1,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "16549": {
   "ppsqm": 165,
@@ -11071,10 +11126,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": true,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -86.4,
+  "median_ppsqm": 961,
+  "vs_median_pct": -82.8,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "16548": {
   "ppsqm": 1089,
@@ -11082,10 +11137,10 @@
   "low_price_outlier": false,
   "high_price_outlier": false,
   "shared_listing": true,
-  "median_ppsqm": 1217,
-  "vs_median_pct": -10.6,
+  "median_ppsqm": 961,
+  "vs_median_pct": 13.3,
   "basis": "region",
-  "sample_size": 25
+  "sample_size": 30
  },
  "16547": {
   "ppsqm": 1198,

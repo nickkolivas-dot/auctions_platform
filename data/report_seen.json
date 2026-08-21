@@ -1,5 +1,5 @@
 {
- "last_digest_date": "2026-08-20",
+ "last_digest_date": "2026-08-21",
  "lots": {
   "10305": {
    "first_reported": "2026-07-14",
@@ -1000,8 +1000,8 @@
   "29228": {
    "first_reported": "2026-08-01",
    "times_shown": 1,
-   "fingerprint": "p47200|r0|d0|i0",
-   "last_shown": "2026-08-01"
+   "fingerprint": "p47200|r0|d0|i1",
+   "last_shown": "2026-08-21"
   },
   "30700": {
    "first_reported": "2026-08-01",
@@ -1300,8 +1300,8 @@
   "29925": {
    "first_reported": "2026-08-06",
    "times_shown": 1,
-   "fingerprint": "p54400|r0|d0|i0",
-   "last_shown": "2026-08-06"
+   "fingerprint": "p54400|r0|d0|i1",
+   "last_shown": "2026-08-21"
   },
   "21081": {
    "first_reported": "2026-08-06",
@@ -1354,8 +1354,8 @@
   "28791": {
    "first_reported": "2026-08-07",
    "times_shown": 1,
-   "fingerprint": "p72800|r0|d0|i0",
-   "last_shown": "2026-08-07"
+   "fingerprint": "p72800|r0|d0|i1",
+   "last_shown": "2026-08-21"
   },
   "16579": {
    "first_reported": "2026-08-07",
@@ -2028,6 +2028,48 @@
    "times_shown": 1,
    "fingerprint": "p2000|r0|d0|i1",
    "last_shown": "2026-08-20"
+  },
+  "27491": {
+   "first_reported": "2026-08-21",
+   "times_shown": 1,
+   "fingerprint": "p3000|r0|d0|i1",
+   "last_shown": "2026-08-21"
+  },
+  "22695": {
+   "first_reported": "2026-08-21",
+   "times_shown": 1,
+   "fingerprint": "p3000|r0|d0|i1",
+   "last_shown": "2026-08-21"
+  },
+  "22205": {
+   "first_reported": "2026-08-21",
+   "times_shown": 1,
+   "fingerprint": "p3000|r0|d0|i1",
+   "last_shown": "2026-08-21"
+  },
+  "29205": {
+   "first_reported": "2026-08-21",
+   "times_shown": 1,
+   "fingerprint": "p4000|r0|d0|i1",
+   "last_shown": "2026-08-21"
+  },
+  "12705": {
+   "first_reported": "2026-08-21",
+   "times_shown": 1,
+   "fingerprint": "p4700|r0|d0|i1",
+   "last_shown": "2026-08-21"
+  },
+  "23098": {
+   "first_reported": "2026-08-21",
+   "times_shown": 1,
+   "fingerprint": "p5000|r0|d0|i1",
+   "last_shown": "2026-08-21"
+  },
+  "26974": {
+   "first_reported": "2026-08-21",
+   "times_shown": 1,
+   "fingerprint": "p7000|r0|d0|i1",
+   "last_shown": "2026-08-21"
   }
  }
 }
