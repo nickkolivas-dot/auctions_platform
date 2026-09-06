@@ -1,5 +1,5 @@
 {
- "last_digest_date": "2026-09-05",
+ "last_digest_date": "2026-09-06",
  "lots": {
   "10305": {
    "first_reported": "2026-07-14",
@@ -1252,8 +1252,8 @@
   "30076": {
    "first_reported": "2026-08-05",
    "times_shown": 1,
-   "fingerprint": "p43000|r0|d0|i0",
-   "last_shown": "2026-08-05"
+   "fingerprint": "p43000|r0|d0|i1",
+   "last_shown": "2026-09-06"
   },
   "16515": {
    "first_reported": "2026-08-05",
@@ -1450,8 +1450,8 @@
   "31814": {
    "first_reported": "2026-08-09",
    "times_shown": 1,
-   "fingerprint": "p110000|r0|d0|i0",
-   "last_shown": "2026-08-09"
+   "fingerprint": "p110000|r0|d0|i1",
+   "last_shown": "2026-09-06"
   },
   "27597": {
    "first_reported": "2026-08-09",
@@ -1474,8 +1474,8 @@
   "14855": {
    "first_reported": "2026-08-09",
    "times_shown": 1,
-   "fingerprint": "p112000|r0|d0|i0",
-   "last_shown": "2026-08-09"
+   "fingerprint": "p112000|r0|d0|i1",
+   "last_shown": "2026-09-06"
   },
   "32508": {
    "first_reported": "2026-08-09",
@@ -2604,6 +2604,48 @@
    "times_shown": 1,
    "fingerprint": "p29000|r0|d0|i1",
    "last_shown": "2026-09-05"
+  },
+  "14844": {
+   "first_reported": "2026-09-06",
+   "times_shown": 1,
+   "fingerprint": "p191000|r0|d0|i1",
+   "last_shown": "2026-09-06"
+  },
+  "34805": {
+   "first_reported": "2026-09-06",
+   "times_shown": 1,
+   "fingerprint": "p12000|r0|d0|i0",
+   "last_shown": "2026-09-06"
+  },
+  "29755": {
+   "first_reported": "2026-09-06",
+   "times_shown": 1,
+   "fingerprint": "p39000|r0|d0|i1",
+   "last_shown": "2026-09-06"
+  },
+  "28790": {
+   "first_reported": "2026-09-06",
+   "times_shown": 1,
+   "fingerprint": "p40000|r0|d0|i1",
+   "last_shown": "2026-09-06"
+  },
+  "34853": {
+   "first_reported": "2026-09-06",
+   "times_shown": 1,
+   "fingerprint": "p12000|r0|d0|i0",
+   "last_shown": "2026-09-06"
+  },
+  "34851": {
+   "first_reported": "2026-09-06",
+   "times_shown": 1,
+   "fingerprint": "p12000|r0|d0|i0",
+   "last_shown": "2026-09-06"
+  },
+  "33326": {
+   "first_reported": "2026-09-06",
+   "times_shown": 1,
+   "fingerprint": "p110800|r0|d0|i1",
+   "last_shown": "2026-09-06"
   }
  }
 }
